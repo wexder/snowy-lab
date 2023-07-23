@@ -24,7 +24,7 @@
       {
         pivpnIso = nixpkgs.lib.nixosSystem {
           inherit (baseRpi) system;
-          modules = vpn.module ++ base.modules ++ baseRpi.modules ++ [
+          modules = vpn.modules ++ base.modules ++ baseRpi.modules ++ [
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-installer.nix"
             "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
             ./boot.nix
@@ -35,7 +35,7 @@
         };
         pivpn = nixpkgs.lib.nixosSystem {
           inherit (baseRpi) system;
-          modules = vpn.module ++ base.modules ++ baseRpi.modules ++ [
+          modules = vpn.modules ++ base.modules ++ baseRpi.modules ++ [
             "${config}/configurations/machines/vpn/default.nix"
           ];
         };
