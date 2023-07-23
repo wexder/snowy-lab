@@ -5,11 +5,11 @@ in
 {
   imports = [
     ./system.nix
-    (./networking.nix (
+    (import ./networking.nix (
       args
         { ip = ip; }
     ))
-    (./dns.nix (
+    (import ./dns.nix (
       args
         { ip = ip; }
     ))

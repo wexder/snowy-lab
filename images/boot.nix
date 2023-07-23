@@ -25,7 +25,7 @@ in
         cp ${flakeClone} /etc/nixos/flake.nix
       fi
       if ! [ -e /etc/nixos/flake.lock ]; then
-        cp ${flakeLockClone} /etc/nixos/flake.nix
+        cp ${flakeLockClone} /etc/nixos/flake.lock
       fi
     '';
 }
