@@ -1,7 +1,7 @@
 {
   description = "Machine images configurations";
   inputs.nixpkgs.url = "github:wexder/nixpkgs/netclient";
-  inputs.config.url = "github:wexder/snowy-lab/configurations";
+  inputs.config.url = "github:wexder/snowy-lab";
   outputs = { self, nixpkgs, config }@attrs: {
     nixosConfigurations =
       let

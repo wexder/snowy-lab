@@ -1,0 +1,43 @@
+{
+  "nodes": {
+    "config": {
+      "locked": {
+        "lastModified": 1690108962,
+        "narHash": "sha256-6cx9LxPMFy1AjoYCVU4coheqReB/tsIk4RcZPfMEnMo=",
+        "owner": "wexder",
+        "repo": "snowy-lab",
+        "rev": "942848fe213ae33e82de1cfb08d0b95153553048",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wexder",
+        "repo": "snowy-lab",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1690030300,
+        "narHash": "sha256-h2rKO6MuxJ++hMY+esOrCrgZVLToEUo9kIfjH0HLh5M=",
+        "owner": "wexder",
+        "repo": "nixpkgs",
+        "rev": "21524d63124a5f98ccaaf1a5cbd9711ce7c030b5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wexder",
+        "ref": "netclient",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "config": "config",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
