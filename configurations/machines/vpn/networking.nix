@@ -33,11 +33,17 @@
       externalInterface = "netmaker";
     };
     # Enabling WIFI
+
     wireless.enable = true;
     wireless.interfaces = [ "wlan0" ];
     # If you want to connect also via WIFI to your router
     wireless.networks."MartinRouterKing".psk = "natoneprijdes";
+
     hostName = "pivpn"; # Define your hostname.
+    nameservers = [
+      "8.8.8.8"
+      "9.9.9.9"
+    ];
     interfaces.wlan0.ipv4.addresses = [{
       address = "10.1.1.231";
       prefixLength = 24;
