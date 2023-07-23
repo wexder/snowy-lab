@@ -1,14 +1,19 @@
 {
   description = "Vpn raspberry pi";
-  inputs.pihole.url = "github:mindsbackyard/pihole-flake";
-  outputs = { self, pihole }: {
+  inputs = {
+    # TODO move to something better
+    pihole = {
+      url = "github:mindsbackyard/pihole-flake";
+    };
+    linger = {
+      url = "github:mindsbackyard/linger-flake";
+    };
+  };
+  outputs = { self, pihole, linger }: {
     system = "aarch64-linux";
     modules = [
-      ({ system, ... }: {
-        modules = [
-          pihole.nixosModules.${system}.default
-        ];
-      })
+      linger.nixosModules."aarch64-linux".default
+      pihole.nixosModules."aarch64-linux".default
       ./default.nix
     ];
   };

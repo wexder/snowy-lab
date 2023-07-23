@@ -1,4 +1,4 @@
-{ config, pkgs, ip, ... }:
+{ config, pkgs, ... }:
 
 {
   networking = {
@@ -38,8 +38,8 @@
     # If you want to connect also via WIFI to your router
     wireless.networks."MartinRouterKing".psk = "natoneprijdes";
     hostName = "pivpn"; # Define your hostname.
-    interfaces.eth0.ipv4.addresses = [{
-      address = ip;
+    interfaces.wlan0.ipv4.addresses = [{
+      address = "10.1.1.231";
       prefixLength = 24;
     }];
   };

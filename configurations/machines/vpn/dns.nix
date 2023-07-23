@@ -1,5 +1,25 @@
-{ config, pkgs, ip, ... }:
+{ config, pkgs, ... }:
 {
+
+  users.users.pihole = {
+    isNormalUser = true;
+    home = "/home/pihole";
+    description = "Pihole user";
+    subUidRanges = [
+      {
+        count = 10;
+        startUid = 6969;
+      }
+    ];
+    subGidRanges = [
+      {
+        count = 10;
+        startGid = 6969;
+      }
+    ];
+
+  };
+
   services.pihole = {
     enable = true;
     hostConfig = {
@@ -14,17 +34,14 @@
       # expose DNS & the web interface on unpriviledged ports on all IP addresses of the host
       # check the option descriptions for more information
       dnsPort = 5335;
-      webProt = 8080;
+      webPort = 8080;
     };
-    piholeConfig.ftl = {
-      # assuming that the host has this (fixed) IP and should resolve "pi.hole" to this address
-      # check the option description & the FTLDNS documentation for more information
-      LOCAL_IPV4 = ip;
-    };
-    piholeCOnfig.web = {
-      virtualHost = "pi.hole";
-      # TODO unsafe
-      password = "password";
+    piholeConfig = {
+      tz = "Europe/Prague";
+      web = {
+        virtualHost = "pi.hole";
+        password = "password";
+      };
     };
   };
 }

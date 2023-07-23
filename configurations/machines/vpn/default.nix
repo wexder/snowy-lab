@@ -1,18 +1,9 @@
-args@{ config, pkgs, ... }:
-let
-  ip = "10.1.1.231";
-in
+{ config, pkgs, ... }:
 {
   imports = [
     ./system.nix
-    (import ./networking.nix (
-      args
-        { ip = ip; }
-    ))
-    (import ./dns.nix (
-      args
-        { ip = ip; }
-    ))
+    ./networking.nix
+    ./dns.nix
   ];
   services.openssh = {
     enable = true;

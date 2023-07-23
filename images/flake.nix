@@ -1,8 +1,10 @@
 {
   description = "Machine images configurations";
-  inputs.nixpkgs.url = "github:wexder/nixpkgs/netclient";
-  inputs.config.url = "github:wexder/snowy-lab";
-  inputs.vpn.url = "github:wexder/snowy-lab?dir=configurations/machines/vpn";
+  inputs = {
+    nixpkgs.url = "github:wexder/nixpkgs/netclient";
+    config.url = "github:wexder/snowy-lab";
+    vpn.url = "github:wexder/snowy-lab?dir=configurations/machines/vpn";
+  };
   outputs = { self, nixpkgs, config, vpn }: {
     nixosConfigurations =
       let
