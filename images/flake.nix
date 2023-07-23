@@ -2,7 +2,8 @@
   description = "Machine images configurations";
   inputs.nixpkgs.url = "github:wexder/nixpkgs/netclient";
   inputs.config.url = "github:wexder/snowy-lab";
-  outputs = { self, nixpkgs, config }@attrs: {
+  inputs.vpn.url = "github:wexder/snowy-lab?dir=configurations/machines/vpn";
+  outputs = { self, nixpkgs, config, vpn }@attrs: {
     nixosConfigurations =
       let
         # Shared base configuration.
@@ -23,11 +24,10 @@
       {
         pivpnIso = nixpkgs.lib.nixosSystem {
           inherit (baseRpi) system;
-          modules = base.modules ++ baseRpi.modules ++ [
+          modules = vpn.module ++ base.modules ++ baseRpi.modules ++ [
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-installer.nix"
             "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
             ./boot.nix
-            "${config}/configurations/machines/vpn/default.nix"
             ({ pkgs, ... }: {
               sdImage.compressImage = false;
             })
@@ -35,7 +35,7 @@
         };
         pivpn = nixpkgs.lib.nixosSystem {
           inherit (baseRpi) system;
-          modules = base.modules ++ baseRpi.modules ++ [
+          modules = vpn.module ++ base.modules ++ baseRpi.modules ++ [
             "${config}/configurations/machines/vpn/default.nix"
           ];
         };
