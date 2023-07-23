@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
-
 {
-  imports = [ ];
+  system = {
+    stateVersion = "23.11";
+  };
   boot = {
     # kernelPackages = pkgs.linuxPackages_rpi4;
     tmp = {
@@ -40,79 +41,12 @@
   # !!! Adding a swap file is optional, but strongly recommended!
   swapDevices = [{ device = "/swapfile"; size = 1024; }];
 
-  services.openssh = {
-    enable = true;
-    settings = {
-      PermitRootLogin = "yes";
-    };
-  };
-
-  programs.zsh = {
-    enable = true;
-    ohMyZsh = {
-      enable = true;
-      theme = "bira";
-    };
-  };
-
-
-  # virtualisation.docker.enable = true;
-
   # WiFi
   hardware = {
     enableRedistributableFirmware = true;
     firmware = [ pkgs.wireless-regdb ];
   };
 
-  networking = {
-    firewall = {
-      enable = true;
-      allowPing = true;
-      allowedUDPPortRanges = [
-        {
-          from = 0;
-          to = 65535;
-        }
-      ];
-      allowedTCPPortRanges = [
-        {
-          from = 0;
-          to = 65535;
-        }
-      ];
-      extraCommands = ''
-        iptables -t nat -A POSTROUTING -o netmaker -j MASQUERADE
-        iptables -A FORWARD -i netmaker -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT
-        iptables -A FORWARD -i wlan0 -o netmaker -j ACCEPT
-      '';
-      extraStopCommands = ''
-        iptables -D FORWARD -i netmaker -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT
-        iptables -D FORWARD -i wlan0 -o netmaker -j ACCEPT
-      '';
-    };
-    nat = {
-      enable = true;
-      internalIPs = [ "10.101.0.0/16" ];
-      externalInterface = "netmaker";
-    };
-    # Enabling WIFI
-    wireless.enable = true;
-    wireless.interfaces = [ "wlan0" ];
-    # If you want to connect also via WIFI to your router
-    wireless.networks."MartinRouterKing".psk = "natoneprijdes";
-    hostName = "pivpn"; # Define your hostname.
-  };
-  environment.systemPackages = with pkgs; [
-    neovim
-    netclient
-  ];
-  services.netclient = {
-    enable = true;
-  };
-
-  users.extraUsers.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMkKyMS0O7nzToTh/3LCrwJB++zc29R8U6UlzfzT0xV9 wexder@archlinux"
-  ];
   nix = {
     settings = {
       # auto-optimise-store = true;
