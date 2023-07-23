@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   system = {
-    stateVersion = 23.11;
+    stateVersion = "23.11";
   };
   boot = {
     # kernelPackages = pkgs.linuxPackages_rpi4;
