@@ -1,7 +1,8 @@
 {
   description = "Example";
   inputs.nixpkgs.url = "github:wexder/nixpkgs/netclient";
-  outputs = { self, nixpkgs }@attrs: {
+  inputs.config.url = "github:wexder/snowy-lab/configurations";
+  outputs = { self, nixpkgs, config }@attrs: {
     nixosConfigurations =
       let
         # Shared base configuration.
@@ -22,7 +23,7 @@
           modules = baseRpi.modules ++ [
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-installer.nix"
             "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
-            ./machines/vpn/default.nix
+            "${config}/configurations/machines/vpn/default.nix"
             ({ pkgs, ... }: {
               sdImage.compressImage = false;
             })
@@ -31,7 +32,7 @@
         pivpn = nixpkgs.lib.nixosSystem {
           inherit (baseRpi) system;
           modules = baseRpi.modules ++ [
-            ./machines/vpn/default.nix
+            "${config}/configurations/machines/vpn/default.nix"
           ];
         };
       };
