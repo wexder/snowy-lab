@@ -2,11 +2,11 @@
   "nodes": {
     "config": {
       "locked": {
-        "lastModified": 1690125641,
-        "narHash": "sha256-i56DdxKyK1vmrGYzxrzKMZ8a66czvuEYncP7A+3ipVk=",
+        "lastModified": 1690126620,
+        "narHash": "sha256-8stptxvYr9hw7gu78x88qtJpxJ2kpDRppaQISslvZx8=",
         "owner": "wexder",
         "repo": "snowy-lab",
-        "rev": "0bd86ecdd422bf55ebfafce501701f4aa224ef2c",
+        "rev": "514b34cb93283f88d5a75c4e9efa8bbe39f32194",
         "type": "github"
       },
       "original": {
@@ -40,19 +40,14 @@
     },
     "vpn": {
       "locked": {
-        "dir": "configurations/machines/vpn",
-        "lastModified": 1690125641,
-        "narHash": "sha256-i56DdxKyK1vmrGYzxrzKMZ8a66czvuEYncP7A+3ipVk=",
-        "owner": "wexder",
-        "repo": "snowy-lab",
-        "rev": "0bd86ecdd422bf55ebfafce501701f4aa224ef2c",
-        "type": "github"
+        "lastModified": 1690131534,
+        "narHash": "sha256-6KOaaUFrywYSUlhlm2W4jRy0Xsqzfieh6i1sLBfP6dI=",
+        "path": "/home/wexder/development/nix/test/configurations/machines/vpn",
+        "type": "path"
       },
       "original": {
-        "dir": "configurations/machines/vpn",
-        "owner": "wexder",
-        "repo": "snowy-lab",
-        "type": "github"
+        "path": "/home/wexder/development/nix/test/configurations/machines/vpn",
+        "type": "path"
       }
     }
   },

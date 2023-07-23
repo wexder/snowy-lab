@@ -6,7 +6,6 @@
     ./dns.nix
   ];
 
-  time.timeZone = "Europe/Prague";
   services.openssh = {
     enable = true;
     settings = {
