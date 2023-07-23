@@ -2,11 +2,11 @@
   "nodes": {
     "config": {
       "locked": {
-        "lastModified": 1690116233,
-        "narHash": "sha256-S2yKCo/KjQAHsttK6ssxe8JNkTvgbnHouz8S0GaQK8Y=",
+        "lastModified": 1690123144,
+        "narHash": "sha256-WB+fSe8BsAIVTBJmVCk3CasWXDgg+nD3Rm81IBSwArE=",
         "owner": "wexder",
         "repo": "snowy-lab",
-        "rev": "bcbdc5762d49c6ddd696db0705dfa45021649e18",
+        "rev": "35eea2dd4bfacf559ffb0b6f6794d1043127a217",
         "type": "github"
       },
       "original": {
@@ -33,7 +33,43 @@
         "type": "github"
       }
     },
+    "flake-utils_2": {
+      "inputs": {
+        "systems": "systems_2"
+      },
+      "locked": {
+        "lastModified": 1689068808,
+        "narHash": "sha256-6ixXo3wt24N/melDWjq70UuHQLxGV8jZvooRanIHXw0=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "919d646de7be200f3bf08cb76ae1f09402b6f9b4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "linger": {
+      "inputs": {
+        "flake-utils": "flake-utils"
+      },
+      "locked": {
+        "lastModified": 1670283645,
+        "narHash": "sha256-SuC/SuQ8RUaM6RthNAkNTSnlpRXJxEmuym2OyPLLpWk=",
+        "owner": "mindsbackyard",
+        "repo": "linger-flake",
+        "rev": "9f8632c0621dc562dd42e9eacfdb6dae82aebf8b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mindsbackyard",
+        "repo": "linger-flake",
+        "type": "github"
+      }
+    },
+    "linger_2": {
       "inputs": {
         "flake-utils": [
           "vpn",
@@ -88,8 +124,8 @@
     },
     "pihole": {
       "inputs": {
-        "flake-utils": "flake-utils",
-        "linger": "linger",
+        "flake-utils": "flake-utils_2",
+        "linger": "linger_2",
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
@@ -128,17 +164,33 @@
         "type": "github"
       }
     },
+    "systems_2": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
     "vpn": {
       "inputs": {
+        "linger": "linger",
         "pihole": "pihole"
       },
       "locked": {
         "dir": "configurations/machines/vpn",
-        "lastModified": 1690116233,
-        "narHash": "sha256-S2yKCo/KjQAHsttK6ssxe8JNkTvgbnHouz8S0GaQK8Y=",
+        "lastModified": 1690123144,
+        "narHash": "sha256-WB+fSe8BsAIVTBJmVCk3CasWXDgg+nD3Rm81IBSwArE=",
         "owner": "wexder",
         "repo": "snowy-lab",
-        "rev": "bcbdc5762d49c6ddd696db0705dfa45021649e18",
+        "rev": "35eea2dd4bfacf559ffb0b6f6794d1043127a217",
         "type": "github"
       },
       "original": {
