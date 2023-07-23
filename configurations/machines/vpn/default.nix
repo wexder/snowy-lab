@@ -1,12 +1,18 @@
-{ config, pkgs, ... }:
+args@{ config, pkgs, ... }:
 let
   ip = "10.1.1.231";
 in
 {
   imports = [
     ./system.nix
-    (./networking.nix { ip = ip; })
-    (./dns.nix { ip = ip; })
+    (./networking.nix (
+      args
+        { ip = ip; }
+    ))
+    (./dns.nix (
+      args
+        { ip = ip; }
+    ))
   ];
   services.openssh = {
     enable = true;

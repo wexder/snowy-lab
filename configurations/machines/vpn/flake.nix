@@ -4,6 +4,11 @@
   outputs = { self, pihole }: {
     system = "aarch64-linux";
     modules = [
+      ({ system, ... }: {
+        modules = [
+          pihole.nixosModules.${system}.default
+        ];
+      })
       ./default.nix
     ];
   };
