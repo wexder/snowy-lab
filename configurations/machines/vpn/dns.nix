@@ -94,4 +94,20 @@
 
     podman exec pihole pihole -g
   '';
+
+  services.dnscrypt-proxy2 = {
+    enable = true;
+    settings = {
+      listen_addresses = [ "127.0.0.1:5353" ];
+      server_names = [
+        "uncensoreddns-ipv4"
+        "uncensoreddns-dk-ipv4"
+        "powerdns-doh"
+        "dns.watch"
+        "moulticast-de-ipv4"
+      ];
+      block_ipv6 = true;
+      ipv6_servers = false;
+    };
+  };
 }
