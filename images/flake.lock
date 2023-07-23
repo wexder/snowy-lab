@@ -133,19 +133,14 @@
         "pihole": "pihole"
       },
       "locked": {
-        "dir": "configurations/machines/vpn",
-        "lastModified": 1690112727,
-        "narHash": "sha256-+Mk6kESEcoXGDzg7+H2goDMeLecpMw/pOZKehn7dETc=",
-        "owner": "wexder",
-        "repo": "snowy-lab",
-        "rev": "3e6eb56b81b3485d043eaf0e14a57dae9a188ade",
-        "type": "github"
+        "lastModified": 1,
+        "narHash": "sha256-tHlU7L9JlgOqvfA+KtM/FT8izYmhxbO0o9ikMulnhlE=",
+        "path": "../configurations/machines/vpn",
+        "type": "path"
       },
       "original": {
-        "dir": "configurations/machines/vpn",
-        "owner": "wexder",
-        "repo": "snowy-lab",
-        "type": "github"
+        "path": "../configurations/machines/vpn",
+        "type": "path"
       }
     }
   },

@@ -3,7 +3,7 @@
   inputs.nixpkgs.url = "github:wexder/nixpkgs/netclient";
   inputs.config.url = "github:wexder/snowy-lab";
   inputs.vpn.url = "github:wexder/snowy-lab?dir=configurations/machines/vpn";
-  outputs = { self, nixpkgs, config, vpn }@attrs: {
+  outputs = { self, nixpkgs, config, vpn }: {
     nixosConfigurations =
       let
         # Shared base configuration.
@@ -15,16 +15,11 @@
           ];
 
         };
-        baseRpi = {
-          system = "aarch64-linux";
-          specialArgs = attrs;
-          modules = [ ];
-        };
       in
       {
         pivpnIso = nixpkgs.lib.nixosSystem {
-          inherit (baseRpi) system;
-          modules = vpn.modules ++ base.modules ++ baseRpi.modules ++ [
+          inherit (vpn) system;
+          modules = vpn.modules ++ base.modules ++ [
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-installer.nix"
             "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
             ./boot.nix
@@ -34,9 +29,8 @@
           ];
         };
         pivpn = nixpkgs.lib.nixosSystem {
-          inherit (baseRpi) system;
-          modules = vpn.modules ++ base.modules ++ baseRpi.modules ++ [
-            "${config}/configurations/machines/vpn/default.nix"
+          inherit (vpn) system;
+          modules = vpn.modules ++ base.modules ++ [
           ];
         };
       };
