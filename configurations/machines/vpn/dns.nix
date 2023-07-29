@@ -3,19 +3,11 @@
   services.coredns = {
     enable = true;
     config = ''
-      (base) {
-
-        }
-
-        (google) {
-            import base
-        }
-
-        . {
-            forward . 192.168.1.52 8.8.8.8
-            log
-            errors
-        }
+      . {
+          forward . 192.168.1.52 8.8.8.8
+          log
+          errors
+      }
     '';
   };
 }
