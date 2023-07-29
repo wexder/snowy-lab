@@ -4,7 +4,7 @@
     nixpkgs.url = "github:wexder/nixpkgs/netclient";
     config.url = "github:wexder/snowy-lab";
     vpn = {
-      url = "github:wexder/snowy-lab/48ca57f9?dir=configurations/machines/vpn";
+      url = "github:wexder/snowy-lab/5d0ff077?dir=configurations/machines/vpn";
     };
   };
   outputs = { self, nixpkgs, config, vpn }: {
