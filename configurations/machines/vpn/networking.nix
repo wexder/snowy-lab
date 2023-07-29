@@ -40,9 +40,9 @@
     wireless.networks."MartinRouterKing".psk = "natoneprijdes";
 
     hostName = "pivpn"; # Define your hostname.
-    interfaces.wlan0.ipv4.addresses = [{
-      address = "10.1.1.231";
-      prefixLength = 24;
-    }];
+    # interfaces.wlan0.ipv4.addresses = [{
+    #   address = "10.1.1.231";
+    #   prefixLength = 24;
+    # }];
   };
 }
