@@ -35,7 +35,7 @@
                   hostName = host;
                   environment = "prod";
                 };
-                modules = [ node.config node.hw agenix.nixosModules ];
+                modules = [ node.config node.hw ];
               })
             catalog.nodes;
         in
