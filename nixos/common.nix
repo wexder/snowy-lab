@@ -23,7 +23,6 @@
     jq
     neovim
     tree
-    vim-is-neovim
     wget
   ];
 
