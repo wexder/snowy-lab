@@ -35,7 +35,7 @@
                   hostName = host;
                   environment = "prod";
                 };
-                modules = [ node.config node.hw agenix.nixosModule ];
+                modules = [ node.config node.hw agenix.nixosModules ];
               })
             catalog.nodes;
         in
@@ -61,7 +61,7 @@
                 hostName = host;
                 environment = "test";
               };
-              modules = [ node.config ./hw/qemu.nix agenix.nixosModule ];
+              modules = [ node.config ./hw/qemu.nix agenix.nixosModules ];
             }).config.system.build.vm;
           };
         in
