@@ -38,19 +38,22 @@
 
   time.timeZone = "Europe/Prague";
 
-  users.users.root.openssh.authorizedKeys.keys =
-    # TODO
-    lib.splitString "\n" (builtins.readFile ../authorized_keys.txt);
+  # TODO change
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMkKyMS0O7nzToTh/3LCrwJB++zc29R8U6UlzfzT0xV9 wexder@archlinux"
+  ];
 
+  users.mutableUsers = false;
   users.users.wexder = {
-    uid = 1001;
     isNormalUser = true;
     home = "/home/wexder";
     description = "wexder";
     extraGroups = [ "docker" "wheel" ];
-    openssh.authorizedKeys.keys =
-      # TODO
-      lib.splitString "\n" (builtins.readFile ../authorized_keys.txt);
+    passwordFile = "/etc/passwordFile-wexder";
+    openssh.authorizedKeys.keys = [
+      # TODO change
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMkKyMS0O7nzToTh/3LCrwJB++zc29R8U6UlzfzT0xV9 wexder@archlinux"
+    ];
   };
 
   # age.secrets = {
