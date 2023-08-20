@@ -19,7 +19,7 @@
       inherit (flake-utils.lib) eachSystemMap system;
 
       # catalog.nodes defines the systems available in this flake.
-      catalog = import ./catalog.nix { inherit system; };
+      catalog = import ./nixos/catalog.nix { inherit system; };
     in
     rec {
       # Convert nodes into a set of nixos configs.
