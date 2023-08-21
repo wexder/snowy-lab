@@ -39,7 +39,9 @@
 
   services.openssh = {
     enable = true;
-    PermitRootLogin = "yes";
+    settings = {
+      PermitRootLogin = "yes";
+    };
   };
 
   time.timeZone = "Europe/Prague";
