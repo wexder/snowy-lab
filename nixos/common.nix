@@ -47,7 +47,7 @@
     isNormalUser = true;
     home = "/home/wexder";
     description = "wexder";
-    extraGroups = [ "docker" "wheel" ];
+    extraGroups = [ "wheel" ];
     passwordFile = "/etc/passwordFile-wexder";
     openssh.authorizedKeys.keys = [
       # TODO change
