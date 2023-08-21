@@ -12,6 +12,8 @@
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixos-flake.url = "github:srid/nixos-flake";
   };
 
   outputs = { self, nixpkgs, agenix, flake-utils, home-manager, ... }@attrs:
@@ -38,18 +40,12 @@
                   hostName = host;
                   environment = "prod";
                 };
+
+                nixos-flake.primary-inputs = [ "nixpkgs" "home-manager" "nixos-flake" ];
+
                 modules = [
                   node.config
                   node.hw
-                  home-manager.nixosModules.home-manager
-                  {
-                    home-manager.useGlobalPkgs = true;
-                    home-manager.useUserPackages = true;
-                    home-manager.users.wexder = node.config;
-
-                    # Optionally, use home-manager.extraSpecialArgs to pass
-                    # arguments to home.nix
-                  }
                 ];
               })
             catalog.nodes;
