@@ -12,8 +12,6 @@
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    nixos-flake.url = "github:srid/nixos-flake";
   };
 
   outputs = { self, nixpkgs, agenix, flake-utils, home-manager, ... }@attrs:
@@ -40,9 +38,6 @@
                   hostName = host;
                   environment = "prod";
                 };
-
-                nixos-flake.primary-inputs = [ "nixpkgs" "home-manager" "nixos-flake" ];
-
                 modules = [
                   node.config
                   node.hw
