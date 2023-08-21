@@ -1,23 +1,15 @@
 { config, pkgs, ... }:
 {
-  imports = [ ../common.nix ];
+  imports = [
+    ../common.nix
+    ../programs/zsh.nix
+    ../programs/git.nix
+  ];
   networking.hostName = "snowy-deck";
 
   roles = {
     docker = {
       enable = true;
-    };
-  };
-
-  flake = {
-    homeModules = {
-      common = {
-        home.stateVersion = "22.11";
-        imports = [
-          ./zsh.nix
-          ./git.nix
-        ];
-      };
     };
   };
 }

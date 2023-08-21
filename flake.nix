@@ -41,6 +41,15 @@
                 modules = [
                   node.config
                   node.hw
+                  home-manager.nixosModules.home-manager
+                  {
+                    home-manager.useGlobalPkgs = true;
+                    home-manager.useUserPackages = true;
+                    home-manager.users.wexder = node.config;
+
+                    # Optionally, use home-manager.extraSpecialArgs to pass
+                    # arguments to home.nix
+                  }
                 ];
               })
             catalog.nodes;
