@@ -9,12 +9,15 @@
 
     flake-utils.url = "github:numtide/flake-utils";
     flake-utils.inputs.nixpkgs.follows = "nixpkgs";
+
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, agenix, flake-utils, ... }@attrs:
+  outputs = { self, nixpkgs, agenix, flake-utils, home-manager, ... }@attrs:
     let
       inherit (nixpkgs.lib)
-        mapAttrs mapAttrs' mapAttrsToList mkMerge nixosSystem;
+        mapAttrs mapAttrs' nixosSystem;
 
       inherit (flake-utils.lib) eachSystemMap system;
 
@@ -35,7 +38,19 @@
                   hostName = host;
                   environment = "prod";
                 };
-                modules = [ node.config node.hw ];
+                modules = [
+                  node.config
+                  node.hw
+                  home-manager.nixosModules.home-manager
+                  {
+                    home-manager.useGlobalPkgs = true;
+                    home-manager.useUserPackages = true;
+                    home-manager.users.wexder = node.config;
+
+                    # Optionally, use home-manager.extraSpecialArgs to pass
+                    # arguments to home.nix
+                  }
+                ];
               })
             catalog.nodes;
         in

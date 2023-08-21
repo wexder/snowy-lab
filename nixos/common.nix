@@ -24,7 +24,14 @@
     neovim
     tree
     wget
+    curl
+    lazydocker
+    lazygit
   ];
+
+  environment.sessionVariables = {
+    EDITOR = "nvim";
+  };
 
   # TODO 
   # services.getty.helpLine =
@@ -32,7 +39,7 @@
 
   services.openssh = {
     enable = true;
-    permitRootLogin = "yes";
+    PermitRootLogin = "yes";
   };
 
   time.timeZone = "Europe/Prague";
