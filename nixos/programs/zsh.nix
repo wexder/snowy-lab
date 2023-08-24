@@ -21,9 +21,9 @@
       ts = "tmux new-sessions -s";
     };
 
-    initExtra = ''
-      eval "$(starship init zsh)"
-    '';
+    # initExtra = ''
+    #   eval "$(starship init zsh)"
+    # '';
 
     oh-my-zsh = {
       enable = true;
@@ -33,7 +33,7 @@
         "tmux"
         "docker"
         "kubectl"
-        "ssh-agent"
+        # "ssh-agent"
       ];
     };
     plugins = with pkgs; [
