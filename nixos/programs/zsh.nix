@@ -61,7 +61,7 @@
   };
 
   # Environment
-  environment.sessionVariables = {
+  sessionVariables = {
     HISTCONTROL = "ignoreboth:erasedups";
     ZSH_THEME = "spaceship";
   };
