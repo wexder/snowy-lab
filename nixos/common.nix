@@ -27,6 +27,8 @@
     curl
     lazydocker
     lazygit
+    # maybe move
+    kubectl
   ];
 
   environment.sessionVariables = {
