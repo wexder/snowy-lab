@@ -61,10 +61,10 @@
   };
 
   # Environment
-  sessionVariables = {
-    HISTCONTROL = "ignoreboth:erasedups";
-    ZSH_THEME = "spaceship";
-  };
+  # sessionVariables = {
+  #   HISTCONTROL = "ignoreboth:erasedups";
+  #   ZSH_THEME = "spaceship";
+  # };
 
   programs.starship = {
     enable = true;
