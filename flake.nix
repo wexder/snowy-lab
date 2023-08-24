@@ -45,7 +45,7 @@
                   {
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
-                    home-manager.users.wexder = import node.config;
+                    home-manager.users.wexder = import node.home;
 
                     # Optionally, use home-manager.extraSpecialArgs to pass
                     # arguments to home.nix

@@ -29,9 +29,9 @@
     lazygit
   ];
 
-  # environment.sessionVariables = {
-  #   EDITOR = "nvim";
-  # };
+  environment.sessionVariables = {
+    EDITOR = "nvim";
+  };
 
   # TODO 
   # services.getty.helpLine =
