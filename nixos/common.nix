@@ -1,8 +1,6 @@
 # Common config shared among all machines
 { config, pkgs, hostName, environment, lib, catalog, ... }: {
   system.stateVersion = "23.05";
-  # Let home Manager install and manage itself.
-  programs.home-manager.enable = true;
 
   imports = [ ./roles ];
   nixpkgs.config.allowUnfree = true;
@@ -31,9 +29,9 @@
     lazygit
   ];
 
-  environment.sessionVariables = {
-    EDITOR = "nvim";
-  };
+  # environment.sessionVariables = {
+  #   EDITOR = "nvim";
+  # };
 
   # TODO 
   # services.getty.helpLine =
