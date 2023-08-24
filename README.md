@@ -1,4 +1,17 @@
 # Fun with flakes ❄️
+```
+#######################################################
+#                                                     #
+#   o-o                              o          o     #
+#  |                                 |          |     #
+#   o-o  o-o  o-o o   o   o o  o     |      oo  O-o   #
+#      | |  | | |  \ / \ /  |  |     |     / |  |  |  #
+#  o--o  o  o o-o   o   o   o--O     O---o o-o- o-o   #
+#                              |                      #
+#                           o--o                      #
+#                                                     #
+#######################################################
+```
 
 Repo base around playing with nixos, nix and flakes. Trying to build my lab partially in nixos and maybe with more.
 
