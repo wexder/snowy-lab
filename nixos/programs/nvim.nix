@@ -7,7 +7,7 @@
     sha256 = "0wzrb627508y5js2i6n75lprfhw8raxi82fvvzd4qkhw5ml8ligc";
   });
 
-  home.file."~/.local/share/nvim/site/pack/packer/start/packer.nvim".source = (
+  home.file.".local/share/nvim/site/pack/packer/start/packer.nvim".source = (
     pkgs.fetchFromGitHub {
       owner = "wbthomason";
       repo = "packer.nvim";
