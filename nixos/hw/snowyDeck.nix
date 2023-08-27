@@ -1,6 +1,5 @@
 { lib, config, pkgs, modulesPath, ... }:
 {
-  import = [ ./common.nix ];
   boot = {
     loader = {
       grub = {
@@ -12,6 +11,7 @@
 
   imports =
     [
+      ./common.nix
       (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
