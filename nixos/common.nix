@@ -26,6 +26,7 @@
     curl
     lazydocker
     lazygit
+    gcc
   ];
 
   environment.sessionVariables = {
