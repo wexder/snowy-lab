@@ -3,5 +3,6 @@
     ./dns.nix
     ./docker.nix
     ./dev.nix
+    ./netclient.nix
   ];
 }
