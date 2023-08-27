@@ -12,6 +12,9 @@ in
       environment.systemPackages = with pkgs;[
         postgresql
         kubectl
+        go
+        rustc
+        nodejs_20
       ];
     };
 }

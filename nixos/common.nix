@@ -27,6 +27,7 @@
     lazydocker
     lazygit
     gcc
+    unzip
   ];
 
   environment.sessionVariables = {
