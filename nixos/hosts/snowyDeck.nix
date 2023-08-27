@@ -9,5 +9,8 @@
     docker = {
       enable = true;
     };
+    dev = {
+      enable = true;
+    };
   };
 }
