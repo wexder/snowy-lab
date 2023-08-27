@@ -60,6 +60,11 @@
     ];
   };
 
+  programs.zellij = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   # Environment
   # sessionVariables = {
   #   HISTCONTROL = "ignoreboth:erasedups";
