@@ -1,5 +1,6 @@
 { lib, config, pkgs, modulesPath, ... }:
 {
+  import = [ ./common.nix ];
   boot = {
     loader = {
       grub = {
@@ -34,5 +35,5 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  swapDevices = [{ device = "/swapfile"; size = 2048; }];
+  swapDevices = [{ device = "/swapfile"; size = 4096; }];
 }
