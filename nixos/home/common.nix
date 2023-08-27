@@ -7,4 +7,8 @@
   home.stateVersion = "23.05";
   home.username = "wexder";
   home.homeDirectory = "/home/wexder";
+
+  imports = [
+    ../programs/nvim.nix
+  ];
 }
