@@ -8,6 +8,13 @@
       system = system.x86_64-linux;
     };
 
+    snowball = {
+      config = ./hosts/snowball.nix;
+      hw = ./hw/snowball.nix;
+      home = ./home/snowball.nix;
+      system = system.x86_64-linux;
+    };
+
     pivpn = {
       ip = "10.1.1.231";
       config = ./hosts/pivpn.nix;
