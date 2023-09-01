@@ -73,7 +73,7 @@
                 hostName = host;
                 environment = "test";
               };
-              modules = [ node.config ./nixos/hw/qemu.nix agenix.nixosModules ];
+              modules = [ node.config ./nixos/hw/qemu.nix ];
             }).config.system.build.vm;
           };
         in
