@@ -4,6 +4,8 @@
     ./alacritty.nix
     ./audio.nix
     ./mako.nix
+    ./wofi.nix
+    ./waybar.nix
     ./firefox.nix
   ];
 
@@ -44,6 +46,7 @@
         { command = "kanshi"; }
         { command = "slack --enable-features=WebRTCPipeWireCapturer"; }
         { command = "setrandom -m scale ~/Pictures/wallpapers"; }
+        { command = "alacritty"; }
 
         ## cliphist
         { command = "wl-paste --type text --watch cliphist store #Stores only text data"; }
