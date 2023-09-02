@@ -126,7 +126,7 @@
         in
         lib.mkOptionDefault {
           # start a terminal
-          "${modifier}+Return" = "exec $term";
+          "${modifier}+Return" = "exec alacritty";
 
           # kill focused window
           # "${modifier}+q" = "kill";
