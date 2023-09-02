@@ -1,14 +1,15 @@
 { config, lib, pkgs, ... }:
 {
   imports = [
+    ./alacritty.nix
     ./audio.nix
+    ./mako.nix
     ./firefox.nix
   ];
 
   home.file.".config/sway/kill.sh".text = (builtins.readFile ./sway/kill.sh);
 
   home.packages = with pkgs; [
-    alacritty
     kanshi
     mako
     wallutils
