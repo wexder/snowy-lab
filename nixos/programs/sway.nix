@@ -44,7 +44,7 @@
         { command = "firefox"; }
 
         ### Needed for xdg-desktop-portal-kde
-        # { command = "dbus-update-activation-environment --systemd --all"; }
+        { command = "dbus-update-activation-environment --systemd --all"; }
         { command = "/usr/lib/xdg-desktop-portal --replace"; }
         { command = "kdeconnect-indicator"; }
         { command = "mako"; }

@@ -31,5 +31,10 @@ in
           # gtkUsePortal = true;
         };
       };
+
+      fonts.packages = with pkgs; [
+        nerdfonts
+      ];
+
     };
 }
