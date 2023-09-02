@@ -3,6 +3,7 @@
   imports = [
     ./alacritty.nix
     ./audio.nix
+    ./desktop.nix
     ./mako.nix
     ./wofi.nix
     ./waybar.nix
@@ -23,7 +24,7 @@
     wallutils
     wl-clipboard
     libsForQt5.kdeconnect-kde
-    slack
+    wdisplays
   ];
 
   home.sessionVariables = {

@@ -13,6 +13,8 @@
   imports =
     [
       ./common.nix
+      ./bluetooth.nix
+      ./pulseAudio.nix
       (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
@@ -37,8 +39,4 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   swapDevices = [{ device = "/swapfile"; size = 4096; }];
-
-  # TODO remove
-  services.qemuGuest.enable = true;
-  services.spice-vdagentd.enable = true;
 }

@@ -19,6 +19,7 @@ in
       };
 
       programs.xwayland.enable = true;
+      services.blueman.enable = true;
 
       xdg = {
         portal = {
