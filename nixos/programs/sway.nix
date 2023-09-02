@@ -50,7 +50,7 @@
         { command = "mako"; }
         { command = "kanshi"; }
         { command = "slack --enable-features=WebRTCPipeWireCapturer"; }
-        { command = "setrandom -m scale ~/Pictures/wallpapers"; }
+        { command = "setrandom -m scale /home/wexder/.config/wallpapers"; }
         { command = "alacritty"; }
 
         ## cliphist
