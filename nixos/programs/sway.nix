@@ -20,8 +20,6 @@
     slack
   ];
 
-  programs.xwayland.enable = true;
-
   home.sessionVariables = {
     XDG_CURRENT_DESKTOP = "sway";
     NIXOS_OZONE_WL = 1;

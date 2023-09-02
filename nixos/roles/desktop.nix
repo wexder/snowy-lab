@@ -18,6 +18,8 @@ in
         jack.enable = true;
       };
 
+      programs.xwayland.enable = true;
+
       xdg = {
         portal = {
           enable = true;
