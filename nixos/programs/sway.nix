@@ -85,12 +85,12 @@
       gaps = {
         inner = 10;
       };
-      floating = {
-        border = 0;
-      };
+      # floating = {
+      #   border = 0;
+      # };
       window = {
         hideEdgeBorders = "smart";
-        border = 0;
+        # border = 0;
         commands = [
           {
             command = "floating enable";
@@ -276,8 +276,8 @@
       default_border pixel
       default_floating_border pixel
       hide_edge_borders smart
-              titlebar_border_thickness 2
-              titlebar_padding 2
+      titlebar_border_thickness 2
+      titlebar_padding 2
     '';
   };
 
