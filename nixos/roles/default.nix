@@ -1,9 +1,10 @@
 { config, pkgs, lib, ... }: {
   imports = [
+    ./amd.nix
+    ./desktop.nix
+    ./dev.nix
     ./dns.nix
     ./docker.nix
-    ./dev.nix
     ./netclient.nix
-    ./desktop.nix
   ];
 }

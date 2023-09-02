@@ -15,5 +15,8 @@
     desktop = {
       enable = true;
     };
+    amdgpu = {
+      enable = true;
+    };
   };
 }
