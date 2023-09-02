@@ -18,8 +18,9 @@
     wl-clipboard
     libsForQt5.kdeconnect-kde
     slack
-    xwayland
   ];
+
+  programs.xwayland.enable = true;
 
   home.sessionVariables = {
     XDG_CURRENT_DESKTOP = "sway";
@@ -132,8 +133,8 @@
           "${modifier}+Return" = "exec alacritty";
 
           # kill focused window
-          # "${modifier}+q" = "kill";
-          "${modifier}+q" = "exec ~/.config/sway/kill.sh";
+          "${modifier}+q" = "kill";
+          # "${modifier}+q" = "exec ~/.config/sway/kill.sh";
 
           # start your launcher
           "${modifier}+shift+d" = "exec wofi --show drun";
