@@ -1,6 +1,15 @@
 { lib, config, pkgs, modulesPath, ... }:
 {
   # TODO modify for final deployment
+  boot = {
+    loader = {
+      grub = {
+        enable = true;
+        device = "/dev/vda1";
+      };
+    };
+  };
+
   imports =
     [
       ./common.nix
@@ -27,5 +36,5 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  swapDevices = [ ];
+  swapDevices = [{ device = "/swapfile"; size = 4096; }];
 }
