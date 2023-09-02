@@ -8,6 +8,7 @@
   home.file.".config/sway/kill.sh".text = (builtins.readFile ./sway/kill.sh);
 
   home.packages = with pkgs; [
+    alacritty
     kanshi
     mako
     wallutils
@@ -29,7 +30,7 @@
     config = rec {
       modifier = "Mod4";
       # Use kitty as default terminal
-      terminal = "alacrityr";
+      terminal = "alacritty";
       startup = [
         # Launch Firefox on start
         { command = "firefox"; }
