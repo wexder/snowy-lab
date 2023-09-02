@@ -10,6 +10,12 @@
   ];
 
   home.file.".config/sway/kill.sh".text = (builtins.readFile ./sway/kill.sh);
+  home.file.".config/wallpapers".source = (pkgs.fetchFromGitHub {
+    owner = "wexder";
+    repo = "snowy-lab-wallpapers";
+    rev = "740628d1f852c15d186fff559441cce3609aca3a";
+    sha256 = "0qr0cg03rj9i9wb7q0s7xkjhmx4wmx37dnjdl1y2aahgc2r6cvm3";
+  });
 
   home.packages = with pkgs; [
     kanshi
@@ -18,7 +24,6 @@
     wl-clipboard
     libsForQt5.kdeconnect-kde
     slack
-    kitty
   ];
 
   home.sessionVariables = {
@@ -53,7 +58,7 @@
         { command = "wl-paste --type image --watch cliphist store #Stores only image data"; }
 
         # waybar
-        { command = "waybar -c /home/wexder/.config/waybar/sway.json"; }
+        { command = "waybar"; }
 
         # audio
         { command = "playerctld daemon"; }
@@ -81,6 +86,7 @@
           Return = "mode default";
         };
       };
+      bars = [ ];
       input = {
         "*" = {
           xkb_layout = "us,cz";
@@ -132,8 +138,8 @@
           "${modifier}+Return" = "exec alacritty";
 
           # kill focused window
-          "${modifier}+q" = "kill";
-          # "${modifier}+q" = "exec ~/.config/sway/kill.sh";
+          # "${modifier}+q" = "kill";
+          "${modifier}+q" = "exec /wexder/home/.config/sway/kill.sh";
 
           # start your launcher
           "${modifier}+shift+d" = "exec wofi --show drun";
@@ -145,13 +151,13 @@
           "${modifier}+Shift+V" = "exec cliphist list | wofi -dmenu | cliphist decode | wl-copy";
 
           # Random wallpaper
-          "Mod1+N" = "exec setrandom -m scale ~/Pictures/wallpapers";
+          "Mod1+N" = "exec setrandom -m scale /wexder/home/.config/wallpapers";
 
           # exit sway (logs you out of your Wayland session)
           "${modifier}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
 
           "${modifier}+F12" = "exec shutdown now";
-          "${modifier}+Control+L" = "exec swaylock -f -i ~/Pictures/wallpapers/mountains-on-mars.png -s fill";
+          "${modifier}+Control+L" = "exec swaylock -f -i /wexder/home/.config/wallpapers/mountains-on-mars.png -s fill";
           "${modifier}+shift+return" = "exec thunar";
           "${modifier}+F2" = "exec cantata";
           "${modifier}+F3" = "exec mpv --player-operation-mode=pseudo-gui";
