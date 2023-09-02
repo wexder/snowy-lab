@@ -73,7 +73,17 @@
                 hostName = host;
                 environment = "test";
               };
-              modules = [ node.config ./nixos/hw/qemu.nix ];
+              modules = [
+                node.config
+                home-manager.nixosModules.home-manager
+                {
+                  home-manager.useGlobalPkgs = true;
+                  home-manager.useUserPackages = true;
+                  home-manager.users.wexder = import node.home;
+                }
+                ./nixos/hw/qemu.nix
+              ];
+
             }).config.system.build.vm;
           };
         in

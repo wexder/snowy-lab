@@ -1,11 +1,9 @@
 # QEMU Guest Hardware
-{ lib, modulesPath, ... }: {
+{ lib, modulesPath, pkgs, ... }: {
   boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
   boot.loader.grub.device = "/dev/vda";
 
   networking.useDHCP = false;
-  networking.interfaces.enp1s0.useDHCP = true;
 
   # Hardware configuration
   imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
@@ -21,7 +19,26 @@
     fsType = "ext4";
   };
 
+  services.getty = {
+    autologinUser = "wexder";
+  };
+
+  security.sudo.extraRules = [
+    {
+      users = [ "wexder" ];
+      commands = [
+        {
+          command = "ALL";
+          options = [ "NOPASSWD" "SETENV" ]; # "SETENV" # Adding the following could be a good idea
+        }
+      ];
+    }
+  ];
+
   swapDevices = [ ];
 
-  nix.maxJobs = lib.mkDefault 2;
+  nix.settings.max-jobs = lib.mkDefault 2;
+
+  services.qemuGuest.enable = true;
+  services.spice-vdagentd.enable = true;
 }

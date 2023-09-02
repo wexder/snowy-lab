@@ -4,5 +4,6 @@
     ./docker.nix
     ./dev.nix
     ./netclient.nix
+    ./desktop.nix
   ];
 }

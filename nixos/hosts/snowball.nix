@@ -12,5 +12,8 @@
     dev = {
       enable = true;
     };
+    desktop = {
+      enable = true;
+    };
   };
 }

@@ -1,22 +1,13 @@
 { lib, config, pkgs, modulesPath, ... }:
 {
   # TODO modify for final deployment
-  boot = {
-    loader = {
-      grub = {
-        enable = true;
-        device = "/dev/vda1";
-      };
-    };
-  };
-
   imports =
     [
       ./common.nix
       (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "ata_piix" "floppy" "sd_mod" "sr_mod" ];
+  boot.initrd.availableKernelModules = [ "ata_piix" "virtio_pci" "floppy" "virtio_blk" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
@@ -36,5 +27,5 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  swapDevices = [{ device = "/swapfile"; size = 4096; }];
+  swapDevices = [ ];
 }

@@ -53,6 +53,8 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMkKyMS0O7nzToTh/3LCrwJB++zc29R8U6UlzfzT0xV9 wexder@archlinux"
   ];
 
+  security.polkit.enable = true;
+
   users.mutableUsers = false;
   users.users.wexder = {
     isNormalUser = true;
@@ -78,4 +80,5 @@
   #   IPv4: \4
   # '';
   # networking.dhcpcd.runHook = "${pkgs.utillinux}/bin/agetty --reload";
+
 }
