@@ -82,7 +82,12 @@
       gaps = {
         inner = 10;
       };
+      floating = {
+        border = 0;
+      };
       window = {
+        hideEdgeBorders = "smart";
+        border = 0;
         commands = [
           {
             command = "floating enable";
