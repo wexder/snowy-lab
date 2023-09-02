@@ -14,6 +14,7 @@
     wl-clipboard
     libsForQt5.kdeconnect-kde
     slack
+    xwayland
   ];
 
   home.sessionVariables = {
@@ -23,6 +24,8 @@
 
   wayland.windowManager.sway = {
     enable = true;
+    systemd.enable = true;
+    xwayland = true;
     config = rec {
       modifier = "Mod4";
       # Use kitty as default terminal
@@ -32,7 +35,7 @@
         { command = "firefox"; }
 
         ### Needed for xdg-desktop-portal-kde
-        { command = "dbus-update-activation-environment --systemd --all"; }
+        # { command = "dbus-update-activation-environment --systemd --all"; }
         { command = "/usr/lib/xdg-desktop-portal --replace"; }
         { command = "kdeconnect-indicator"; }
         { command = "mako"; }
@@ -269,6 +272,13 @@
           "${modifier}+minus" = "scratchpad show";
         };
     };
+    extraConfig = ''
+      default_border pixel
+      default_floating_border pixel
+      hide_edge_borders smart
+              titlebar_border_thickness 2
+              titlebar_padding 2
+    '';
   };
 
 }
