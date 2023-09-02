@@ -18,6 +18,7 @@
     wl-clipboard
     libsForQt5.kdeconnect-kde
     slack
+    kitty
   ];
 
   home.sessionVariables = {
