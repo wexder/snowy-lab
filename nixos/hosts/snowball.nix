@@ -15,6 +15,7 @@
     desktop = {
       enable = true;
     };
+    # TODO disable before install
     amdgpu = {
       enable = true;
     };

@@ -38,6 +38,7 @@
   # services.getty.helpLine =
   #   ">>> Flake node: ${hostName}, environment: ${environment}";
 
+  programs.mosh.enable = true;
   services.openssh = {
     enable = true;
     settings = {
