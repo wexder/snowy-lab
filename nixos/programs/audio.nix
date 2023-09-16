@@ -4,4 +4,8 @@
     tidal-hifi
     playerctl
   ];
+
+  services.mpris-proxy = {
+    enabled = true;
+  };
 }
