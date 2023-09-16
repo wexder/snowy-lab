@@ -14,7 +14,6 @@
     [
       ./common.nix
       ./bluetooth.nix
-      ./pulseAudio.nix
       (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
