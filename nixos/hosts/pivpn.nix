@@ -49,5 +49,8 @@
 
   roles = {
     netclient.enable = true;
+    tailscale = {
+      enable = true;
+    };
   };
 }

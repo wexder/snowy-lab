@@ -15,8 +15,7 @@
     desktop = {
       enable = true;
     };
-    # TODO disable before install
-    amdgpu = {
+    tailscale = {
       enable = true;
     };
   };

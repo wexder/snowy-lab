@@ -6,5 +6,6 @@
     ./dns.nix
     ./docker.nix
     ./netclient.nix
+    ./tailscale.nix
   ];
 }
