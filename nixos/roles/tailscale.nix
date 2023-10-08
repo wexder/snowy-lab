@@ -3,7 +3,7 @@ let
   cfg = config.roles.tailscale;
 in
 {
-  options.roles.netclient = {
+  options.roles.tailscale = {
     enable = lib.mkEnableOption "Enable tailscale";
   };
 
