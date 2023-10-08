@@ -62,7 +62,7 @@
     home = "/home/wexder";
     description = "wexder";
     extraGroups = [ "wheel" ];
-    passwordFile = "/etc/passwordFile-wexder";
+    hashedPasswordFile = "/etc/passwordFile-wexder";
     openssh.authorizedKeys.keys = [
       # TODO change
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMkKyMS0O7nzToTh/3LCrwJB++zc29R8U6UlzfzT0xV9 wexder@archlinux"
