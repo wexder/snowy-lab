@@ -1,16 +1,14 @@
 { config, pkgs, ... }:
 {
-  services.coredns = {
+  networking.nameservers = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
+
+  services.resolved = {
     enable = true;
-    config = ''
-      . {
-          forward . 192.168.1.52 8.8.8.8 {
-            health_check 5s
-            policy sequential
-          }
-          log
-          errors
-      }
+    dnssec = "true";
+    domains = [ "~." ];
+    fallbackDns = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
+    extraConfig = ''
+      DNSOverTLS=yes
     '';
   };
 }
