@@ -5,7 +5,6 @@
     playerctl
   ];
 
-  services.mpris-proxy = {
-    enabled = true;
-  };
+  services.mpris-proxy.enable = true;
+  services.mpd-mpris.enable = true;
 }

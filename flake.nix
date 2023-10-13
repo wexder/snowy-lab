@@ -2,7 +2,7 @@
   description = "Input into the snowy lab";
 
   inputs = {
-    nixpkgs.url = "github:wexder/nixpkgs/netclient";
+    nixpkgs.url = "github:NixOS/nixpkgs";
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";

@@ -4,7 +4,7 @@
   # Let home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
   home.username = "wexder";
   home.homeDirectory = "/home/wexder";
 
