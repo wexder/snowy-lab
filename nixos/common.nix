@@ -28,6 +28,7 @@
     lazygit
     gcc
     unzip
+    ripgrep
   ];
 
   environment.sessionVariables = {
