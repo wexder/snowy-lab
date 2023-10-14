@@ -20,7 +20,8 @@
     tmux
     htop
     jq
-    neovim
+    # neovim
+    neovim-unwrapped
     tree
     wget
     curl
