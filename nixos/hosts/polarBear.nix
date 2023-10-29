@@ -14,11 +14,15 @@
     };
     desktop = {
       enable = true;
+      desktop = "gnome";
     };
     tailscale = {
       enable = true;
     };
     jupyter = {
+      enable = true;
+    };
+    gnome = {
       enable = true;
     };
   };

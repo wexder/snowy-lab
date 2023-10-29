@@ -14,6 +14,11 @@ in
       example = false;
       type = lib.types.bool;
     };
+    desktop = lib.mkOption {
+      default = "sway";
+      example = "gnome";
+      type = lib.types.string;
+    };
   };
 
   config = lib.mkIf cfg.enable (
@@ -55,7 +60,7 @@ in
           enable = true;
           settings = {
             default_session = {
-              command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+              command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd ${cfg.desktop}";
               user = "greeter";
             };
           };
