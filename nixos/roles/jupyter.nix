@@ -25,11 +25,13 @@ in
         group = "jupyter";
         password = "1234";
         notebookDir = "/home/wexder/development/jupyter";
+        package = pkgs.python311.pkgs.notebook;
         kernels = {
           python3 =
             let
               env = (pkgs.python3.withPackages (pythonPackages: with pythonPackages;
                 [
+                  jupyterlab
                   ipykernel
                   pandas
                   pytorch
