@@ -22,8 +22,5 @@
     jupyter = {
       enable = true;
     };
-    gnome = {
-      enable = true;
-    };
   };
 }
