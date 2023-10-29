@@ -58,7 +58,7 @@ in
         };
        })
 
-      (lib.mkIf cfg.loginManager {
+      (lib.mkIf (cfg.loginManager && cfg.desktop != "gnome") {
         services.greetd = {
           enable = true;
           settings = {
@@ -67,6 +67,12 @@ in
               user = "greeter";
             };
           };
+        };
+      })
+
+(lib.mkIf (cfg.loginManager && cfg.desktop == "gnome") {
+        services.greetd = {
+          enable = true;
         };
       })
     ]
