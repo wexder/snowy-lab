@@ -4,7 +4,7 @@
     libsForQt5.kdeconnect-kde
     slack
     dbeaver
-    postman
+    # postman
     caprine-bin
     resp-app
     notion-app-enhanced
