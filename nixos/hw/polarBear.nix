@@ -1,14 +1,6 @@
 { lib, config, pkgs, modulesPath, ... }:
 {
-  # TODO modify for final deployment
-  boot = {
-    loader = {
-      grub = {
-        enable = true;
-        device = "/dev/nvme0n1p1";
-      };
-    };
-  };
+  boot.loader.systemd-boot.enable = true;
 
   imports =
     [
