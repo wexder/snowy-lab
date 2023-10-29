@@ -29,4 +29,6 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   swapDevices = [{ device = "/swapfile"; size = 16382; }];
+
+  gpus.nvidia.enable = true;
 }
