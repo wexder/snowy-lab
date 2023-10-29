@@ -38,13 +38,15 @@ in
               xdg-desktop-portal-wlr
               xdg-desktop-portal-gtk
             ];
-            # DEPRECATED 
-            # gtkUsePortal = true;
           };
         };
 
         fonts.packages = with pkgs; [
           nerdfonts
+        ];
+
+        environment.systemPackages = with pkgs;[
+          wayvnc
         ];
       }
 

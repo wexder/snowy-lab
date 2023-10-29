@@ -7,6 +7,7 @@
     "fs.inotify.max_queued_events" = 32768; # default: 16384
   };
 
-  # kernel package for tp link dongle
-  boot.extraModulePackages = [ config.boot.kernelPackages.rtl8192eu ];
+  imports = [
+    ./gpu/default.nix
+  ];
 }

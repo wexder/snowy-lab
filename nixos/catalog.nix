@@ -15,6 +15,13 @@
       system = system.x86_64-linux;
     };
 
+    polar-bear = {
+      config = ./hosts/polarBear.nix;
+      hw = ./hw/polarBear.nix;
+      home = ./home/polarBear.nix;
+      system = system.x86_64-linux;
+    };
+
     pivpn = {
       ip = "10.1.1.231";
       config = ./hosts/pivpn.nix;

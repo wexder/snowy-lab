@@ -1,15 +1,22 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.roles.amdgpu;
+  cfg = config.gpus.amd;
 in
 {
-  options.roles.amdgpu = {
+  options.gpus.amd = {
     enable = lib.mkEnableOption "Enable amd gpu";
   };
 
   config = lib.mkIf cfg.enable
     {
-      boot.initrd.kernelModules = [ "amdgpu" ];
+      # Enable OpenGL
+      hardware.opengl = {
+        enable = true;
+        driSupport = true;
+        driSupport32Bit = true;
+      };
+
+      boot.initrd.kernelModules = [ "amd" ];
 
       environment.systemPackages = with pkgs;[
         amdvlk
@@ -23,11 +30,5 @@ in
       hardware.opengl.extraPackages32 = with pkgs; [
         driversi686Linux.amdvlk
       ];
-
-      hardware.opengl.enable = true;
-
-      hardware.opengl.driSupport = true;
-      # For 32 bit applications
-      hardware.opengl.driSupport32Bit = true;
     };
 }
