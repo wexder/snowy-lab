@@ -17,7 +17,7 @@ in
     desktop = lib.mkOption {
       default = "sway";
       example = "gnome";
-      type = lib.types.string;
+      type = lib.types.str;
     };
   };
 
