@@ -17,10 +17,10 @@ in
       services.jupyter = {
         enable = true;
         command = "jupyter-lab";
-        user = "jupyter";
-        group = "jupyter";
+        # user = "jupyter";
+        # group = "jupyter";
         password = "1234";
-        notebookDir = "/home/wexder/development/jupyter";
+        # notebookDir = "/home/wexder/development/jupyter";
         package = pkgs.python311.pkgs.jupyterlab;
         kernels = {
           python3 =
