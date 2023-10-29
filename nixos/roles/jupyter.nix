@@ -25,7 +25,7 @@ in
         # group = "jupyter";
         password = "1234";
         # notebookDir = "/home/wexder/development/jupyter";
-        package = pkgs.python311;
+        package = (pkgs.python311.withPackages (ps: with ps; [ jupyterlab jupyterlab-lsp ]));
         kernels = {
           python3 =
             let
