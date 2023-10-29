@@ -13,6 +13,8 @@ in
         bash
         postgresql
         kubectl
+        cargo
+        rustup
         go
         rustc
         nodejs_20

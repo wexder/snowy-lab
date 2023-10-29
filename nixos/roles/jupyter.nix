@@ -9,9 +9,14 @@ in
 
   config = lib.mkIf cfg.enable
     {
+
+users.groups.jupyter = {};
+      users.extraGroups.jupyter.members = [ "wexder" ];
+
       services.jupyter = {
         enable = true;
         command = "jupyter-lab";
+        group = "jupyter";
         notebookDir = "/home/wexder/development/jupyter";
         kernels = {
           python3 =

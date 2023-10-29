@@ -25,13 +25,6 @@ in
     lib.mkMerge [
       {
         security.rtkit.enable = true;
-        services.pipewire = {
-          enable = true;
-          alsa.enable = true;
-          alsa.support32Bit = true;
-          pulse.enable = true;
-          jack.enable = true;
-        };
 
         programs.xwayland.enable = true;
         services.blueman.enable = true;
@@ -54,6 +47,15 @@ in
           wayvnc
         ];
       }
+      (lib.mkIf (cfg.desktop != "gnome"){
+        services.pipewire = {
+          enable = true;
+          alsa.enable = true;
+          alsa.support32Bit = true;
+          pulse.enable = true;
+          jack.enable = true;
+        };
+       })
 
       (lib.mkIf cfg.loginManager {
         services.greetd = {
