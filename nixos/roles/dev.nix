@@ -13,6 +13,7 @@ in
         bash
         postgresql
         kubectl
+        nil
         rustup
         go
         rustc
