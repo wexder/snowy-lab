@@ -37,8 +37,6 @@ in
         environment.systemPackages = with pkgs;[
           wayvnc
         ];
-      }
-      (lib.mkIf (cfg.desktop != "gnome"){
         services.pipewire = {
           enable = true;
           alsa.enable = true;
@@ -56,9 +54,7 @@ in
             ];
           };
         };
-       })
 
-      (lib.mkIf (cfg.loginManager && cfg.desktop != "gnome") {
         services.greetd = {
           enable = true;
           settings = {
@@ -68,19 +64,7 @@ in
             };
           };
         };
-      })
-
-(lib.mkIf (cfg.loginManager && cfg.desktop == "gnome") {
-        services.greetd = {
-          enable = true;
-          settings = {
-            default_session = {
-              command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time";
-              user = "greeter";
-            };
-          };
-        };
-      })
+      }
     ]
   );
 }

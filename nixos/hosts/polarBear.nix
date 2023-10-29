@@ -14,7 +14,7 @@
     };
     desktop = {
       enable = true;
-      desktop = "gnome";
+      desktop = "hyprland";
     };
     tailscale = {
       enable = true;
