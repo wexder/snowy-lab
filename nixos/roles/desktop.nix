@@ -29,15 +29,6 @@ in
         programs.xwayland.enable = true;
         services.blueman.enable = true;
 
-        xdg = {
-          portal = {
-            enable = true;
-            extraPortals = with pkgs; [
-              xdg-desktop-portal-wlr
-              xdg-desktop-portal-gtk
-            ];
-          };
-        };
 
         fonts.packages = with pkgs; [
           nerdfonts
@@ -54,6 +45,16 @@ in
           alsa.support32Bit = true;
           pulse.enable = true;
           jack.enable = true;
+        };
+
+        xdg = {
+          portal = {
+            enable = true;
+            extraPortals = with pkgs; [
+              xdg-desktop-portal-wlr
+              xdg-desktop-portal-gtk
+            ];
+          };
         };
        })
 
