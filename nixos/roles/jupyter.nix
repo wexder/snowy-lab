@@ -12,7 +12,11 @@ in
 
       users.groups.jupyter.members = [ "wexder" ];
       users.users.jupyter.group = "jupyter";
-users.groups.jupyter = {};
+      users.groups.jupyter = { };
+
+      environment.systemPackages = with pkgs; [
+        (python311.withPackages (ps: with ps; [ jupyterlab ]))
+      ];
 
       services.jupyter = {
         enable = true;
