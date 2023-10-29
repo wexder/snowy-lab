@@ -10,6 +10,7 @@ in
   config = lib.mkIf cfg.enable
     {
       environment.systemPackages = with pkgs;[
+        bash
         postgresql
         kubectl
         go
