@@ -29,7 +29,7 @@ in
         kernels = {
           python3 =
             let
-              env = (pkgs.python3.withPackages (pythonPackages: with pythonPackages;
+              env = (pkgs.python311.withPackages (pythonPackages: with pythonPackages;
                 [
                   jupyterlab
                   ipykernel
