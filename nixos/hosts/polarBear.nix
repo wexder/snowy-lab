@@ -18,5 +18,8 @@
     tailscale = {
       enable = true;
     };
+    jupyter = {
+      enable = true;
+    };
   };
 }
