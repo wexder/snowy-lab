@@ -7,7 +7,7 @@
     enableCompletion = true;
     shellAliases = {
       #list
-      ls = "ls --color=auto";
+      ls = "ls -la --color=auto";
       #fix obvious typo"s
       "cd.." = "cd ..";
       ## Colorize the grep command output for ease of use (good for log files)##
@@ -18,7 +18,12 @@
       wget = "wget -c";
       # tmux
       ta = "tmux attach -t";
-      ts = "tmux new-sessions -s";
+      ts = "tmux new -s";
+      # nix
+      ns = "nix-shell shell.nix";
+      nixos-full-upgrade = "sudo rm /etc/nixos/flake.lock && nix-collect-garbage && sudo nixos-rebuild switch";
+      # kubectl
+      k = "kubectl";
     };
 
     # initExtra = ''
