@@ -9,12 +9,20 @@ in
 
   config = lib.mkIf cfg.enable
     {
+
+      nixpkgs.config.cudaSupport = true;
       # Enable OpenGL
       hardware.opengl = {
         enable = true;
         driSupport = true;
         driSupport32Bit = true;
       };
+
+      environment.systemPackages = with pkgs; [
+        nvtop
+        cudaPackages.cudatoolkit
+        cudaPackages.cudnn
+      ];
 
       # Load nvidia driver for Xorg and Wayland
       services.xserver.videoDrivers = [ "nvidia" ];
