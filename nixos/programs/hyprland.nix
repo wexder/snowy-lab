@@ -38,6 +38,13 @@
     systemd.enable = true;
     xwayland.enable = true;
     enableNvidiaPatches = true;
+    extraConfig = ''
+      $mod = SUPER
+
+      exec wayvnc
+
+      bind = $mod, F, exec, firefox
+    '';
   };
 
 }
