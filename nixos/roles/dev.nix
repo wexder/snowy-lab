@@ -11,6 +11,7 @@ in
     {
       environment.systemPackages = with pkgs;[
         bash
+        doctl
         postgresql
         kubectl
         nil
