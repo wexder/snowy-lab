@@ -7,5 +7,6 @@
     ./jupyter.nix
     ./netclient.nix
     ./tailscale.nix
+    ./xMinimalDesktop.nix
   ];
 }

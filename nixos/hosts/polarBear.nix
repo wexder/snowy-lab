@@ -12,9 +12,8 @@
     dev = {
       enable = true;
     };
-    desktop = {
+    xMinimalDesktop = {
       enable = true;
-      desktop = "hyprland";
     };
     tailscale = {
       enable = true;
