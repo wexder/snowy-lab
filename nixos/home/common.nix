@@ -10,5 +10,6 @@
 
   imports = [
     ../programs/nvim.nix
+    ../extensions/tigervnc.nix
   ];
 }
