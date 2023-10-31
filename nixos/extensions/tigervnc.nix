@@ -37,7 +37,7 @@ in
     ];
 
 
-    systemd.user.services.batsignal = {
+    systemd.user.services.tigervnc = {
       Unit = {
         Description = "tigervnc - vncsession daemon";
         After = [ "network.target" ];
