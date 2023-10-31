@@ -8,6 +8,4 @@
     ../programs/firefox.nix
     ../programs/alacritty.nix
   ];
-
-  services.tigervnc.enable = true;
 }
