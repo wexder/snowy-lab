@@ -11,7 +11,10 @@ in
     {
 
       users.groups.jupyter.members = [ "wexder" ];
-      users.users.jupyter.group = "jupyter";
+      users.users.jupyter = {
+        isNormalUser = true;
+        group = "jupyter";
+      };
       users.groups.jupyter = { };
 
       environment.systemPackages = with pkgs; [
@@ -21,8 +24,8 @@ in
       services.jupyter = {
         enable = true;
         command = "jupyter-lab";
-        user = "wexder";
-        # group = "jupyter";
+        user = "jupyter";
+        group = "jupyter";
         password = "1234";
         notebookDir = "~/development/jupyter";
         package = (pkgs.python311.withPackages (ps: with ps; [ jupyterlab jupyterlab-lsp ]));
