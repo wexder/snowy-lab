@@ -21,10 +21,10 @@ in
       services.jupyter = {
         enable = true;
         command = "jupyter-lab";
-        # user = "jupyter";
+        user = "wexder";
         # group = "jupyter";
         password = "1234";
-        notebookDir = "/home/wexder/development/jupyter";
+        notebookDir = "~/development/jupyter";
         package = (pkgs.python311.withPackages (ps: with ps; [ jupyterlab jupyterlab-lsp ]));
         kernels = {
           python3 =
