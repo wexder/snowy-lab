@@ -26,6 +26,7 @@
     wl-clipboard
     libsForQt5.kdeconnect-kde
     wdisplays
+    waypipe
   ];
 
   home.sessionVariables = {
@@ -42,8 +43,11 @@
       $mod = SUPER
 
       exec wayvnc
+      exec kanshi
+
 
       bind = $mod, F, exec, firefox
+      bind = $mod, T, exec, alacritty
     '';
   };
 

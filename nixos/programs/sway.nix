@@ -25,6 +25,7 @@
     wl-clipboard
     libsForQt5.kdeconnect-kde
     wdisplays
+    waypipe
   ];
 
   home.sessionVariables = {
