@@ -3,7 +3,12 @@
   imports = [
     ../common.nix
   ];
-  networking.hostName = "polar-bear";
+  networking = {
+    hostName = "polar-bear";
+    firewall = {
+      enable = false;
+    };
+  };
 
   roles = {
     docker = {
