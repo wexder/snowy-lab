@@ -21,6 +21,7 @@
       ts = "tmux new -s";
       # nix
       ns = "nix-shell shell.nix";
+      nd = "nix develop";
       nixos-full-upgrade = "sudo rm /etc/nixos/flake.lock && nix-collect-garbage && sudo nixos-rebuild switch";
       # kubectl
       k = "kubectl";

@@ -19,6 +19,16 @@ in
         go
         rustc
         nodejs_20
+        cachix
       ];
+
+
+      programs.direnv = {
+        enable = true;
+        loadInNixShell = true;
+        nix-direnv = {
+          enable = true;
+        };
+      };
     };
 }
