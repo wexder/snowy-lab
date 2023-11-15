@@ -67,7 +67,8 @@
   };
 
   programs.zellij = {
-    enable = true;
+    # TODO enable
+    enable = false;
     # enableZshIntegration = true;
   };
 
