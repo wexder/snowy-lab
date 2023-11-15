@@ -74,6 +74,7 @@
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
+  systemd.oomd.enable = true;
 
   # age.secrets = {
   #   influxdb-telegraf.file = ./secrets/influxdb-telegraf.age;
