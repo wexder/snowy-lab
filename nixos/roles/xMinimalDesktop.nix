@@ -18,6 +18,10 @@ in
       services.xserver.desktopManager.plasma5.enable = true;
       services.xserver.displayManager.defaultSession = "plasmawayland";
 
+      services.xrdp.enable = true;
+      services.xrdp.defaultWindowManager = "startplasma-x11";
+      services.xrdp.openFirewall = true;
+
       environment.plasma5.excludePackages = with pkgs.libsForQt5; [
         elisa
         gwenview
