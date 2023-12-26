@@ -6,6 +6,7 @@
     ./docker.nix
     ./jupyter.nix
     ./netclient.nix
+    ./prometheus.nix
     ./tailscale.nix
     ./xMinimalDesktop.nix
   ];

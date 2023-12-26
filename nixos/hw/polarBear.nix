@@ -32,4 +32,18 @@
   swapDevices = [{ device = "/swapfile"; size = 16382; }];
 
   gpus.nvidia.enable = true;
+
+
+  environment.systemPackages = with pkgs;[
+    nut
+  ];
+
+  power.ups = {
+    enable = true;
+    ups."serverups" = {
+      driver = "usbhid-ups";
+      port = "auto";
+      description = "Server UPS";
+    };
+  };
 }

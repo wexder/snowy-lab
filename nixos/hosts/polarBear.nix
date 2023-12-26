@@ -26,5 +26,8 @@
     jupyter = {
       enable = true;
     };
+    prometheus = {
+      enable = true;
+    };
   };
 }
