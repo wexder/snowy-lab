@@ -40,6 +40,10 @@
 
   power.ups = {
     enable = true;
+    mode = "netserver";
+    upsmon = {
+      powerValue = 2;
+    };
     ups."serverups" = {
       driver = "usbhid-ups";
       port = "auto";

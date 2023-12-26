@@ -1,6 +1,6 @@
 # Common config shared among all machines
 { config, pkgs, hostName, environment, lib, catalog, ... }: {
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 
   imports = [ ./roles ];
   nixpkgs.config.allowUnfree = true;
@@ -21,7 +21,6 @@
     tmux-sessionizer
     htop
     jq
-    # neovim
     neovim-unwrapped
     tree
     wget
