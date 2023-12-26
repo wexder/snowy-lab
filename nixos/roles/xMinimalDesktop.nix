@@ -23,7 +23,6 @@ in
       services.xrdp.openFirewall = true;
 
       environment.plasma5.excludePackages = with pkgs.libsForQt5; [
-        waypipe
         elisa
         gwenview
         okular
