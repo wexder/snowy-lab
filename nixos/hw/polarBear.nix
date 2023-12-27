@@ -38,13 +38,29 @@
     nut
   ];
 
+  environment.etc."passwordFile-ups".text = (builtins.readFile ./polarBear/ups-pass);
+
   power.ups = {
     enable = true;
     mode = "netserver";
+    openFirewall = true;
     upsmon = {
-      monitor = {
-        powerValue = 2;
+      monitor."serverups" = {
+        user = "ups";
+        passwordFile = "/etc/passwordFile-ups";
       };
+    };
+    users.upsmon = {
+      passwordFile = "/etc/passwordFile-ups";
+      upsmon = "ups";
+    };
+    upsd = {
+      listen = [
+        {
+          address = "0.0.0.0";
+          port = 3493;
+        }
+      ];
     };
     ups."serverups" = {
       driver = "usbhid-ups";

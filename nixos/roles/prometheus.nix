@@ -5,6 +5,7 @@ in
 {
   options.roles.prometheus = {
     enable = lib.mkEnableOption "Enable prometheus";
+    nut = lib.mkEnableOption "Enable prometheus";
   };
 
   config = lib.mkIf cfg.enable (
@@ -15,6 +16,17 @@ in
           port = 40001;
         };
       }
+      (
+        lib.mkIf cfg.nut
+          {
+            services.prometheus.exporters.nut = {
+              enable = true;
+              port = 40002;
+              nutUser = "ups";
+              passwordPath = /etc/passwordFile-ups;
+            };
+          }
+      )
     ])
   ;
 }

@@ -28,6 +28,7 @@
     };
     prometheus = {
       enable = true;
+      nut = true;
     };
   };
 }
