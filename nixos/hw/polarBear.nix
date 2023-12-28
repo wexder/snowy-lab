@@ -46,13 +46,11 @@
     openFirewall = true;
     upsmon = {
       monitor."serverups" = {
+        system = "serverups@localhost:3493";
         user = "ups";
         passwordFile = "/etc/passwordFile-ups";
+        powerValue = 2;
       };
-    };
-    users.upsmon = {
-      passwordFile = "/etc/passwordFile-ups";
-      upsmon = "ups";
     };
     upsd = {
       listen = [
@@ -66,6 +64,7 @@
       driver = "usbhid-ups";
       port = "auto";
       description = "Server UPS";
+      shutdownOrder = 0;
     };
   };
 }
