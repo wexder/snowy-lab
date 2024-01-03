@@ -14,11 +14,6 @@ in
       example = false;
       type = lib.types.bool;
     };
-    loginManagerDefaultSession = lib.mkOption {
-      default = true;
-      example = false;
-      type = lib.types.bool;
-    };
     desktop = lib.mkOption {
       default = "sway";
       example = "gnome";
@@ -62,7 +57,7 @@ in
 
         services.greetd = {
           enable = true;
-          settings = lib.mkIf cfg.loginManagerDefaultSession {
+          settings = {
             default_session = {
               command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd ${cfg.desktop}";
               user = "greeter";
