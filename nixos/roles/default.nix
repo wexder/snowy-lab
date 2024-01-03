@@ -4,6 +4,7 @@
     ./dev.nix
     ./dns.nix
     ./docker.nix
+    ./games.nix
     ./jupyter.nix
     ./netclient.nix
     ./prometheus.nix

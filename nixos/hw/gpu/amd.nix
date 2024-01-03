@@ -12,23 +12,29 @@ in
       # Enable OpenGL
       hardware.opengl = {
         enable = true;
+
+        ## radv: an open-source Vulkan driver from freedesktop
         driSupport = true;
         driSupport32Bit = true;
+
+        ## amdvlk: an open-source Vulkan driver from AMD
+        extraPackages = with pkgs; [
+          amdvlk
+          rocm-opencl-icd
+          rocm-opencl-runtime
+          rocm-runtime-ext
+        ];
+        extraPackages32 = with pkgs;[
+          driversi686Linux.amdvlk
+        ];
       };
 
-      boot.initrd.kernelModules = [ "amd" ];
+      boot.initrd.kernelModules = [ "amdgpu" ];
 
       environment.systemPackages = with pkgs;[
         amdvlk
         amdgpu_top
       ];
 
-      hardware.opengl.extraPackages = with pkgs; [
-        rocm-opencl-icd
-        rocm-opencl-runtime
-      ];
-      hardware.opengl.extraPackages32 = with pkgs; [
-        driversi686Linux.amdvlk
-      ];
     };
 }

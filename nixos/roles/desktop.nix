@@ -14,6 +14,11 @@ in
       example = false;
       type = lib.types.bool;
     };
+    loginManagerDefaultSession = lib.mkOption {
+      default = true;
+      example = false;
+      type = lib.types.bool;
+    };
     desktop = lib.mkOption {
       default = "sway";
       example = "gnome";
@@ -28,7 +33,7 @@ in
 
         programs.xwayland.enable = true;
         services.blueman.enable = true;
-
+        programs.thunar.enable = true;
 
         fonts.packages = with pkgs; [
           nerdfonts
@@ -57,7 +62,7 @@ in
 
         services.greetd = {
           enable = true;
-          settings = {
+          settings = lib.mkIf cfg.loginManagerDefaultSession {
             default_session = {
               command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd ${cfg.desktop}";
               user = "greeter";

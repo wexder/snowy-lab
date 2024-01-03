@@ -41,13 +41,14 @@
       modifier = "Mod4";
       # Use kitty as default terminal
       terminal = "alacritty";
+      fonts = "monospace 0.1";
       startup = [
         # Launch Firefox on start
         { command = "firefox"; }
 
         ### Needed for xdg-desktop-portal-kde
-        { command = "dbus-update-activation-environment --systemd --all"; }
-        { command = "/usr/lib/xdg-desktop-portal --replace"; }
+        # { command = "dbus-update-activation-environment --systemd --all"; }
+        # { command = "/usr/lib/xdg-desktop-portal --replace"; }
         { command = "kdeconnect-indicator"; }
         { command = "mako"; }
         { command = "kanshi"; }
@@ -288,9 +289,10 @@
     extraConfig = ''
       default_border pixel
       default_floating_border pixel
-      hide_edge_borders smart
+      hide_edge_borders --i3 smart
       titlebar_border_thickness 2
       titlebar_padding 2
+      font monospace 0.1
     '';
   };
 

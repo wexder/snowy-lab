@@ -22,6 +22,13 @@
       system = system.x86_64-linux;
     };
 
+    polar-fox = {
+      config = ./hosts/polarFox.nix;
+      hw = ./hw/polarFox.nix;
+      home = ./home/polarFox.nix;
+      system = system.x86_64-linux;
+    };
+
     pivpn = {
       ip = "10.1.1.231";
       config = ./hosts/pivpn.nix;

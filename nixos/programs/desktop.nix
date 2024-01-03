@@ -4,12 +4,16 @@
     libsForQt5.kdeconnect-kde
     slack
     dbeaver
-    # postman
+    postman
     caprine-bin
     resp-app
     notion-app-enhanced
     chromium
     bitwarden
+    reaper
+    kooha
+    tigervnc
+    obsidian
   ];
 
   services.blueman-applet.enable = true;
