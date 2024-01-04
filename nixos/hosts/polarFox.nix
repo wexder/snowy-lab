@@ -20,7 +20,6 @@
     desktop = {
       enable = true;
       loginManager = true;
-      loginManagerDefaultSession = true;
     };
     games = {
       enable = true;
