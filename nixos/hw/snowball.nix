@@ -19,7 +19,7 @@
 
   boot.initrd.availableKernelModules = [ "ata_piix" "virtio_pci" "floppy" "virtio_blk" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
