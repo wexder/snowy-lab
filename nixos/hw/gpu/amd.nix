@@ -28,8 +28,7 @@ in
         ];
       };
 
-      services.xserver.videoDrivers = [ "amdgpu" ];
-      boot.initrd.kernelModules = [ "amdgpu" ];
+      service.xserver.videoDrivers = [ "modesetting" ];
       environment.systemPackages = with pkgs;[
         amdvlk
         amdgpu_top
