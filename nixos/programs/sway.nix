@@ -41,7 +41,6 @@
       modifier = "Mod4";
       # Use kitty as default terminal
       terminal = "alacritty";
-      fonts = "monospace 0.1";
       startup = [
         # Launch Firefox on start
         { command = "firefox"; }
