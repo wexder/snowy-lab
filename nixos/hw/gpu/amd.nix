@@ -22,7 +22,6 @@ in
           amdvlk
           rocm-opencl-icd
           rocm-opencl-runtime
-          rocm-runtime-ext
         ];
         extraPackages32 = with pkgs;[
           driversi686Linux.amdvlk
