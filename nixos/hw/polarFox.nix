@@ -13,7 +13,6 @@
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [
-    amdgpu-pro
     rtl8812au
     rtl88xxau-aircrack
   ];
@@ -36,5 +35,5 @@
 
   swapDevices = [{ device = "/swapfile"; size = 8192; }];
 
-  # gpus.amd.enable = true;
+  gpus.amd.enable = true;
 }
