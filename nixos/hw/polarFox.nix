@@ -9,8 +9,8 @@
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "sr_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.kernelModules = [ "kvm-amd" "rtl8812au" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ rtl8812au ];
 
   fileSystems = {
@@ -32,6 +32,7 @@
   swapDevices = [{ device = "/swapfile"; size = 8192; }];
 
   gpus.amd.enable = true;
+
   systemd.tmpfiles.rules = [
     "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
   ];
