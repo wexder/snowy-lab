@@ -29,13 +29,14 @@ in
       };
 
       services.xserver.videoDrivers = [ "amdgpu" ];
-
       boot.initrd.kernelModules = [ "amdgpu" ];
-
       environment.systemPackages = with pkgs;[
         amdvlk
         amdgpu_top
       ];
 
+      systemd.tmpfiles.rules = [
+        "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+      ];
     };
 }
