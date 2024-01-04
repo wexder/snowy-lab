@@ -14,6 +14,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.hostName = hostName;
+  networking.networkmanager.enable = true;
 
   environment.systemPackages = with pkgs;[
     iwd
