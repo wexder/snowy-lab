@@ -28,7 +28,7 @@ in
         ];
       };
 
-      service.xserver.videoDrivers = [ "modesetting" ];
+      services.xserver.videoDrivers = [ "modesetting" ];
       environment.systemPackages = with pkgs;[
         amdvlk
         amdgpu_top
