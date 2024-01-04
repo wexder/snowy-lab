@@ -12,6 +12,7 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelParams = [ "amdgpu.vm_update_mode=3" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [
     rtl8812au
     rtl88xxau-aircrack
