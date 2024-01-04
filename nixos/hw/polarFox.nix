@@ -13,7 +13,6 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [
-    r8168
     rtl8812au
     rtl88xxau-aircrack
   ];
