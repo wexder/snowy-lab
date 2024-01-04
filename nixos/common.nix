@@ -4,6 +4,9 @@
 
   imports = [ ./roles ];
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+  ];
 
   # Garbage collect & optimize /nix/store daily.
   nix.gc = {
