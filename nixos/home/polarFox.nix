@@ -2,11 +2,11 @@
 
 {
   imports = [
-    ./common.nix
-    ../programs/zsh.nix
+    ../programs/alacritty.nix
+    ../programs/firefox.nix
     ../programs/git.nix
     ../programs/sway.nix
-    ../programs/firefox.nix
-    ../programs/alacritty.nix
+    ../programs/zsh.nix
+    ./common.nix
   ];
 }

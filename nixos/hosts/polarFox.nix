@@ -8,19 +8,6 @@
     firewall = {
       enable = false;
     };
-
-    wireless.enable = true;
-    wireless.iwd.enable = true;
-    wireless.iwd.settings =
-      {
-        Network = {
-          EnableIPv6 = true;
-          RoutePriorityOffset = 300;
-        };
-        Settings = {
-          AutoConnect = true;
-        };
-      };
   };
 
   roles = {
