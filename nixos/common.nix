@@ -75,6 +75,11 @@
   programs.zsh.enable = true;
   systemd.oomd.enable = true;
 
+  # disk automount
+  services.devmon.enable = true;
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
+
   # age.secrets = {
   #   influxdb-telegraf.file = ./secrets/influxdb-telegraf.age;
   #   tailscale.file = ./secrets/tailscale.age;
