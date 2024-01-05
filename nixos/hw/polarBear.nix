@@ -11,7 +11,7 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [ ];
 
   fileSystems = {
     "/" = {
@@ -32,7 +32,6 @@
   swapDevices = [{ device = "/swapfile"; size = 16382; }];
 
   gpus.nvidia.enable = true;
-
 
   environment.systemPackages = with pkgs;[
     nut

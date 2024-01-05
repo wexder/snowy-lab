@@ -1,6 +1,17 @@
 { config, pkgs, lib, ... }:
 let
   cfg = config.roles.jupyter;
+  pythonJupyter = pkgs.python3.withPackages (ps: with ps; [ jupyterlab jupyterlab-lsp python-lsp-server ]);
+  pythonKernel = pkgs.python310.withPackages (pythonPackages: with pythonPackages;
+    [
+      jupyterlab
+      jupyterlab-lsp
+      ipykernel
+      ipython
+      pandas
+      pytorch
+      scikit-learn
+    ]);
 in
 {
   options.roles.jupyter = {
@@ -13,6 +24,10 @@ in
       users.groups.jupyter.members = [ "wexder" ];
       users.groups.jupyter = { };
 
+      # environment.systemPackages = with pkgs;[
+      #   pythonKernel
+      # ];
+
       services.jupyter = {
         enable = true;
         command = "jupyter-lab";
@@ -20,24 +35,19 @@ in
         group = "jupyter";
         password = "1234";
         notebookDir = "~/development/jupyter";
-        package = (pkgs.python311.withPackages (ps: with ps; [ jupyterlab jupyterlab-lsp python-lsp-server ]));
+        package = pythonJupyter;
         kernels = {
           python3 =
-            let
-              env = (pkgs.python311.withPackages (pythonPackages: with pythonPackages;
-                [
-                  jupyterlab
-                  jupyterlab-lsp
-                  ipykernel
-                  pandas
-                  pytorch
-                  scikit-learn
-                ]));
-            in
             {
               displayName = "Python 3 for machine learning";
+              env = {
+                CUDA_PATH = "${pkgs.cudatoolkit}";
+                LD_LIBRARY_PATH = "${pkgs.linuxPackages.nvidia_x11}/lib";
+                EXTRA_LDFLAGS = "-L/lib -L${pkgs.linuxPackages.nvidia_x11}/lib";
+                EXTRA_CCFLAGS = "-I/usr/include";
+              };
               argv = [
-                "${env.interpreter}"
+                "${pythonKernel.interpreter}"
                 "-m"
                 "ipykernel_launcher"
                 "-f"
