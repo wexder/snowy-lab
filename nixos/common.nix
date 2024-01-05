@@ -35,6 +35,8 @@
     gcc
     unzip
     ripgrep
+    fwupd
+    pciutils
   ];
 
   environment.sessionVariables = {
@@ -84,6 +86,7 @@
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
+  services.fwupd.enable = true;
 
   # age.secrets = {
   #   influxdb-telegraf.file = ./secrets/influxdb-telegraf.age;
