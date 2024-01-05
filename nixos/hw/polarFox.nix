@@ -20,8 +20,15 @@
 
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-label/nixos";
+      # can I change this ?
+      device = "/dev/disk/by-uuid/695f4364-cd08-40e3-9e01-b0f597240db6";
       fsType = "ext4";
+    };
+
+    "/boot" = {
+      # can I change this ?
+      device = "/dev/disk/by-uuid/EB21-55EC";
+      fsType = "vfat";
     };
   };
 
