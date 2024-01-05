@@ -10,7 +10,8 @@
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ "amdgpu" ];
+  # boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [
     rtl8812au
@@ -43,5 +44,5 @@
 
   swapDevices = [{ device = "/swapfile"; size = 8192; }];
 
-  gpus.amd.enable = true;
+  # gpus.amd.enable = true;
 }
