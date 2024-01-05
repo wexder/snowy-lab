@@ -140,8 +140,8 @@
           "${modifier}+Return" = "exec alacritty";
 
           # kill focused window
-          # "${modifier}+q" = "kill";
-          "${modifier}+q" = "exec /wexder/home/.config/sway/kill.sh";
+          "${modifier}+q" = "kill";
+          # "${modifier}+q" = "exec /wexder/home/.config/sway/kill.sh";
 
           # start your launcher
           "${modifier}+shift+d" = "exec wofi --show drun";
