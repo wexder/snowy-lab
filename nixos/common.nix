@@ -18,6 +18,7 @@
 
   networking.hostName = hostName;
   networking.networkmanager.enable = true;
+  services.resolved.enable = true;
 
   environment.systemPackages = with pkgs;[
     iwd

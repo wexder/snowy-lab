@@ -33,9 +33,9 @@
       enable = true;
       loginManager = true;
     };
-    # games = {
-    #   enable = true;
-    # };
+    games = {
+      enable = true;
+    };
     tailscale = {
       enable = true;
     };
