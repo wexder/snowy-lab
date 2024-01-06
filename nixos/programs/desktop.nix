@@ -10,7 +10,6 @@
     notion-app-enhanced
     chromium
     bitwarden
-    reaper
     kooha
     tigervnc
     obsidian

@@ -5,7 +5,7 @@
   imports =
     [
       ./common.nix
-      # ./bluetooth.nix
+      ./bluetooth.nix
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 

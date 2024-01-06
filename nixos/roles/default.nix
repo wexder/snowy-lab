@@ -9,6 +9,7 @@
     ./netclient.nix
     ./prometheus.nix
     ./tailscale.nix
+    ./videoEditing.nix
     ./xMinimalDesktop.nix
   ];
 }

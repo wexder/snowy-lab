@@ -39,5 +39,8 @@
     tailscale = {
       enable = true;
     };
+    videoEditing = {
+      enable = true;
+    };
   };
 }

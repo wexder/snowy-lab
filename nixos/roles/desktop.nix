@@ -32,10 +32,13 @@ in
 
         fonts.packages = with pkgs; [
           nerdfonts
+          fira-code-nerdfont
         ];
 
         environment.systemPackages = with pkgs;[
           wayvnc
+          pavucontrol
+          blueberry
         ];
         services.pipewire = {
           enable = true;

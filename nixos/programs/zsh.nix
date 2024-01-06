@@ -91,6 +91,7 @@
 
       # package.disabled = true;
     };
+    enableZshIntegration = true;
   };
 
   programs.fzf = {

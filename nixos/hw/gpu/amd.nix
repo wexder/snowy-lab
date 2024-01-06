@@ -9,6 +9,8 @@ in
 
   config = lib.mkIf cfg.enable
     {
+      services.xserver.enable = true;
+      services.xserver.videoDrivers = [ "amdgpu" ];
       # Enable OpenGL
       hardware.opengl = {
         enable = true;
@@ -22,6 +24,7 @@ in
           amdvlk
           rocm-opencl-icd
           rocm-opencl-runtime
+          rocmPackages.clr.icd
         ];
         extraPackages32 = with pkgs;[
           driversi686Linux.amdvlk

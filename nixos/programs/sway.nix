@@ -18,19 +18,38 @@
     sha256 = "0qr0cg03rj9i9wb7q0s7xkjhmx4wmx37dnjdl1y2aahgc2r6cvm3";
   });
 
-  home.packages = with pkgs; [
-    kanshi
-    mako
-    wallutils
-    wl-clipboard
-    libsForQt5.kdeconnect-kde
-    wdisplays
-    waypipe
+  home.packages = [
+    pkgs.kanshi
+    pkgs.mako
+    pkgs.wallutils
+    pkgs.wl-clipboard
+    pkgs.libsForQt5.kdeconnect-kde
+    pkgs.wdisplays
+    pkgs.waypipe
+    pkgs.dconf
+    pkgs.swaylock
   ];
 
   home.sessionVariables = {
     XDG_CURRENT_DESKTOP = "sway";
     NIXOS_OZONE_WL = 1;
+  };
+  services.cliphist.enable = true;
+  gtk = {
+    enable = true;
+    cursorTheme = {
+      name = "Vanilla-DMZ";
+      package = pkgs.vanilla-dmz;
+    };
+    theme = {
+      name = "Catppuccin-Macchiato-Compact-Pink-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "pink" ];
+        size = "compact";
+        tweaks = [ "rimless" "black" ];
+        variant = "macchiato";
+      };
+    };
   };
 
   wayland.windowManager.sway = {
@@ -42,12 +61,6 @@
       # Use kitty as default terminal
       terminal = "alacritty";
       startup = [
-        # Launch Firefox on start
-        { command = "firefox"; }
-
-        ### Needed for xdg-desktop-portal-kde
-        # { command = "dbus-update-activation-environment --systemd --all"; }
-        # { command = "/usr/lib/xdg-desktop-portal --replace"; }
         { command = "kdeconnect-indicator"; }
         { command = "mako"; }
         { command = "kanshi"; }
@@ -75,7 +88,7 @@
         { command = "bitwarden"; }
 
         # steam
-        { command = "steam-runtime"; }
+        { command = "steam"; }
       ];
       modes = {
         resize = {
@@ -286,6 +299,14 @@
         };
     };
     extraConfig = ''
+      # set $gnome-schema org.gnome.desktop.interface
+      #
+      # exec_always {
+      #     gsettings set $gnome-schema gtk-theme 'Catppuccin-Mocha-Standard-Pink-Dark'
+      #         gsettings set $gnome-schema icon-theme 'Catppuccin-Mocha-Standard-Pink-Dark'
+      #         gsettings set $gnome-schema cursor-theme 'Catppuccin-Mocha-Standard-Pink-Dark'
+      #         gsettings set $gnome-schema font-name 'Catppuccin-Mocha-Standard-Pink-Dark'
+      # }
       default_border pixel
       default_floating_border pixel
       hide_edge_borders --i3 smart
