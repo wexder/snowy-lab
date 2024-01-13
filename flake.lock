@@ -45,22 +45,6 @@
         "type": "github"
       }
     },
-    "flake-compat": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1650374568,
-        "narHash": "sha256-Z+s0J8/r907g149rllvwhb4pKi8Wam5ij0st8PwAh+E=",
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "rev": "b4a34015c698c7793d592d66adbab377907a2be8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "type": "github"
-      }
-    },
     "flake-utils": {
       "inputs": {
         "systems": "systems_2"
@@ -120,22 +104,6 @@
         "type": "github"
       }
     },
-    "libnbtplusplus": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1650031308,
-        "narHash": "sha256-TvVOjkUobYJD9itQYueELJX3wmecvEdCbJ0FinW2mL4=",
-        "owner": "PolyMC",
-        "repo": "libnbtplusplus",
-        "rev": "2203af7eeb48c45398139b583615134efd8d407f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "PolyMC",
-        "repo": "libnbtplusplus",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1703663102,
@@ -151,50 +119,12 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1658119717,
-        "narHash": "sha256-4upOZIQQ7Bc4CprqnHsKnqYfw+arJeAuU+QcpjYBXW0=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "9eb60f25aff0d2218c848dd4574a0ab5e296cabe",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "polymc": {
-      "inputs": {
-        "flake-compat": "flake-compat",
-        "libnbtplusplus": "libnbtplusplus",
-        "nixpkgs": "nixpkgs_2",
-        "tomlplusplus": "tomlplusplus"
-      },
-      "locked": {
-        "lastModified": 1702810544,
-        "narHash": "sha256-giMhAPfYlMNWsC4s2YeMjQCsZyqXEu0GPO8BLdQUL5Y=",
-        "owner": "PolyMC",
-        "repo": "PolyMC",
-        "rev": "bce5a8df35ed9dcd3acc5295d0167a8cc0157d8d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "PolyMC",
-        "repo": "PolyMC",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "agenix": "agenix",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager_2",
-        "nixpkgs": "nixpkgs",
-        "polymc": "polymc"
+        "nixpkgs": "nixpkgs"
       }
     },
     "systems": {
@@ -224,22 +154,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "tomlplusplus": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1664034574,
-        "narHash": "sha256-EFMAl6tsTvkgK0DWC/pZfOIq06b2e5SnxJa1ngGRIQA=",
-        "owner": "marzer",
-        "repo": "tomlplusplus",
-        "rev": "8aa5c8b2a4ff2c440d4630addf64fa4f62146170",
-        "type": "github"
-      },
-      "original": {
-        "owner": "marzer",
-        "repo": "tomlplusplus",
         "type": "github"
       }
     }

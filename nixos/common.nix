@@ -3,10 +3,12 @@
   system.stateVersion = "24.05";
 
   imports = [ ./roles ];
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
-  ];
+  nixpkgs.config = {
+    allowUnfree = true;
+    nixpkgs.config.permittedInsecurePackages = [
+      "electron-25.9.0"
+    ];
+  };
 
   # Garbage collect & optimize /nix/store daily.
   nix.gc = {

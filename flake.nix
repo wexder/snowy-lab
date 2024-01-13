@@ -12,12 +12,9 @@
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Is this really used ?
-    polymc.url = "github:PolyMC/PolyMC";
   };
 
-  outputs = { self, nixpkgs, agenix, flake-utils, home-manager, polymc, ... }@attrs:
+  outputs = { self, nixpkgs, agenix, flake-utils, home-manager, ... }@attrs:
     let
       inherit (nixpkgs.lib)
         mapAttrs mapAttrs' nixosSystem;
