@@ -12,9 +12,12 @@
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixos-generators.url = "github:nix-community/nixos-generators";
+    nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, agenix, flake-utils, home-manager, ... }@attrs:
+  outputs = { self, nixpkgs, agenix, flake-utils, home-manager, nixos-generators, ... }@attrs:
     let
       inherit (nixpkgs.lib)
         mapAttrs mapAttrs' nixosSystem;
@@ -36,7 +39,6 @@
                 specialArgs = attrs // {
                   inherit catalog;
                   hostName = host;
-                  environment = "prod";
                 };
                 modules = [
                   node.config
@@ -58,33 +60,52 @@
         (host: node: nixosConfigurations.${host}.config.system.build.sdImage)
         catalog.nodes;
 
-      # Generate VM build packages to quick test each host.  Note that these
-      # will will be x86-64 VMs, and will have a new host key, thus will be
-      # unable to decrypt agenix secrets.
       packages =
         let
           # Converts node entry into a virtual machine package.
           vmPackage = sys: host: node: {
             name = host;
-            value = (nixosSystem {
-              system = sys;
-              specialArgs = attrs // {
-                inherit catalog;
-                hostName = host;
-                environment = "test";
+            value = {
+              linode = nixos-generators.nixosGenerate {
+                format = "linode";
+                inherit (node) system;
+                specialArgs = attrs // {
+                  inherit catalog;
+                  hostName = host;
+                };
+                modules = [
+                  node.config
+                  # node.hw
+                  home-manager.nixosModules.home-manager
+                  {
+                    home-manager.useGlobalPkgs = true;
+                    home-manager.useUserPackages = true;
+                    home-manager.users.wexder = import node.home;
+                  }
+                  ./nixos/hw/linode.nix
+                ];
               };
-              modules = [
-                node.config
-                home-manager.nixosModules.home-manager
-                {
-                  home-manager.useGlobalPkgs = true;
-                  home-manager.useUserPackages = true;
-                  home-manager.users.wexder = import node.home;
-                }
-                ./nixos/hw/qemu.nix
-              ];
 
-            }).config.system.build.vm;
+              qemu = nixos-generators.nixosGenerate {
+                format = "vm";
+                inherit (node) system;
+                specialArgs = attrs // {
+                  inherit catalog;
+                  hostName = host;
+                };
+                modules = [
+                  node.config
+                  # node.hw
+                  home-manager.nixosModules.home-manager
+                  {
+                    home-manager.useGlobalPkgs = true;
+                    home-manager.useUserPackages = true;
+                    home-manager.users.wexder = import node.home;
+                  }
+                  ./nixos/hw/qemu.nix
+                ];
+              };
+            };
           };
         in
         eachSystemMap [ system.x86_64-linux ]

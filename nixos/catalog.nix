@@ -29,6 +29,13 @@
       system = system.x86_64-linux;
     };
 
+    altostratus = {
+      config = ./hosts/altostratus.nix;
+      hw = ./hw/altostratus.nix;
+      home = ./home/altostratus.nix;
+      system = system.x86_64-linux;
+    };
+
     pivpn = {
       ip = "10.1.1.231";
       config = ./hosts/pivpn.nix;

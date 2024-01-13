@@ -18,8 +18,11 @@
   nix.optimise.automatic = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # latest kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   networking.hostName = hostName;
-  networking.networkmanager.enable = true;
+  networking.networkmanager.enable = lib.mkDefault true;
   services.resolved.enable = true;
 
   environment.systemPackages = with pkgs;[

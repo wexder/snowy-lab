@@ -9,29 +9,6 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  # linux 6.6 is wanky with amd gpu
-  # boot.kernelPackages = pkgs.linuxPackagesFor (pkgs.linux_6_5.override {
-  #   argsOverride = rec {
-  #     src = pkgs.fetchurl {
-  #       url = "mirror://kernel/linux/kernel/v6.x/linux-${version}.tar.xz";
-  #       sha256 = "sha256-ePvUOCL0xWvBbonoh0dn9ZJTLhoP/NGvTdJ5VZtfy7U=";
-  #     };
-  #     version = "6.5.13";
-  #     modDirVersion = "6.5.13";
-  #   };
-  # });
-
-  boot.kernelPackages = pkgs.linuxPackagesFor (pkgs.linux_6_6.override {
-    argsOverride = rec {
-      src = pkgs.fetchurl {
-        url = "mirror://kernel/linux/kernel/v6.x/linux-${version}.tar.xz";
-        sha256 = "sha256-jrxlrwz8iRumPc4FRlg9pyhDTbD19qVNl58l7Ef1SLM=";
-      };
-      version = "6.6.9";
-      modDirVersion = "6.6.9";
-    };
-  });
-
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
@@ -39,6 +16,7 @@
     rtl8812au
     rtl88xxau-aircrack
   ];
+  hardware.ksm.enable = true;
 
   fileSystems = {
     "/" = {

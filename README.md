@@ -28,6 +28,11 @@ The sd image is done in a way where the whole config is also transferred and can
 # Snowy deck
 Nixos virtual machine running inside Steam deck. This is being used as portable workstation.
 
+# Polar bear
+Main workstation used for all work. Supports CUDA
+
+# Polar fox
+Gaming machine runnig all amd system.
 
 ## TODO
 - [] refactor home manager to use roles

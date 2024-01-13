@@ -6,6 +6,7 @@
     "fs.inotify.max_user_instances" = 2048; # default:   128
     "fs.inotify.max_queued_events" = 65536; # default: 16384
   };
+  hardware.enableAllFirmware = lib.mkDefault true;
   hardware.enableRedistributableFirmware = lib.mkDefault true;
 
   imports = [

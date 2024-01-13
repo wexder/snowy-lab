@@ -41,4 +41,19 @@
 
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
+  virtualisation.qemu.options = [
+    "-m 8096"
+    "-cpu host"
+    "-smp 4"
+    "-vnc :0"
+  ];
+
+  services.greetd = {
+    settings = {
+      initial_session = {
+        command = "zsh";
+        user = "wexder";
+      };
+    };
+  };
 }

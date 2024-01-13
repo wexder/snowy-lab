@@ -37,10 +37,6 @@ in
       })
     (lib.mkIf cfg.android
       {
-
-        environment.systemPackages = with pkgs;[
-          # android-studio
-        ];
         programs.adb.enable = true;
         users.users.wexder.extraGroups = [ "adbusers" ];
       })

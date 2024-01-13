@@ -9,6 +9,7 @@ in
 
   config = lib.mkIf cfg.enable
     {
+      virtualisation.libvirtd.enable = true;
       virtualisation.docker.enable = true;
       users.extraGroups.docker.members = [ "wexder" ];
     };
