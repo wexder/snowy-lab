@@ -20,21 +20,22 @@ in
         driSupport32Bit = true;
 
         ## amdvlk: an open-source Vulkan driver from AMD
-        extraPackages = with pkgs; [
-          amdvlk
-          rocm-opencl-icd
-          rocm-opencl-runtime
-          rocmPackages.clr.icd
+        extraPackages = [
+          # pkgs.amdvlk
+          # pkgs.rocm-opencl-runtime
+          pkgs.rocm-opencl-icd
+          # pkgs.rocmPackages.rocm-runtime
         ];
-        extraPackages32 = with pkgs;[
-          driversi686Linux.amdvlk
+        extraPackages32 = [
+          # pkgs.driversi686Linux.amdvlk
         ];
       };
 
       boot.initrd.kernelModules = [ "amdgpu" ];
-      environment.systemPackages = with pkgs;[
-        amdvlk
-        amdgpu_top
+      environment.systemPackages = [
+        pkgs.amdgpu_top
+        pkgs.rocmPackages.rocminfo
+        pkgs.clinfo
       ];
 
       systemd.tmpfiles.rules = [

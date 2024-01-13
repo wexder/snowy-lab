@@ -28,6 +28,7 @@
     };
     dev = {
       enable = true;
+      android = true;
     };
     desktop = {
       enable = true;

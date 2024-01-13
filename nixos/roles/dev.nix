@@ -5,31 +5,44 @@ in
 {
   options.roles.dev = {
     enable = lib.mkEnableOption "Enable dev tools";
+    android = lib.mkEnableOption "Enable android dev tools";
   };
 
-  config = lib.mkIf cfg.enable
-    {
-      environment.systemPackages = with pkgs;[
-        bash
-        doctl
-        postgresql
-        kubectl
-        nil
-        rustup
-        go
-        rustc
-        nodejs_20
-        cachix
-        gnumake
-      ];
+  config = lib.mkMerge [
+    (lib.mkIf cfg.enable
+      {
+        environment.systemPackages = with pkgs;[
+          bash
+          doctl
+          postgresql
+          kubectl
+          nil
+          rustup
+          go
+          rustc
+          nodejs_20
+          cachix
+          gnumake
+          glibc
+        ];
 
 
-      programs.direnv = {
-        enable = true;
-        loadInNixShell = true;
-        nix-direnv = {
+        programs.direnv = {
           enable = true;
+          loadInNixShell = true;
+          nix-direnv = {
+            enable = true;
+          };
         };
-      };
-    };
+      })
+    (lib.mkIf cfg.android
+      {
+
+        environment.systemPackages = with pkgs;[
+          # android-studio
+        ];
+        programs.adb.enable = true;
+        users.users.wexder.extraGroups = [ "adbusers" ];
+      })
+  ];
 }

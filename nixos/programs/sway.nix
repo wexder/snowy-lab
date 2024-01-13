@@ -56,7 +56,7 @@
     enable = true;
     systemd.enable = true;
     xwayland = true;
-    config = rec {
+    config = {
       modifier = "Mod4";
       # Use kitty as default terminal
       terminal = "alacritty";
@@ -144,6 +144,15 @@
           }
         ];
       };
+      colors = {
+        focused = {
+          border = "#eb4d4b";
+          background = "#285577";
+          text = "#ffffff";
+          childBorder = "#d76a92";
+          indicator = "#d76a92";
+        };
+      };
       keybindings =
         let
           modifier = config.wayland.windowManager.sway.config.modifier;
@@ -182,7 +191,7 @@
           "${modifier}+F7" = "exec notify-send $(weather)";
           "${modifier}+F8" = "exec pkill kmousetool || kmousetool";
           "${modifier}+shift+F4" = "exec firefox --private-window";
-          "Print" = "exec grim -g '$(slurp)' - | swappy -f -";
+          "Print" = "exec grim -g \"$(slurp)\" - | swappy -f -";
           "Control+Print" = "exec grim - | swappy -f -";
           "${modifier}+tab" = "workspace back_and_forth";
 

@@ -39,6 +39,9 @@ in
           wayvnc
           pavucontrol
           blueberry
+          grim
+          swappy
+          slurp
         ];
         services.pipewire = {
           enable = true;

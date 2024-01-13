@@ -1,4 +1,4 @@
-{ config, pkgs, lib, polymc, ... }:
+{ config, pkgs, lib, ... }:
 let
   cfg = config.roles.games;
 in
@@ -9,8 +9,6 @@ in
 
   config = lib.mkIf cfg.enable
     {
-      nixpkgs.overlays = [ polymc.overlay ];
-
       # enable gamescope
       nixpkgs.config.packageOverrides = pkgs: {
         steam = pkgs.steam.override {
@@ -35,7 +33,8 @@ in
 
       environment.systemPackages = with pkgs;[
         gamescope
-        polymc
+        # polymc
+        prismlauncher
       ];
 
     };

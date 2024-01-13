@@ -5,7 +5,7 @@
   imports = [ ./roles ];
   nixpkgs.config = {
     allowUnfree = true;
-    nixpkgs.config.permittedInsecurePackages = [
+    permittedInsecurePackages = [
       "electron-25.9.0"
     ];
   };
@@ -40,6 +40,7 @@
     ripgrep
     fwupd
     pciutils
+    nfs-utils
   ];
 
   environment.sessionVariables = {
