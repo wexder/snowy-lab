@@ -42,6 +42,7 @@ in
           grim
           swappy
           slurp
+          libreoffice
         ];
         services.pipewire = {
           enable = true;

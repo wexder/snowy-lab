@@ -1,5 +1,5 @@
 # Common config shared among all machines
-{ config, pkgs, hostName, environment, lib, catalog, ... }: {
+{ config, pkgs, hostName, environment, lib, catalog, agenix, ... }: {
   system.stateVersion = "24.05";
 
   imports = [ ./roles ];
@@ -25,25 +25,25 @@
   networking.networkmanager.enable = lib.mkDefault true;
   services.resolved.enable = true;
 
-  environment.systemPackages = with pkgs;[
-    iwd
-    git
-    tmux
-    tmux-sessionizer
-    htop
-    jq
-    neovim-unwrapped
-    tree
-    wget
-    curl
-    lazydocker
-    lazygit
-    gcc
-    unzip
-    ripgrep
-    fwupd
-    pciutils
-    nfs-utils
+  environment.systemPackages = [
+    pkgs.iwd
+    pkgs.git
+    pkgs.tmux
+    pkgs.tmux-sessionizer
+    pkgs.htop
+    pkgs.jq
+    pkgs.neovim-unwrapped
+    pkgs.tree
+    pkgs.wget
+    pkgs.curl
+    pkgs.lazydocker
+    pkgs.lazygit
+    pkgs.gcc
+    pkgs.unzip
+    pkgs.ripgrep
+    pkgs.fwupd
+    pkgs.pciutils
+    pkgs.nfs-utils
   ];
 
   environment.sessionVariables = {
@@ -67,7 +67,7 @@
 
   # TODO change
   users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMkKyMS0O7nzToTh/3LCrwJB++zc29R8U6UlzfzT0xV9 wexder@archlinux"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMkKyMS0O7nzToTh/3LCrwJB++zc29R8U6UlzfzT0xV9"
   ];
 
   security.polkit.enable = true;
@@ -81,7 +81,7 @@
     hashedPasswordFile = "/etc/passwordFile-wexder";
     openssh.authorizedKeys.keys = [
       # TODO change
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMkKyMS0O7nzToTh/3LCrwJB++zc29R8U6UlzfzT0xV9 wexder@archlinux"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMkKyMS0O7nzToTh/3LCrwJB++zc29R8U6UlzfzT0xV9"
     ];
   };
   environment.shells = with pkgs; [ zsh ];

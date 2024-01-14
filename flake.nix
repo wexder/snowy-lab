@@ -49,6 +49,10 @@
                     home-manager.useUserPackages = true;
                     home-manager.users.wexder = import node.home;
                   }
+                  agenix.nixosModules.default
+                  {
+                    environment.systemPackages = [ agenix.packages.${node.system}.default ];
+                  }
                 ];
               })
             catalog.nodes;
@@ -75,12 +79,15 @@
                 };
                 modules = [
                   node.config
-                  # node.hw
                   home-manager.nixosModules.home-manager
                   {
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
                     home-manager.users.wexder = import node.home;
+                  }
+                  agenix.nixosModules.default
+                  {
+                    environment.systemPackages = [ agenix.packages.${system}.default ];
                   }
                   ./nixos/hw/linode.nix
                 ];
@@ -95,12 +102,15 @@
                 };
                 modules = [
                   node.config
-                  # node.hw
                   home-manager.nixosModules.home-manager
                   {
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
                     home-manager.users.wexder = import node.home;
+                  }
+                  agenix.nixosModules.default
+                  {
+                    environment.systemPackages = [ agenix.packages.${system}.default ];
                   }
                   ./nixos/hw/qemu.nix
                 ];
