@@ -29,7 +29,7 @@
       };
 
       # Point size
-      size = 12.0;
+      # size = 12.0;
       colors = {
         primary = {
           background = "#000000";

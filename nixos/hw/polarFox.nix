@@ -11,12 +11,15 @@
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = with config.boot.kernelPackages; [
-    rtl8812au
-    rtl88xxau-aircrack
+  boot.kernelModules = [ "kvm-amd" "iwlwifi" "iwlmvm" ];
+  boot.extraModulePackages = [
+    # rtl8812au
+    # rtl88xxau-aircrack
   ];
   hardware.ksm.enable = true;
+  hardware.firmware = [
+    pkgs.wireless-regdb
+  ];
 
   fileSystems = {
     "/" = {

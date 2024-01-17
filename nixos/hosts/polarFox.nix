@@ -23,6 +23,9 @@
   };
 
   roles = {
+    cad = {
+      enable = true;
+    };
     docker = {
       enable = true;
     };
@@ -41,6 +44,9 @@
       enable = true;
     };
     videoEditing = {
+      enable = true;
+    };
+    wine = {
       enable = true;
     };
   };

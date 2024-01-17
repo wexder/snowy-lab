@@ -11,10 +11,8 @@ in
     {
 
       environment.systemPackages = with pkgs;[
-        lightworks
         # blender-hip
         blender
-        davinci-resolve
         kdenlive
       ];
     };

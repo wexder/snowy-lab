@@ -35,14 +35,14 @@ in
           fira-code-nerdfont
         ];
 
-        environment.systemPackages = with pkgs;[
-          wayvnc
-          pavucontrol
-          blueberry
-          grim
-          swappy
-          slurp
-          libreoffice
+        environment.systemPackages = [
+          pkgs.wayvnc
+          pkgs.pavucontrol
+          pkgs.blueberry
+          pkgs.grim
+          pkgs.swappy
+          pkgs.slurp
+          pkgs.libreoffice
         ];
         services.pipewire = {
           enable = true;
