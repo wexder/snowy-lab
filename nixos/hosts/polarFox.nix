@@ -46,6 +46,9 @@
     videoEditing = {
       enable = true;
     };
+    virtualisation = {
+      enable = true;
+    };
     wine = {
       enable = true;
     };

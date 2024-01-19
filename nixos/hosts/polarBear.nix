@@ -42,5 +42,8 @@
       enable = true;
       nut = true;
     };
+    virtualisation = {
+      enable = true;
+    };
   };
 }
