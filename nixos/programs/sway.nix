@@ -19,6 +19,7 @@
   });
 
   home.packages = [
+    pkgs.dbus # make dbus-update-activation-environment available in the path
     pkgs.kanshi
     pkgs.mako
     pkgs.wallutils
@@ -28,6 +29,8 @@
     pkgs.waypipe
     pkgs.dconf
     pkgs.swaylock
+    pkgs.swayidle
+    pkgs.dmenu
   ];
 
   home.sessionVariables = {
@@ -55,6 +58,7 @@
   wayland.windowManager.sway = {
     enable = true;
     systemd.enable = true;
+    wrapperFeatures.gtk = true;
     xwayland = true;
     config = {
       modifier = "Mod4";
@@ -64,7 +68,7 @@
         { command = "kdeconnect-indicator"; }
         { command = "mako"; }
         { command = "kanshi"; }
-        { command = "slack --enable-features=WebRTCPipeWireCapturer"; }
+        { command = "slack"; }
         { command = "setrandom -m scale /home/wexder/.config/wallpapers"; }
         { command = "alacritty"; }
 
@@ -85,7 +89,7 @@
         { command = "tidal-hifi"; }
 
         # passwords
-        { command = "bitwarden"; }
+        # { command = "bitwarden"; }
 
         # steam
         { command = "steam"; }
@@ -200,9 +204,10 @@
           #
 
           # Pulse Audio controls
-          "--locked XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume 0 +5%"; #increase sound volume
-          "--locked XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume 0 -5%"; #decrease sound volume
-          "--locked XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute 0 toggle"; # mute sound
+          # not working
+          # "--locked XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume 0 +5%"; #increase sound volume
+          # "--locked XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume 0 -5%"; #decrease sound volume
+          # "--locked XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute 0 toggle"; # mute sound
           # Media --locked player controls
           "--locked XF86AudioPlay" = "exec playerctl play-pause";
           "--locked XF86AudioNext" = "exec playerctl next";

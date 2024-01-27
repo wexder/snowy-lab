@@ -2,7 +2,9 @@
   description = "Input into the snowy lab";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    # nixpkgs.url = "github:NixOS/nixpkgs";
+    # Temp
+    nixpkgs.url = "github:nazarewk/nixpkgs/nixos/netmaker/init";
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
@@ -15,9 +17,13 @@
 
     nixos-generators.url = "github:nix-community/nixos-generators";
     nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
+
+    # temporary
+    nyoom.url = "github:ryanccn/nyoom";
+    nyoom.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, agenix, flake-utils, home-manager, nixos-generators, ... }@attrs:
+  outputs = { self, nixpkgs, agenix, flake-utils, home-manager, nixos-generators, nyoom, ... }@attrs:
     let
       inherit (nixpkgs.lib)
         mapAttrs mapAttrs' nixosSystem;
@@ -44,6 +50,9 @@
                   node.config
                   node.hw
                   home-manager.nixosModules.home-manager
+                  {
+                    environment.systemPackages = [ nyoom.packages.${node.system}.default ];
+                  }
                   {
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
@@ -79,16 +88,13 @@
                 };
                 modules = [
                   node.config
-                  home-manager.nixosModules.home-manager
-                  {
-                    home-manager.useGlobalPkgs = true;
-                    home-manager.useUserPackages = true;
-                    home-manager.users.wexder = import node.home;
-                  }
+                  # home-manager.nixosModules.home-manager
+                  # {
+                  #   home-manager.useGlobalPkgs = true;
+                  #   home-manager.useUserPackages = true;
+                  #   home-manager.users.wexder = import node.home;
+                  # }
                   agenix.nixosModules.default
-                  {
-                    environment.systemPackages = [ agenix.packages.${system}.default ];
-                  }
                   ./nixos/hw/linode.nix
                 ];
               };
@@ -102,16 +108,13 @@
                 };
                 modules = [
                   node.config
-                  home-manager.nixosModules.home-manager
-                  {
-                    home-manager.useGlobalPkgs = true;
-                    home-manager.useUserPackages = true;
-                    home-manager.users.wexder = import node.home;
-                  }
+                  # home-manager.nixosModules.home-manager
+                  # {
+                  #   home-manager.useGlobalPkgs = true;
+                  #   home-manager.useUserPackages = true;
+                  #   home-manager.users.wexder = import node.home;
+                  # }
                   agenix.nixosModules.default
-                  {
-                    environment.systemPackages = [ agenix.packages.${system}.default ];
-                  }
                   ./nixos/hw/qemu.nix
                 ];
               };

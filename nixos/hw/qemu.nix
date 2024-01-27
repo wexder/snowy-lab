@@ -39,13 +39,18 @@
 
   nix.settings.max-jobs = lib.mkDefault 2;
 
-  services.qemuGuest.enable = true;
-  services.spice-vdagentd.enable = true;
   virtualisation.qemu.options = [
     "-m 8096"
     "-cpu host"
     "-smp 4"
-    "-vnc :0"
+  ];
+
+  # without this the port forwarding  does not work, I cannot figure out why
+  services.caddy = {
+    enable = true;
+  };
+  virtualisation.forwardPorts = [
+    { from = "host"; host.port = 2222; guest.port = 22; }
   ];
 
   services.greetd = {
@@ -54,6 +59,18 @@
         command = "zsh";
         user = "wexder";
       };
+    };
+  };
+
+  # files for rebuilding
+  environment.etc = {
+    configuration = {
+      source = ../templates/configuration.nix;
+      target = "/nixos/configuration.nix";
+    };
+    flake = {
+      source = ../templates/flake.nix;
+      target = "/nixos/flake.nix";
     };
   };
 }

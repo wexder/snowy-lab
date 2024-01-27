@@ -11,7 +11,7 @@ in
     {
 
       environment.systemPackages = with pkgs;[
-        davinci-resolve
+        # davinci-resolve
         # blender-hip
         blender
         kdenlive

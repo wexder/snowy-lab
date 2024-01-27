@@ -35,7 +35,9 @@ in
           fira-code-nerdfont
         ];
 
+        environment.sessionVariables.NIXOS_OZONE_WL = "1";
         environment.systemPackages = [
+          pkgs.slack
           pkgs.wayvnc
           pkgs.pavucontrol
           pkgs.blueberry
@@ -43,23 +45,38 @@ in
           pkgs.swappy
           pkgs.slurp
           pkgs.libreoffice
+
+          pkgs.ledger-live-desktop # testing
+          pkgs.yubioath-flutter # testing
+          pkgs.pcsclite # testing
         ];
+
+        services.udev.packages = [ pkgs.yubikey-personalization ]; # testing
+        services.pcscd.enable = true; # testing
+
         services.pipewire = {
           enable = true;
           alsa.enable = true;
           alsa.support32Bit = true;
           pulse.enable = true;
-          jack.enable = true;
+          # jack.enable = true;
         };
+        services.dbus.enable = true;
 
-        xdg = {
-          portal = {
-            enable = true;
-            extraPortals = with pkgs; [
-              xdg-desktop-portal-wlr
-              xdg-desktop-portal-gtk
-            ];
+        xdg.portal = {
+          enable = true;
+          wlr.enable = true;
+          wlr.settings = {
+            screencast = {
+              chooser_type = "simple";
+              # works but doesn not allow choosing windows
+              chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
+            };
           };
+          extraPortals = [
+            pkgs.xdg-desktop-portal-gtk
+          ];
+          configPackages = [ pkgs.sway ];
         };
 
         services.greetd = {
@@ -69,6 +86,20 @@ in
               command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd ${cfg.desktop}";
               user = "greeter";
             };
+          };
+        };
+
+        systemd.user.services.polkit-kde-authentication-agent-1 = {
+          description = "polkit-kde-authentication-agent-1";
+          wantedBy = [ "graphical-session.target" ];
+          wants = [ "graphical-session.target" ];
+          after = [ "graphical-session.target" ];
+          serviceConfig = {
+            Type = "simple";
+            ExecStart = "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
+            Restart = "on-failure";
+            RestartSec = 1;
+            TimeoutStopSec = 10;
           };
         };
       }

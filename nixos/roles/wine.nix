@@ -17,8 +17,8 @@ in
         pkgs.vkd3d
         pkgs.vkdt-wayland
         pkgs.dxvk
-        pkgs.q4wine
-        pkgs.bottles
+        pkgs.q4wine # testing
+        pkgs.bottles # testing
       ];
     };
 }

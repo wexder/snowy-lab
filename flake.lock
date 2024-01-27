@@ -50,11 +50,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1701680307,
-        "narHash": "sha256-kAuep2h5ajznlPMD9rnQyffWG8EM/C73lejGofXvdM8=",
+        "lastModified": 1705309234,
+        "narHash": "sha256-uNRRNRKmJyCRC/8y1RqBkqWBLM034y4qN7EprSdmgyA=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "4022d587cbbfd70fe950c1e2083a02621806a725",
+        "rev": "1ef2e671c3b0c19053962c07dbda38332dcebf26",
         "type": "github"
       },
       "original": {
@@ -91,11 +91,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1703657526,
-        "narHash": "sha256-C3fQG/tasnhtfJb0cvXthMDUJ/OLgCKNLqfMuR/M+0k=",
+        "lastModified": 1706306660,
+        "narHash": "sha256-lZvgkHtVeduGByPb0Tz9LpAi4olfkEm8XPgv0o7GRsk=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "d1d950841d230490f308f5fcf8c0d4f2bd3f24a7",
+        "rev": "b2f56952074cb46e93902ecaabfb04dd93733434",
         "type": "github"
       },
       "original": {
@@ -127,11 +127,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1701689616,
-        "narHash": "sha256-ewnfgvRy73HoP5KnYmy1Rcr4m4yShvsb6TCCaKoW8pc=",
+        "lastModified": 1706085261,
+        "narHash": "sha256-7PgpHRHyShINcqgevPP1fJ6N8kM5ZSOJnk3QZBrOCQ0=",
         "owner": "nix-community",
         "repo": "nixos-generators",
-        "rev": "246219bc21b943c6f6812bb7744218ba0df08600",
+        "rev": "896f6589db5b25023b812bbb6c1f5d3a499b1132",
         "type": "github"
       },
       "original": {
@@ -142,16 +142,37 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1703663102,
-        "narHash": "sha256-ZKQTLIrPEmrAmpg0UktrUQk2FjSxDqOfUIs3i7Eja0w=",
-        "owner": "NixOS",
+        "lastModified": 1706280085,
+        "narHash": "sha256-yJENabm9s7lAkWTKrdumeHPM4uSowG11Ta1BWhUg9I0=",
+        "owner": "nazarewk",
         "repo": "nixpkgs",
-        "rev": "35b6e8ed48e74b607b55f14e76ed194ba11f7c07",
+        "rev": "c7cf909ecee4b6925817edea0a8c0d04ce3540e9",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
+        "owner": "nazarewk",
+        "ref": "nixos/netmaker/init",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nyoom": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1705150397,
+        "narHash": "sha256-vanzV4QLle7AbXywX7x50YWYZZhtWzKa4IZl4u1CRis=",
+        "owner": "ryanccn",
+        "repo": "nyoom",
+        "rev": "0a0d471e476bda2c6b031e291c4192712d9fbe31",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ryanccn",
+        "repo": "nyoom",
         "type": "github"
       }
     },
@@ -161,7 +182,8 @@
         "flake-utils": "flake-utils",
         "home-manager": "home-manager_2",
         "nixos-generators": "nixos-generators",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "nyoom": "nyoom"
       }
     },
     "systems": {

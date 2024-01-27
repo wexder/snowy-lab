@@ -21,4 +21,17 @@
 
   swapDevices = [ ];
   nix.settings.max-jobs = lib.mkDefault 2;
+
+
+  # files for rebuilding
+  environment.etc = {
+    configuration = {
+      source = ../templates/configuration.nix;
+      target = "/nixos/configuration.nix";
+    };
+    flake = {
+      source = ../templates/flake.nix;
+      target = "/nixos/flake.nix";
+    };
+  };
 }

@@ -8,6 +8,7 @@
   };
   hardware.enableAllFirmware = lib.mkDefault true;
   hardware.enableRedistributableFirmware = lib.mkDefault true;
+  hardware.ledger.enable = lib.mkDefault true;
 
   imports = [
     ./gpu/default.nix

@@ -44,6 +44,8 @@
     pkgs.fwupd
     pkgs.pciutils
     pkgs.nfs-utils
+    pkgs.age
+    pkgs.ssh-to-age
   ];
 
   environment.sessionVariables = {
@@ -65,7 +67,6 @@
 
   time.timeZone = "Europe/Prague";
 
-  # TODO change
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMkKyMS0O7nzToTh/3LCrwJB++zc29R8U6UlzfzT0xV9"
   ];
@@ -80,7 +81,6 @@
     extraGroups = [ "wheel" ];
     hashedPasswordFile = "/etc/passwordFile-wexder";
     openssh.authorizedKeys.keys = [
-      # TODO change
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMkKyMS0O7nzToTh/3LCrwJB++zc29R8U6UlzfzT0xV9"
     ];
   };
@@ -95,10 +95,15 @@
   services.udisks2.enable = true;
   services.fwupd.enable = true;
 
-  # age.secrets = {
-  #   influxdb-telegraf.file = ./secrets/influxdb-telegraf.age;
-  #   tailscale.file = ./secrets/tailscale.age;
-  # };
+  age = {
+    secrets = {
+      tailscale.file = ./secrets/tailscale.age;
+      netclient.file = ./secrets/netclient.age;
+    };
+
+    # TODO replace with more generic path
+    identityPaths = [ "/home/wexder/.ssh/age" ];
+  };
 
   # environment.etc."issue.d/ip.issue".text = ''
   #   IPv4: \4
