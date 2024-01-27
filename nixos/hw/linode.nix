@@ -1,4 +1,3 @@
-# QEMU Guest Hardware
 { lib, modulesPath, pkgs, ... }: {
   networking.useDHCP = true;
   networking.networkmanager.enable = false;
