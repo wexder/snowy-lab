@@ -99,6 +99,10 @@
     secrets = {
       tailscale.file = ./secrets/tailscale.age;
       netclient.file = ./secrets/netclient.age;
+      altostratusWgPk.file = ./secrets/altostratus_wg_pk.age;
+      altostratusWgPub.file = ./secrets/altostratus_wg_pub.age;
+      transmissionWgPk.file = ./secrets/transmission_wg_pk.age;
+      transmissionWgPub.file = ./secrets/transmission_wg_pub.age;
     };
 
     # TODO replace with more generic path

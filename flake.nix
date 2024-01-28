@@ -2,9 +2,7 @@
   description = "Input into the snowy lab";
 
   inputs = {
-    # nixpkgs.url = "github:NixOS/nixpkgs";
-    # Temp
-    nixpkgs.url = "github:nazarewk/nixpkgs/nixos/netmaker/init";
+    nixpkgs.url = "github:NixOS/nixpkgs";
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";

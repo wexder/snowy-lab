@@ -16,7 +16,7 @@ in
     {
       services.netclient.enable = true;
 
-      systemd.services.netclient-autoconnect = {
+      systemd.services.netclient-autoconnect = lib.mkIf (cfg.authkeyPath != null) {
         description = "Automatic connection to Netmaker";
 
         # Make sure tailscale is running before trying to connect.

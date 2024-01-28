@@ -8,9 +8,12 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.netmaker.enable = true;
-    services.netmaker.debugTools = true;
-    services.netmaker.domain = "netmaker.neurobug.com";
-    services.netmaker.email = "wexder19@gmail.com";
+    # https://github.com/NixOS/nixpkgs/pull/283768 has to be merged
+    services.netmaker = {
+      enable = true;
+      debugTools = true;
+      domain = "netmaker.neurobug.com";
+      email = "wexder19@gmail.com";
+    };
   };
 }

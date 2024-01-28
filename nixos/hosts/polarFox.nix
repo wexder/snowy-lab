@@ -54,7 +54,7 @@
     };
     netmaker = {
       client = {
-        enable = true;
+        enable = false;
         authkeyPath = config.age.secrets.netclient.path;
       };
     };
