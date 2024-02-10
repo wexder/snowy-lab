@@ -19,6 +19,8 @@
     # temporary
     nyoom.url = "github:ryanccn/nyoom";
     nyoom.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs = { self, nixpkgs, agenix, flake-utils, home-manager, nixos-generators, nyoom, ... }@attrs:

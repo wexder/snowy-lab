@@ -34,6 +34,7 @@
     };
     tailscale = {
       enable = true;
+      authkeyPath = config.age.secrets.tailscale.path;
     };
   };
 }

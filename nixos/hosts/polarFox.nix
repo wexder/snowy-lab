@@ -52,11 +52,5 @@
     wine = {
       enable = true;
     };
-    netmaker = {
-      client = {
-        enable = false;
-        authkeyPath = config.age.secrets.netclient.path;
-      };
-    };
   };
 }

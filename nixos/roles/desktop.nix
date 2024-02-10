@@ -50,6 +50,7 @@ in
         environment.systemPackages = [
           slack
           # pkgs.slack
+          pkgs.whatsapp-for-linux
           pkgs.wayvnc
           pkgs.pavucontrol
           pkgs.blueberry
@@ -61,10 +62,12 @@ in
           pkgs.ledger-live-desktop # testing
           pkgs.yubioath-flutter # testing
           pkgs.pcsclite # testing
+          pkgs.pulseaudio # testing
         ];
 
         services.udev.packages = [ pkgs.yubikey-personalization ]; # testing
         services.pcscd.enable = true; # testing
+        services.avahi.enable = true; # testing, mDNS
 
         services.pipewire = {
           enable = true;
@@ -72,6 +75,27 @@ in
           alsa.support32Bit = true;
           pulse.enable = true;
           # jack.enable = true;
+        };
+        # testing network party audio
+        environment.etc = {
+          "pipewire/pipewire-pulse.conf.d/50-network-party.conf".text = ''
+            context.exec = [
+                { path = "pactl" args = "load-module module-native-protocol-tcp" }
+                { path = "pactl" args = "load-module module-zeroconf-discover" }
+                { path = "pactl" args = "load-module module-zeroconf-publish" }
+            ]
+          '';
+        };
+        # airplay
+        environment.etc = {
+          "pipewire/pipewire.conf.d/raop-discover.conf".text = ''
+            context.modules = [
+               {
+                   name = libpipewire-module-raop-discover
+                   args = { }
+               }
+            ]
+          '';
         };
         services.dbus.enable = true;
 

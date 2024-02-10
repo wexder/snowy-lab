@@ -140,18 +140,33 @@
         "type": "github"
       }
     },
-    "nixpkgs": {
+    "nixos-hardware": {
       "locked": {
-        "lastModified": 1706280085,
-        "narHash": "sha256-yJENabm9s7lAkWTKrdumeHPM4uSowG11Ta1BWhUg9I0=",
-        "owner": "nazarewk",
-        "repo": "nixpkgs",
-        "rev": "c7cf909ecee4b6925817edea0a8c0d04ce3540e9",
+        "lastModified": 1707211557,
+        "narHash": "sha256-LTKTzZ6fM5j8XWXf51IMBzDaOaJg9kYWLUZxoIhzRN8=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "6e5cc385fc8cf5ca6495d70243074ccdea9f64c7",
         "type": "github"
       },
       "original": {
-        "owner": "nazarewk",
-        "ref": "nixos/netmaker/init",
+        "owner": "NixOS",
+        "ref": "master",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1706514703,
+        "narHash": "sha256-SpbSmZ6YeJwQ/CyVmgWc0msZ928lvFrjcz31VcGWaDs=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "57ce9050ca1da0025dd472d89ebf8bdd05159904",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -182,6 +197,7 @@
         "flake-utils": "flake-utils",
         "home-manager": "home-manager_2",
         "nixos-generators": "nixos-generators",
+        "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nyoom": "nyoom"
       }

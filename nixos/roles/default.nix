@@ -7,7 +7,6 @@
     ./docker.nix
     ./games.nix
     ./jupyter.nix
-    ./netmaker/default.nix
     ./prometheus.nix
     ./tailscale.nix
     ./videoEditing.nix

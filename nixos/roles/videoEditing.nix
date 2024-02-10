@@ -10,11 +10,12 @@ in
   config = lib.mkIf cfg.enable
     {
 
-      environment.systemPackages = with pkgs;[
+      environment.systemPackages = [
         # davinci-resolve
-        # blender-hip
-        blender
-        kdenlive
+        pkgs.blender-hip
+        # blender
+        pkgs.movit
+        pkgs.kdenlive
       ];
     };
 }
