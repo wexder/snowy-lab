@@ -3,7 +3,7 @@ let
   cfg = config.gpus.intel;
 in
 {
-  options.intel.amd = {
+  options.gpus.intel = {
     enable = lib.mkEnableOption "Enable amd intel";
   };
 
