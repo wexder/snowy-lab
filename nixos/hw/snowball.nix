@@ -33,5 +33,5 @@
 
   swapDevices = [{ device = "/swapfile"; size = 8192; }];
 
-  config.gpu.intel.enable = true;
+  gpus.intel.enable = true;
 }
