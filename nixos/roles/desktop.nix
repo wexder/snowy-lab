@@ -36,6 +36,7 @@ in
     lib.mkMerge [
       {
         security.rtkit.enable = true;
+        sound.enable = true;
 
         programs.xwayland.enable = true;
         services.blueman.enable = true;
@@ -58,11 +59,14 @@ in
           pkgs.swappy
           pkgs.slurp
           pkgs.libreoffice
+          pkgs.wallutils
 
           pkgs.ledger-live-desktop # testing
           pkgs.yubioath-flutter # testing
           pkgs.pcsclite # testing
           pkgs.pulseaudio # testing
+          pkgs.alsa-utils # testing
+          pkgs.helvum # testing
         ];
 
         services.udev.packages = [ pkgs.yubikey-personalization ]; # testing
@@ -74,6 +78,7 @@ in
           alsa.enable = true;
           alsa.support32Bit = true;
           pulse.enable = true;
+          # wireplumber.enable = true;
           # jack.enable = true;
         };
         # testing network party audio

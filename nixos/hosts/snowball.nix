@@ -22,6 +22,10 @@
       };
   };
 
+  environment.systemPackages = [
+    pkgs.brightnessctl
+  ];
+
   roles = {
     docker = {
       enable = true;

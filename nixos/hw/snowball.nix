@@ -1,4 +1,4 @@
-{ lib, config, modulesPath, nixos-hardware, ... }:
+{ lib, pkgs, config, modulesPath, nixos-hardware, ... }:
 {
   boot.loader.systemd-boot.enable = true;
 
