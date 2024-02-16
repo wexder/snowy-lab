@@ -185,7 +185,7 @@
           "${modifier}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
 
           "${modifier}+F12" = "exec shutdown now";
-          "${modifier}+Control+L" = "exec swaylock -f -i /wexder/home/.config/wallpapers/mountains-on-mars.png -s fill";
+          "${modifier}+Control+L" = "exec swaylock -f -i /home/wexder/.config/wallpapers/mountains-on-mars.png -s fill";
           "${modifier}+shift+return" = "exec thunar";
           "${modifier}+F2" = "exec cantata";
           "${modifier}+F3" = "exec mpv --player-operation-mode=pseudo-gui";

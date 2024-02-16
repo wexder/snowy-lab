@@ -36,6 +36,7 @@ in
     lib.mkMerge [
       {
         security.rtkit.enable = true;
+        security.pam.services.swaylock = { };
         sound.enable = true;
 
         programs.xwayland.enable = true;
