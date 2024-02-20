@@ -27,10 +27,6 @@
       k = "kubectl";
     };
 
-    # initExtra = ''
-    #   eval "$(starship init zsh)"
-    # '';
-
     oh-my-zsh = {
       enable = true;
 
@@ -89,7 +85,7 @@
       #   error_symbol = "[➜](bold red)";
       # };
 
-      # package.disabled = true;
+      direnv.disabled = false;
     };
     enableZshIntegration = true;
   };

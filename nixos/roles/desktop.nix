@@ -68,6 +68,10 @@ in
           pkgs.pulseaudio # testing
           pkgs.alsa-utils # testing
           pkgs.helvum # testing
+
+          pkgs.obsidian # testing
+          pkgs.appflowy # testing
+          pkgs.floorp # testing
         ];
 
         services.udev.packages = [ pkgs.yubikey-personalization ]; # testing
