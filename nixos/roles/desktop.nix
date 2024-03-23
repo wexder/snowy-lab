@@ -87,26 +87,26 @@ in
           # jack.enable = true;
         };
         # testing network party audio
-        environment.etc = {
-          "pipewire/pipewire-pulse.conf.d/50-network-party.conf".text = ''
-            context.exec = [
-                { path = "pactl" args = "load-module module-native-protocol-tcp" }
-                { path = "pactl" args = "load-module module-zeroconf-discover" }
-                { path = "pactl" args = "load-module module-zeroconf-publish" }
-            ]
-          '';
-        };
-        # airplay
-        environment.etc = {
-          "pipewire/pipewire.conf.d/raop-discover.conf".text = ''
-            context.modules = [
-               {
-                   name = libpipewire-module-raop-discover
-                   args = { }
-               }
-            ]
-          '';
-        };
+        # environment.etc = {
+        #   "pipewire/pipewire-pulse.conf.d/50-network-party.conf".text = ''
+        #     context.exec = [
+        #         { path = "pactl" args = "load-module module-native-protocol-tcp" }
+        #         { path = "pactl" args = "load-module module-zeroconf-discover" }
+        #         { path = "pactl" args = "load-module module-zeroconf-publish" }
+        #     ]
+        #   '';
+        # };
+        # # airplay
+        # environment.etc = {
+        #   "pipewire/pipewire.conf.d/raop-discover.conf".text = ''
+        #     context.modules = [
+        #        {
+        #            name = libpipewire-module-raop-discover
+        #            args = { }
+        #        }
+        #     ]
+        #   '';
+        # };
         services.dbus.enable = true;
 
         xdg.portal = {

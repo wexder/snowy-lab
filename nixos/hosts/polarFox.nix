@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 {
   imports = [
     ../common.nix
@@ -22,7 +22,16 @@
       };
   };
 
+  environment.systemPackages = [
+    pkgs.lychee-slicer
+    pkgs.platformio # testing
+    pkgs.python3 # testing
+  ];
+
   roles = {
+    "3d" = {
+      enable = true;
+    };
     cad = {
       enable = true;
     };

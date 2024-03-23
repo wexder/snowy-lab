@@ -1,5 +1,6 @@
 { config, pkgs, lib, ... }: {
   imports = [
+    ./3d.nix
     ./cad.nix
     ./desktop.nix
     ./dev.nix

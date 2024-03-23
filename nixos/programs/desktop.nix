@@ -24,7 +24,11 @@ in
     pkgs.vlc
     pkgs.kooha
     pkgs.tigervnc
-    pkgs.obsidian
+
+    pkgs.obsidian # testing
+    pkgs.appflowy # testing
+    pkgs.floorp # testing
+    pkgs.scrcpy # testing, android screen mirror
   ];
 
   services.blueman-applet.enable = true;

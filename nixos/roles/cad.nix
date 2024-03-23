@@ -1,6 +1,26 @@
 { config, pkgs, lib, ... }:
 let
   cfg = config.roles.cad;
+  py-slvr = pkgs.python3Packages.buildPythonPackage rec {
+    pname = "slvs_py";
+    version = "0.21.2";
+    pyproject = true;
+
+    src = pkgs.fetchFromGitHub {
+      owner = "realthunder";
+      repo = "slvs_py";
+      rev = "master";
+      hash = "sha256-aG9iWz0Ef+t9jHwdtwjev+cd/iNUgMLnSznVJ4+dFdM=";
+    };
+
+    nativeBuildInputs = [
+      pkgs.python3Packages.setuptools
+      pkgs.python3Packages.skbuild
+    ];
+
+    propagatedBuildInputs = [
+    ];
+  };
 in
 {
   options.roles.cad = {
@@ -13,6 +33,11 @@ in
       environment.systemPackages = [
         pkgs.freecad
         pkgs.kicad
+        pkgs.openscad
+        pkgs.opencascade-occt
+        # (pkgs.python3.withPackages (python-pkgs: [
+        #   # py-slvr
+        # ]))
       ];
     };
 }
