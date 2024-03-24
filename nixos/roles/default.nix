@@ -4,6 +4,7 @@
     ./cad.nix
     ./desktop.nix
     ./dev.nix
+    ./lsp.nix
     ./dns.nix
     ./docker.nix
     ./games.nix

@@ -18,9 +18,6 @@ in
           kubectl
           nil
           rustup
-          go
-          rustc
-          nodejs_20
           cachix
           gnumake
           glibc

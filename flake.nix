@@ -16,14 +16,17 @@
     nixos-generators.url = "github:nix-community/nixos-generators";
     nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
 
-    # temporary
-    nyoom.url = "github:ryanccn/nyoom";
-    nyoom.inputs.nixpkgs.follows = "nixpkgs";
-
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    zig.url = "github:mitchellh/zig-overlay";
+    zig.inputs.nixpkgs.follows = "nixpkgs";
+
+    zls.url = "github:zigtools/zls";
+    zls.inputs.nixpkgs.follows = "nixpkgs";
+    zls.inputs.zig-overlay.follows = "zig";
   };
 
-  outputs = { self, nixpkgs, agenix, flake-utils, home-manager, nixos-generators, nyoom, ... }@attrs:
+  outputs = { self, nixpkgs, agenix, flake-utils, home-manager, nixos-generators, zig, zls, ... }@attrs:
     let
       inherit (nixpkgs.lib)
         mapAttrs mapAttrs' nixosSystem;
@@ -45,14 +48,13 @@
                 specialArgs = attrs // {
                   inherit catalog;
                   hostName = host;
+                  zig = zig.packages.${node.system};
+                  zls = zls.packages.${node.system};
                 };
                 modules = [
                   node.config
                   node.hw
                   home-manager.nixosModules.home-manager
-                  {
-                    environment.systemPackages = [ nyoom.packages.${node.system}.default ];
-                  }
                   {
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
