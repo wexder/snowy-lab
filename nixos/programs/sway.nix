@@ -8,6 +8,7 @@
     ./wofi.nix
     ./waybar.nix
     ./firefox.nix
+    ./kanshi.nix
   ];
 
   home.file.".config/sway/kill.sh".text = (builtins.readFile ./sway/kill.sh);
@@ -66,7 +67,6 @@
       startup = [
         { command = "kdeconnect-indicator"; }
         { command = "mako"; }
-        { command = "kanshi"; }
         { command = "slack"; }
         { command = "setrandom -m scale /home/wexder/.config/wallpapers"; }
         { command = "alacritty"; }
@@ -92,6 +92,10 @@
 
         # steam
         { command = "steam"; }
+
+        # kanshi
+        # { command = "exec sleep 5; systemctl --user start kanshi.service"; }
+        { command = "kanshi"; }
       ];
       modes = {
         resize = {
@@ -216,8 +220,8 @@
           # Lenov --locked  have phone instead of media keys
           "--locked XF86PickupPhone" = "exec playerctl previous";
 
-          "--locked XF86MonBrightnessUp" = "exec brightnessctl set +2000";
-          "--locked XF86MonBrightnessDown" = "exec brightnessctl set 2000-";
+          "--locked XF86MonBrightnessUp" = "exec brightnessctl set +25";
+          "--locked XF86MonBrightnessDown" = "exec brightnessctl set 25-";
 
           #
           # Moving around:
