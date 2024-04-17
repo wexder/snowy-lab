@@ -29,6 +29,7 @@ in
     pkgs.appflowy # testing
     pkgs.floorp # testing
     pkgs.scrcpy # testing, android screen mirror
+    pkgs.betterbird # testing
   ];
 
   services.blueman-applet.enable = true;

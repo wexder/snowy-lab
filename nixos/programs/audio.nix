@@ -6,5 +6,5 @@
   ];
 
   services.mpris-proxy.enable = true;
-  services.mpd-mpris.enable = true;
+  # services.mpd-mpris.enable = true;
 }

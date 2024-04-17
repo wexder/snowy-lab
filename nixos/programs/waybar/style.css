@@ -10,14 +10,15 @@ window#window.empty {
 }
 
 window#waybar {
-  background-color: rgba(26, 27, 38, 0.5);
+  background-color: rgba(26, 27, 38, 0.8);
   color: #ffffff;
   transition-property: background-color;
   transition-duration: 0.5s;
   border-top: 8px transparent;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   transition-duration: 0.5s;
-  margin: 16px 16px;
+  padding: 16px 16px;
+  margin: 0px;
 }
 
 window#waybar.hidden {
@@ -32,7 +33,7 @@ window#waybar.hidden {
   box-shadow: inset 0 -3px transparent;
   /* Avoid rounded borders under each workspace name */
   border: none;
-  border-radius: 0;
+  /* border-radius: 0; */
 }
 
 #workspaces button.focused {
@@ -48,6 +49,8 @@ window#waybar.hidden {
 }
 
 #window {
+  margin: 0px;
+  background-color: rgba(26, 27, 38, 0.8);
   /* border-radius: 20px; */
   padding-left: 10px; 
   padding-right: 10px;
@@ -92,40 +95,49 @@ window#window.empty {
   padding: 0 10px;
   color: #e5e5e5;
   /* color: #bf616a; */
-  border-radius: 9.5px;
-  background-color: #1f2530;
+  /* border-radius: 9.5px; */
+  /* background-color: #1f2530; */
+  /* background-color: rgba(26, 27, 38, 0.5); */
+  background-color: transparent;
 }
 
 #window,
 #workspaces {
-  margin: 0 4px;
-  border-radius: 7.8px;
-  background-color: #1f2530;
+  /* margin: 0 4px; */
+  /* border-radius: 7.8px; */
+  /* background-color: #1f2530; */
+  /* background-color: rgba(26, 27, 38, 0.5); */
+  background-color: transparent;
   padding-left: 0px; 
   padding-right: 0px;
 }
 
 #cpu {
   color: #fb958b;
-  background-color: #1f2530;
+  /* background-color: #1f2530; */
+  /* background-color: rgba(26, 27, 38, 0.5); */
+  background-color: transparent;
 }
 
 #memory {
   color: #ebcb8b;
-  background-color: #1f2530;
+  /* background-color: #1f2530; */
+  /* background-color: rgba(26, 27, 38, 0.5); */
+  background-color: transparent;
 }
 
 #custom-power-menu {
-  border-radius: 9.5px;
-  background-color: #1b242b;
-  border-radius: 7.5px;
+  /* border-radius: 9.5px; */
+  /* background-color: #1b242b; */
+  background-color: transparent;
+  /* border-radius: 7.5px; */
   padding: 0 5px;
 }
 
 #custom-launcher {
   background-color: #1b242b;
   color: #6a92d7;
-  border-radius: 7.5px;
+  /* border-radius: 7.5px; */
   padding: 0 3px;
 }
 
@@ -293,10 +305,11 @@ label:focus {
 }
 
 #language {
-  background-color: #1f2530;
+  /* background-color: #1f2530; */
+  background-color: rgba(26, 27, 38, 0.5);
   color: #c8d2e0;
   padding: 0 5px;
-  margin: 0 5px;
+  /* margin: 0 5px; */
   min-width: 16px;
 }
 
@@ -304,7 +317,7 @@ label:focus {
   background: #97e1ad;
   color: #000000;
   padding: 0 0px;
-  margin: 0 5px;
+  /* margin: 0 5px; */
   min-width: 16px;
 }
 
@@ -314,7 +327,7 @@ label:focus {
 
 #custom-spotify {
   padding: 0 10px;
-  margin: 0 4px;
+  /* margin: 0 4px; */
   /* background-color: #1db954; */
   color: #abb2bf;
 }

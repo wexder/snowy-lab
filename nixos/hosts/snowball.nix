@@ -24,6 +24,7 @@
 
   environment.systemPackages = [
     pkgs.brightnessctl
+    pkgs.prusa-slicer
   ];
 
   roles = {

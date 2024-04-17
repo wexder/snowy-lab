@@ -51,7 +51,6 @@ in
         environment.sessionVariables.NIXOS_OZONE_WL = "1";
         environment.systemPackages = [
           slack
-          # pkgs.slack
           pkgs.whatsapp-for-linux
           pkgs.wayvnc
           pkgs.pavucontrol
@@ -72,18 +71,33 @@ in
           pkgs.obsidian # testing
           pkgs.appflowy # testing
           pkgs.floorp # testing
+          pkgs.gnome.simple-scan # testing
+          pkgs.affine # testing
+        ];
+
+        security.pam.loginLimits = [
+          { domain = "@users"; item = "rtprio"; type = "-"; value = 1; }
         ];
 
         services.udev.packages = [ pkgs.yubikey-personalization ]; # testing
         services.pcscd.enable = true; # testing
-        services.avahi.enable = true; # testing, mDNS
+        services.avahi = {
+          enable = true;
+          nssmdns4 = true;
+          openFirewall = true;
+        }; # testing, mDNS, printing
+        services.printing.enable = true; # testing
+        hardware.sane.enable = true; # enables support for SANE scanners
+        users.extraGroups.scanner.members = [ "wexder" ];
+        users.extraGroups.lp.members = [ "wexder" ];
+
 
         services.pipewire = {
           enable = true;
           alsa.enable = true;
           alsa.support32Bit = true;
           pulse.enable = true;
-          # wireplumber.enable = true;
+          wireplumber.enable = true;
           # jack.enable = true;
         };
         # testing network party audio

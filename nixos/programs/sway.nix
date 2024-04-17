@@ -30,7 +30,6 @@
     pkgs.dconf
     pkgs.swaylock
     pkgs.swayidle
-    pkgs.dmenu
   ];
 
   home.sessionVariables = {
@@ -89,7 +88,7 @@
         { command = "tidal-hifi"; }
 
         # passwords
-        # { command = "bitwarden"; }
+        { command = "bitwarden"; }
 
         # steam
         { command = "steam"; }
@@ -112,9 +111,9 @@
           xkb_options = "grp:win_space_toggle";
         };
       };
-      gaps = {
-        inner = 10;
-      };
+      # gaps = {
+      #   inner = 0;
+      # };
       # floating = {
       #   border = 0;
       # };
@@ -327,6 +326,9 @@
       titlebar_border_thickness 2
       titlebar_padding 2
       font monospace 0.1
+
+      # testing
+      exec systemctl --user import-environment
     '';
   };
 
