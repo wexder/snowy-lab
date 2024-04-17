@@ -1,6 +1,7 @@
 { config, pkgs, lib, zls, zig, ... }:
 let
   cfg = config.roles.lsp;
+  gow = pkgs.callPackage ../../apps/gow.nix { };
 in
 {
   options.roles.lsp = {
@@ -12,9 +13,11 @@ in
   config = lib.mkMerge [
     (lib.mkIf cfg.go {
       environment.systemPackages = [
+        gow
         pkgs.gopls
         pkgs.gotests
         pkgs.gosec
+        pkgs.golangci-lint
       ];
     })
 

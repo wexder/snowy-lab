@@ -19,7 +19,7 @@ in
       };
 
       environment.systemPackages = with pkgs; [
-        nvtop
+        nvtopPackages.full
         cudaPackages.cudatoolkit
         cudaPackages.cudnn
         cudaPackages.cutensor

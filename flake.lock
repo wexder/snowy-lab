@@ -224,16 +224,16 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1711352745,
-        "narHash": "sha256-luvqik+i3HTvCbXQZgB6uggvEcxI9uae0nmrgtXJ17U=",
-        "owner": "NixOS",
+        "lastModified": 1713341013,
+        "narHash": "sha256-vz3vHFh9a8qw1X0H3q2lwhHW1m8bE96+HCX3grTb4Ro=",
+        "owner": "wexder",
         "repo": "nixos-hardware",
-        "rev": "9a763a7acc4cfbb8603bb0231fec3eda864f81c0",
+        "rev": "ca2f365130959b90d83cf6381b846df5a0c0a6f3",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "master",
+        "owner": "wexder",
+        "ref": "feature/t4-gen4",
         "repo": "nixos-hardware",
         "type": "github"
       }
