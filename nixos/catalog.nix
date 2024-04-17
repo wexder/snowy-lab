@@ -15,6 +15,13 @@
       system = system.x86_64-linux;
     };
 
+    snowplow = {
+      config = ./hosts/snowplow.nix;
+      hw = ./hw/snowplow.nix;
+      home = ./home/snowplow.nix;
+      system = system.x86_64-linux;
+    };
+
     polar-bear = {
       config = ./hosts/polarBear.nix;
       hw = ./hw/polarBear.nix;
