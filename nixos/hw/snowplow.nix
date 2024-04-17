@@ -18,7 +18,7 @@
 
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-uuid/13dc5bc5-7334-432a-89b8-8b22cce3e7ce";
+      device = "/dev/disk/by-uuid/a2fbd5ad-d6d8-4a3c-95d5-84df2105be88";
       fsType = "ext4";
     };
     "/boot" = {
