@@ -109,6 +109,17 @@
     identityPaths = [ "/home/wexder/.ssh/age" ];
   };
 
+
+  # Dev hosts
+  networking.extraHosts =
+    ''
+      127.0.0.1 roamrise-zitadel
+      127.0.0.1 roamrise-minio
+      127.0.0.1 minio
+    '';
+
+
+
   # environment.etc."issue.d/ip.issue".text = ''
   #   IPv4: \4
   # '';
