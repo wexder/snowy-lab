@@ -15,8 +15,8 @@
   home.file.".config/wallpapers".source = (pkgs.fetchFromGitHub {
     owner = "wexder";
     repo = "snowy-lab-wallpapers";
-    rev = "740628d1f852c15d186fff559441cce3609aca3a";
-    sha256 = "0qr0cg03rj9i9wb7q0s7xkjhmx4wmx37dnjdl1y2aahgc2r6cvm3";
+    rev = "1ab613b4692a98969923691b110508499cc15bee";
+    hash = "sha256-HqDO+io+IHTfrGXYOdStVV7DigfZviPYuLQk/boxzG4=";
   });
 
   home.packages = [

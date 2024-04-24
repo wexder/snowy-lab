@@ -24,6 +24,7 @@
     zls.url = "github:zigtools/zls";
     zls.inputs.nixpkgs.follows = "nixpkgs";
     zls.inputs.zig-overlay.follows = "zig";
+
   };
 
   outputs = { self, nixpkgs, agenix, flake-utils, home-manager, nixos-generators, zig, zls, ... }@attrs:
