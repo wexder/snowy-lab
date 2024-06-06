@@ -14,9 +14,9 @@ in
   config = lib.mkIf cfg.enable
     {
       services.xserver.enable = true;
-      services.xserver.displayManager.sddm.enable = true;
+      services.displayManager.sddm.enable = true;
       services.xserver.desktopManager.plasma5.enable = true;
-      services.xserver.displayManager.defaultSession = "plasmawayland";
+      services.displayManager.defaultSession = "plasmawayland";
 
       services.xrdp.enable = true;
       services.xrdp.defaultWindowManager = "startplasma-x11";
