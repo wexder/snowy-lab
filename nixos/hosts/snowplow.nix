@@ -44,6 +44,8 @@
     ];
   };
 
+  hardware.flipperzero.enable = true;
+
   roles = {
     docker = {
       enable = true;

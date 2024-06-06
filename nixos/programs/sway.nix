@@ -93,6 +93,9 @@
         # steam
         { command = "steam"; }
 
+        # betterbird
+        { command = "betterbird"; }
+
         # kanshi
         # { command = "exec sleep 5; systemctl --user start kanshi.service"; }
         { command = "kanshi"; }
@@ -182,7 +185,7 @@
           "${modifier}+Shift+V" = "exec cliphist list | wofi -dmenu | cliphist decode | wl-copy";
 
           # Random wallpaper
-          "Mod1+N" = "exec setrandom -m scale /wexder/home/.config/wallpapers";
+          "Mod1+N" = "exec setrandom -m scale /home/wexder/.config/wallpapers";
 
           # exit sway (logs you out of your Wayland session)
           "${modifier}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";

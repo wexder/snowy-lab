@@ -70,7 +70,7 @@ in
 
           pkgs.obsidian # testing
           pkgs.appflowy # testing
-          pkgs.floorp # testing
+          # pkgs.floorp # testing
           pkgs.gnome.simple-scan # testing
           pkgs.affine # testing
         ];

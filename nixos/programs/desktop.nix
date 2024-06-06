@@ -1,20 +1,9 @@
 { config, lib, pkgs, ... }:
-let
-  postman = pkgs.postman.overrideAttrs (oldAttrs: rec {
-    version = "20230716100528";
-    src = pkgs.fetchurl {
-      url = "https://web.archive.org/web/${version}/https://dl.pstmn.io/download/latest/linux_64";
-      sha256 = "sha256-svk60K4pZh0qRdx9+5OUTu0xgGXMhqvQTGTcmqBOMq8=";
-
-      name = "${oldAttrs.pname}-${version}.tar.gz";
-    };
-  });
-in
 {
   home.packages = [
     pkgs.libsForQt5.kdeconnect-kde
-    pkgs.dbeaver
-    postman
+    pkgs.dbeaver-bin
+    pkgs.postman
     pkgs.caprine-bin
     pkgs.resp-app
     pkgs.notion-app-enhanced
@@ -26,11 +15,13 @@ in
     pkgs.tigervnc
 
     pkgs.obsidian # testing
-    pkgs.appflowy # testing
-    pkgs.floorp # testing
+    # pkgs.appflowy # testing
+    # pkgs.floorp # testing
     pkgs.scrcpy # testing, android screen mirror
     pkgs.betterbird # testing
+    pkgs.birdtray # testing
     pkgs.qflipper # testing
+    pkgs.signal-desktop # testing
   ];
 
   services.blueman-applet.enable = true;
