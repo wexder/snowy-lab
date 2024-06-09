@@ -12,6 +12,7 @@
   ];
 
   home.file.".config/sway/kill.sh".text = (builtins.readFile ./sway/kill.sh);
+  home.file.".config/lan-mouse/config.toml".text = (builtins.readFile ./lan-mouse/config.toml);
   home.file.".config/wallpapers".source = (pkgs.fetchFromGitHub {
     owner = "wexder";
     repo = "snowy-lab-wallpapers";
@@ -99,6 +100,9 @@
         # kanshi
         # { command = "exec sleep 5; systemctl --user start kanshi.service"; }
         { command = "kanshi"; }
+
+        # lan-mouse
+        { command = "lan-mouse --daemon"; }
       ];
       modes = {
         resize = {

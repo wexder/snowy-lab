@@ -60,6 +60,8 @@ in
           pkgs.slurp
           pkgs.libreoffice
           pkgs.wallutils
+          pkgs.betterbird
+          pkgs.birdtray
 
           pkgs.ledger-live-desktop # testing
           pkgs.yubioath-flutter # testing
