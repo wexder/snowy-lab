@@ -12,10 +12,9 @@ in
       services.xserver.enable = true;
       services.xserver.videoDrivers = [ "intel" ];
       # Enable OpenGL
-      hardware.opengl = {
+      hardware.graphics = {
         enable = true;
-        driSupport = true;
-        driSupport32Bit = true;
+        enable32Bit = true;
         extraPackages = [
           pkgs.intel-media-driver # LIBVA_DRIVER_NAME=iHD
           pkgs.vaapiIntel # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)

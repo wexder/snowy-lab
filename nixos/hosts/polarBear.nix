@@ -33,6 +33,7 @@
       go = true;
       rust = true;
       zig = true;
+      cpp = true;
     };
     xMinimalDesktop = {
       enable = true;
@@ -41,7 +42,7 @@
       enable = true;
     };
     jupyter = {
-      enable = true;
+      enable = false;
     };
     prometheus = {
       enable = true;

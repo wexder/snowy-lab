@@ -12,10 +12,9 @@ in
 
       nixpkgs.config.cudaSupport = true;
       # Enable OpenGL
-      hardware.opengl = {
+      hardware.graphics = {
         enable = true;
-        driSupport = true;
-        driSupport32Bit = true;
+        enable32Bit = true;
       };
 
       environment.systemPackages = with pkgs; [
@@ -24,6 +23,7 @@ in
         cudaPackages.cudnn
         cudaPackages.cutensor
         linuxPackages.nvidia_x11
+        pkgs.autoAddDriverRunpath
       ];
       boot.initrd.kernelModules = [ "nvidia" ];
       boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];

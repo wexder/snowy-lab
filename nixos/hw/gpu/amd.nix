@@ -12,12 +12,9 @@ in
       services.xserver.enable = true;
       services.xserver.videoDrivers = [ "amdgpu" ];
       # Enable OpenGL
-      hardware.opengl = {
+      hardware.graphics = {
         enable = true;
-
-        ## radv: an open-source Vulkan driver from freedesktop
-        driSupport = true;
-        driSupport32Bit = true;
+        enable32Bit = true;
 
         ## amdvlk: an open-source Vulkan driver from AMD
         extraPackages = [
