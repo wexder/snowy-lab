@@ -6,6 +6,7 @@
     [
       ./common.nix
       ./bluetooth.nix
+      ./hid.nix
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 

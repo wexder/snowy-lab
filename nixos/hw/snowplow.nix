@@ -6,6 +6,7 @@
     [
       ./common.nix
       ./bluetooth.nix
+      ./hid.nix
       (modulesPath + "/installer/scan/not-detected.nix")
       nixos-hardware.nixosModules.lenovo-thinkpad-x1-nano-gen1
     ];

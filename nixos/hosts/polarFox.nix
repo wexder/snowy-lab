@@ -46,6 +46,12 @@
       enable = true;
       loginManager = true;
     };
+    lsp = {
+      go = true;
+      rust = true;
+      zig = true;
+      cpp = true;
+    };
     games = {
       enable = true;
     };

@@ -77,6 +77,8 @@ in
           # pkgs.floorp # testing
           pkgs.gnome.simple-scan # testing
           pkgs.affine # testing
+          pkgs.gimp # testing
+          pkgs.inkscape # testing
         ];
 
         security.pam.loginLimits = [

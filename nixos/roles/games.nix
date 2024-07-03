@@ -31,10 +31,10 @@ in
         enable = true;
       };
 
-      environment.systemPackages = with pkgs;[
-        gamescope
-        # polymc
-        prismlauncher
+      environment.systemPackages = [
+        pkgs.gamescope
+        pkgs.prismlauncher
+        pkgs.lutris
       ];
 
     };
