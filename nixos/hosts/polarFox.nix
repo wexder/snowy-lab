@@ -23,7 +23,7 @@
   };
 
   environment.systemPackages = [
-    pkgs.lychee-slicer
+    pkgs.lychee-slicer # testing
     pkgs.platformio # testing
     pkgs.python3 # testing
   ];

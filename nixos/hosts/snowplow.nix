@@ -24,8 +24,7 @@
 
   environment.systemPackages = [
     pkgs.brightnessctl
-    pkgs.lan-mouse
-    pkgs.beekeeper-studio
+    pkgs.bruno
   ];
 
   services.thinkfan = {

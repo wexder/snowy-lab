@@ -63,6 +63,8 @@ in
           pkgs.betterbird
           pkgs.birdtray
 
+          pkgs.clockify
+
           pkgs.ledger-live-desktop # testing
           pkgs.yubioath-flutter # testing
           pkgs.pcsclite # testing
