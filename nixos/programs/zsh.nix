@@ -25,6 +25,10 @@
       nixos-full-upgrade = "sudo rm /etc/nixos/flake.lock && nix-collect-garbage && sudo nixos-rebuild switch";
       # kubectl
       k = "kubectl";
+      # lazy
+      lzg = "lazygit";
+      lg = "lazygit";
+      lzd = "lazydocker";
     };
 
     oh-my-zsh = {

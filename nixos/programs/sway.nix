@@ -98,6 +98,9 @@
         { command = "betterbird"; }
         { command = "birdtray"; }
 
+        # clockify
+        { command = "clockify"; }
+
         # kanshi
         # { command = "exec sleep 5; systemctl --user start kanshi.service"; }
         { command = "kanshi"; }
@@ -155,6 +158,12 @@
             command = "move to scratchpad";
             criteria = {
               title = "^TIDAL$";
+            };
+          }
+          {
+            command = "move to scratchpad";
+            criteria = {
+              title = "Clockify";
             };
           }
         ];
