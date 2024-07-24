@@ -181,31 +181,32 @@ in
           user = "wexder";
           dataDir = "/home/wexder/.config/syncthing";
           settings = {
-              folders = {
-          "thunderbird" = {
-          id = "thunderbird";
-          path = "/home/wexder/.thunderbird/";
-          devices = [ "master" ];
-          };
-          "documents" = {
-          id = "documents";
-          path = "/home/wexder/documents/";
-          devices = [ "master" ];
-          };
-          "obsidian" = {
-          id = "obsidian";
-          path = "/home/wexder/obsidian/" ;
-          devices = [ "master" ];
-          };
+            folders = {
+              "thunderbird" = {
+                id = "thunderbird";
+                path = "/home/wexder/.thunderbird/";
+                devices = [ "master" ];
               };
-          devices = {
-  master = {
-    id = "ID6PX4V-UUGCGKQ-6WJTJQX-LFVTPQ5-PNUFMQ6-H4DCVCP-FGVG4DB-2LH3SA5";
-  };
-};
+              "documents" = {
+                id = "documents";
+                path = "/home/wexder/documents/";
+                devices = [ "master" ];
+              };
+              "obsidian" = {
+                id = "obsidian";
+                path = "/home/wexder/obsidian/";
+                devices = [ "master" ];
+              };
+            };
+            devices = {
+              master = {
+                id = "ID6PX4V-UUGCGKQ-6WJTJQX-LFVTPQ5-PNUFMQ6-H4DCVCP-FGVG4DB-2LH3SA5";
+              };
+            };
           };
         };
       })
     ]
   );
 }
+
