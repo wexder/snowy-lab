@@ -30,6 +30,11 @@ in
       example = "gnome";
       type = lib.types.str;
     };
+    syncthing = lib.mkOption {
+      default = false;
+      example = true;
+      type = lib.types.bool;
+    };
   };
 
   config = lib.mkIf cfg.enable (
@@ -75,7 +80,7 @@ in
           pkgs.obsidian # testing
           pkgs.appflowy # testing
           # pkgs.floorp # testing
-          pkgs.gnome.simple-scan # testing
+          pkgs.simple-scan # testing
           pkgs.affine # testing
           pkgs.gimp # testing
           pkgs.inkscape # testing
@@ -169,6 +174,38 @@ in
           };
         };
       }
+
+      (lib.mkIf cfg.syncthing {
+        services.syncthing = {
+          enable = true;
+          user = "wexder";
+          dataDir = "/home/wexder/.config/syncthing";
+          settings = {
+              folders = {
+          "thunderbird" = {
+          id = "thunderbird";
+          path = "/home/wexder/.thunderbird/";
+          devices = [ "master" ];
+          };
+          "documents" = {
+          id = "documents";
+          path = "/home/wexder/documents/";
+          devices = [ "master" ];
+          };
+          "obsidian" = {
+          id = "obsidian";
+          path = "/home/wexder/obsidian/" ;
+          devices = [ "master" ];
+          };
+              };
+          devices = {
+  master = {
+    id = "ID6PX4V-UUGCGKQ-6WJTJQX-LFVTPQ5-PNUFMQ6-H4DCVCP-FGVG4DB-2LH3SA5";
+  };
+};
+          };
+        };
+      })
     ]
   );
 }

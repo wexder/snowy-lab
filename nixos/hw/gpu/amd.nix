@@ -5,10 +5,11 @@ in
 {
   options.gpus.amd = {
     enable = lib.mkEnableOption "Enable amd gpu";
+    rocm = lib.mkEnableOption "Enable amd rocm";
   };
-
-  config = lib.mkIf cfg.enable
-    {
+  config = lib.mkIf cfg.enable (
+    lib.mkMerge [
+{
       services.xserver.enable = true;
       services.xserver.videoDrivers = [ "amdgpu" ];
       # Enable OpenGL
@@ -20,7 +21,7 @@ in
         extraPackages = [
           # pkgs.amdvlk
           # pkgs.rocm-opencl-runtime
-          pkgs.rocm-opencl-icd
+          # pkgs.rocm-opencl-icd
           # pkgs.rocmPackages.rocm-runtime
         ];
         extraPackages32 = [
@@ -31,12 +32,26 @@ in
       boot.initrd.kernelModules = [ "amdgpu" ];
       environment.systemPackages = [
         pkgs.amdgpu_top
-        pkgs.rocmPackages.rocminfo
         pkgs.clinfo
+      ];
+    }
+
+    (lib.mkIf cfg.rocm
+    {
+      hardware.graphics = {
+        extraPackages = [
+          pkgs.rocm-opencl-icd
+        ];
+      };
+
+      environment.systemPackages = [
+        pkgs.rocmPackages.rocminfo
       ];
 
       systemd.tmpfiles.rules = [
         "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
       ];
-    };
+    }
+    )
+    ]);
 }

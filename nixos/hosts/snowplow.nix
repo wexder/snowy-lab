@@ -25,6 +25,7 @@
   environment.systemPackages = [
     pkgs.brightnessctl
     pkgs.bruno
+    pkgs.element-desktop
   ];
 
   services.thinkfan = {
@@ -54,6 +55,7 @@
     };
     desktop = {
       enable = true;
+      syncthing = true;
     };
     tailscale = {
       enable = true;

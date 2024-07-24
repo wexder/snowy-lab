@@ -18,7 +18,6 @@
     # pkgs.appflowy # testing
     # pkgs.floorp # testing
     pkgs.scrcpy # testing, android screen mirror
-    pkgs.betterbird # testing
     pkgs.birdtray # testing
     pkgs.qflipper # testing
     pkgs.signal-desktop # testing

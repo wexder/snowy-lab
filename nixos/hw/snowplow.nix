@@ -34,5 +34,8 @@
 
   swapDevices = [{ device = "/swapfile"; size = 32768; }];
 
-  gpus.amd.enable = true;
+  gpus.amd = {
+enable = true;
+rocm = false;
+  };
 }
