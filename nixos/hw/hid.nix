@@ -15,6 +15,9 @@
     DRIVERS=="usb", ATTRS{idVendor}=="05ba", ATTRS{idProduct}=="000a", MODE="0666"
     # Matra morphis
     DRIVERS=="usb", ATTRS{idVendor}=="2c0f", ATTRS{idProduct}=="4100", MODE="0666"
+    # Integrated biometrics
+    DRIVERS=="usb", ATTRS{idVendor}=="113f", ATTRS{idProduct}=="1300", MODE="0666"
+    DRIVERS=="usb", ATTRS{idVendor}=="113f", ATTRS{idProduct}=="7100", MODE="0666"
   '';
 }
 
