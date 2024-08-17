@@ -6,7 +6,8 @@
     pkgs.postman
     pkgs.caprine-bin
     pkgs.resp-app
-    pkgs.notion-app-enhanced
+    # pkgs.notion-app-enhanced
+    # notion
     pkgs.chromium
     pkgs.bitwarden
     pkgs.bitwarden-cli
@@ -25,3 +26,4 @@
 
   services.blueman-applet.enable = true;
 }
+

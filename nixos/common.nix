@@ -5,6 +5,7 @@
   imports = [ ./roles ];
   nixpkgs.config = {
     allowUnfree = true;
+    allowBroken = true;
     permittedInsecurePackages = [
       "electron-25.9.0"
     ];
@@ -103,12 +104,22 @@
       altostratusWgPub.file = ./secrets/altostratus_wg_pub.age;
       transmissionWgPk.file = ./secrets/transmission_wg_pk.age;
       transmissionWgPub.file = ./secrets/transmission_wg_pub.age;
+      mccVPN.file = ./secrets/mcc_openvpn.age;
+      mccVPNAuth.file = ./secrets/mcc_openvpn_auth.age;
     };
 
     # TODO replace with more generic path
     identityPaths = [ "/home/wexder/.ssh/age" ];
   };
 
+  services.openvpn.servers = {
+    mccVPN = {
+      config = ''
+        config ${config.age.secrets.mccVPN.path}
+        auth-user-pass ${config.age.secrets.mccVPNAuth.path}
+      '';
+    };
+  };
 
   # Dev hosts
   networking.extraHosts =

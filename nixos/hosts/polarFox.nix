@@ -23,7 +23,7 @@
   };
 
   environment.systemPackages = [
-    pkgs.lychee-slicer # testing
+    # pkgs.lychee-slicer # testing
     pkgs.platformio # testing
     pkgs.python3 # testing
   ];
@@ -45,6 +45,7 @@
     desktop = {
       enable = true;
       loginManager = true;
+      syncthing = true;
     };
     lsp = {
       go = true;

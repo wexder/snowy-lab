@@ -16,4 +16,7 @@ in
   "altostratus_wg_pub.age".publicKeys = users ++ machines;
   "transmission_wg_pk.age".publicKeys = users ++ machines;
   "transmission_wg_pub.age".publicKeys = users ++ machines;
+
+  "mcc_openvpn.age".publicKeys = users ++ machines;
+  "mcc_openvpn_auth.age".publicKeys = users ++ machines;
 }

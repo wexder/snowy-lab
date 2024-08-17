@@ -18,6 +18,14 @@
     # Integrated biometrics
     DRIVERS=="usb", ATTRS{idVendor}=="113f", ATTRS{idProduct}=="1300", MODE="0666"
     DRIVERS=="usb", ATTRS{idVendor}=="113f", ATTRS{idProduct}=="7100", MODE="0666"
+
+    # Epson
+    DRIVERS=="usb", ATTRS{idVendor}=="04b8", ATTRS{idProduct}=="0e28", MODE="0666"
+
+    # USB to uart
+    DRIVERS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", MODE="0777"
+    ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", MODE="0777"
+    ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0403", ATTRS={idProduct}=="6001", OWNER="user", MODE="0777", GROUP="dialout"
   '';
 }
 
