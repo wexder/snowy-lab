@@ -50,6 +50,12 @@
     dev = {
       enable = true;
     };
+    netbird = {
+      enable = false;
+    };
+    twingate = {
+      enable = true;
+    };
     desktop = {
       enable = true;
       syncthing = true;

@@ -11,6 +11,8 @@
     ./jupyter.nix
     ./prometheus.nix
     ./tailscale.nix
+    ./netbird.nix
+    ./twingate.nix
     ./videoEditing.nix
     ./virtualization.nix
     ./wine.nix
