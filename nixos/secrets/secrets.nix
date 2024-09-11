@@ -19,4 +19,6 @@ in
 
   "mcc_openvpn.age".publicKeys = users ++ machines;
   "mcc_openvpn_auth.age".publicKeys = users ++ machines;
+
+  "ca-key.age".publicKeys = users ++ machines;
 }

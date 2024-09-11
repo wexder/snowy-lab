@@ -11,7 +11,7 @@ in
     {
       environment.systemPackages = [
         pkgs.qemu
-        pkgs.quickemu
+        # pkgs.quickemu
       ];
 
       virtualisation.libvirtd.enable = true;

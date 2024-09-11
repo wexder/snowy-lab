@@ -124,11 +124,13 @@
   # Dev hosts
   networking.extraHosts =
     ''
-      127.0.0.1 roamrise-zitadel
-      127.0.0.1 roamrise-minio
+      127.0.0.1 local-k8s.local
       127.0.0.1 minio
     '';
 
+  security.pki.certificateFiles = [
+    ./secrets/ca.pem
+  ];
 
 
   # environment.etc."issue.d/ip.issue".text = ''
