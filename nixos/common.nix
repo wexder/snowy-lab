@@ -100,12 +100,11 @@
     secrets = {
       tailscale.file = ./secrets/tailscale.age;
       netclient.file = ./secrets/netclient.age;
-      altostratusWgPk.file = ./secrets/altostratus_wg_pk.age;
-      altostratusWgPub.file = ./secrets/altostratus_wg_pub.age;
       transmissionWgPk.file = ./secrets/transmission_wg_pk.age;
       transmissionWgPub.file = ./secrets/transmission_wg_pub.age;
       mccVPN.file = ./secrets/mcc_openvpn.age;
       mccVPNAuth.file = ./secrets/mcc_openvpn_auth.age;
+      polarFoxCgWgPk.file = ./secrets/polar_fox_cg_wg_pk.age;
     };
 
     # TODO replace with more generic path

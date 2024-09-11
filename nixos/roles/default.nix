@@ -18,5 +18,6 @@
     ./wine.nix
     ./xMinimalDesktop.nix
     ./xMinimalDesktop.nix
+    ./officeWg.nix
   ];
 }

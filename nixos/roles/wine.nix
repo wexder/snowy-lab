@@ -10,13 +10,14 @@ in
   config = lib.mkIf cfg.enable
     {
       environment.systemPackages = [
-        pkgs.wine
-        pkgs.wineWowPackages.staging
+        # pkgs.wine-wayland
         pkgs.winetricks
         pkgs.wineWowPackages.waylandFull
-        pkgs.vkd3d
-        pkgs.vkdt-wayland
-        pkgs.dxvk
+        pkgs.wineWowPackages.fonts
+        pkgs.playonlinux
+        # pkgs.vkd3d
+        # pkgs.vkdt-wayland
+        # pkgs.dxvk
         pkgs.q4wine # testing
         pkgs.bottles # testing
       ];

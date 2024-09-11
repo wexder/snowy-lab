@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, stable, lib, ... }:
 let
   cfg = config.roles.desktop;
   slack = pkgs.slack.overrideAttrs (oldAttrs: rec {
@@ -64,7 +64,7 @@ in
           pkgs.slurp
           pkgs.libreoffice
           pkgs.wallutils
-          pkgs.betterbird
+          stable.betterbird
           pkgs.birdtray
 
           pkgs.clockify
@@ -89,7 +89,9 @@ in
           { domain = "@users"; item = "rtprio"; type = "-"; value = 1; }
         ];
 
-        services.udev.packages = [ pkgs.yubikey-personalization ]; # testing
+        services.udev.packages = [
+          pkgs.yubikey-personalization
+        ];
         services.pcscd.enable = true; # testing
         services.avahi = {
           enable = true;

@@ -12,7 +12,7 @@ in
 
       environment.systemPackages = [
         # davinci-resolve
-        pkgs.blender-hip
+        # pkgs.blender-hip
         # blender
         pkgs.movit
         pkgs.kdenlive

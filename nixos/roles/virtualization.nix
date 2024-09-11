@@ -18,5 +18,6 @@ in
       programs.virt-manager.enable = true;
 
       users.extraGroups.libvirtd.members = [ "wexder" ];
+      users.extraGroups.kvm.members = [ "wexder" ];
     };
 }

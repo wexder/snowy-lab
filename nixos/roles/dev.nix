@@ -35,7 +35,8 @@ in
     (lib.mkIf cfg.android
       {
         programs.adb.enable = true;
-        users.users.wexder.extraGroups = [ "adbusers" ];
+        users.users.wexder.extraGroups = [ "adbusers" "plugdev" ];
+        users.groups.plugdev = { };
       })
   ];
 }

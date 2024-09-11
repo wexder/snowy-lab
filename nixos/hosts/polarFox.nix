@@ -30,10 +30,10 @@
 
   roles = {
     "3d" = {
-      enable = true;
+      enable = false;
     };
     cad = {
-      enable = true;
+      enable = false;
     };
     docker = {
       enable = true;
@@ -67,6 +67,11 @@
     };
     wine = {
       enable = true;
+    };
+    officeWg = {
+      enable = true;
+      address = "192.168.250.2/32";
+      privateKeyFile = config.age.secrets.polarFoxCgWgPk.path;
     };
   };
 }

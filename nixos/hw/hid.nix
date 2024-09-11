@@ -26,6 +26,14 @@
     DRIVERS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", MODE="0777"
     ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", MODE="0777"
     ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="0403", ATTRS={idProduct}=="6001", OWNER="user", MODE="0777", GROUP="dialout"
+
+    # Lenovo table
+    # 17ef:201c
+    SUBSYSTEM=="usb", ATTR{idVendor}=="17ef", MODE="0666", GROUP="plugdev"
+
+    # Pixel
+    # 18d1
+    SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", MODE="0666"
   '';
 }
 

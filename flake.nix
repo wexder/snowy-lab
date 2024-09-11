@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs";
+    stable.url = "github:NixOS/nixpkgs/24.05";
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
@@ -25,9 +26,14 @@
     zls.inputs.nixpkgs.follows = "nixpkgs";
     zls.inputs.zig-overlay.follows = "zig";
 
+    # testing
+    # openziti.url = "github:johnalotoski/openziti-bins";
+    openziti.url = "github:wexder/openziti-bins/init";
+    # openziti.url = "git+file:///home/wexder/development/openziti-bins";
+    openziti.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, agenix, flake-utils, home-manager, nixos-generators, zig, zls, ... }@attrs:
+  outputs = { self, nixpkgs, agenix, flake-utils, home-manager, nixos-generators, zig, zls, openziti, stable, ... }@attrs:
     let
       inherit (nixpkgs.lib)
         mapAttrs mapAttrs' nixosSystem;
@@ -51,6 +57,8 @@
                   hostName = host;
                   zig = zig.packages.${node.system};
                   zls = zls.packages.${node.system};
+                  openziti = openziti.packages.${node.system};
+                  stable = stable.legacyPackages.${node.system};
                 };
                 modules = [
                   node.config

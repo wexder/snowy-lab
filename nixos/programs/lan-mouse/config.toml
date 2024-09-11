@@ -1,0 +1,13 @@
+release_bind = [ "KeyA", "KeyS", "KeyD", "KeyF" ]
+
+[right]
+hostname = "snowplow"
+activate_on_startup = true
+port = 4242
+ips = []
+
+# [left]
+# hostname = "snowapple"
+# activate_on_startup = true
+# ips = []
+# port = 4242
