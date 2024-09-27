@@ -92,16 +92,17 @@ in
         services.udev.packages = [
           pkgs.yubikey-personalization
         ];
-        services.pcscd.enable = true; # testing
-        services.avahi = {
-          enable = true;
-          nssmdns4 = true;
-          openFirewall = true;
-        }; # testing, mDNS, printing
-        services.printing.enable = true; # testing
-        hardware.sane.enable = true; # enables support for SANE scanners
-        users.extraGroups.scanner.members = [ "wexder" ];
-        users.extraGroups.lp.members = [ "wexder" ];
+        # services.pcscd.enable = true; # testing
+        # services.avahi = {
+        #   enable = true;
+        #   nssmdns4 = true;
+        #   openFirewall = true;
+        # }; # testing, mDNS, printing
+        # services.printing.enable = true; # testing
+        # hardware.sane.enable = true; # enables support for SANE scanners
+
+        # users.extraGroups.scanner.members = [ "wexder" ];
+        # users.extraGroups.lp.members = [ "wexder" ];
 
 
         services.pipewire = {
