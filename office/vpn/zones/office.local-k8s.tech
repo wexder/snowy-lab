@@ -1,0 +1,21 @@
+$ORIGIN office.local-k8s.tech.
+@	3600 IN	SOA sns.dns.icann.org. noc.dns.icann.org. (
+				2017042745 ; serial
+				7200       ; refresh (2 hours)
+				3600       ; retry (1 hour)
+				1209600    ; expire (2 weeks)
+				3600       ; minimum (1 hour)
+				)
+
+
+; name servers - NS records
+@    IN    NS    ns1
+@    IN    NS    ns2
+
+nas                IN A     192.168.240.111
+vpn1               IN A     192.168.240.193
+vpn2               IN A     192.168.240.178
+k8s                IN A     192.168.240.85
+xao                IN A     192.168.240.219
+xcp-ng-father      IN A     192.168.240.230
+xcp-ng-mother      IN A     192.168.240.42

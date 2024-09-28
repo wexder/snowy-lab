@@ -1,25 +1,11 @@
-# Common config shared among all machines
-{ config, modulesPath, pkgs, hostName, lib, ... }: {
+{ modulesPath, config, lib, pkgs, latestPkgs, ... }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
     ./disk-config.nix
+    ./coredns.nix
+    ../common/xen.nix
   ];
-  system.stateVersion = "24.05";
-
-  nixpkgs.config = {
-    allowUnfree = true;
-    allowBroken = true;
-  };
-
-  # Garbage collect & optimize /nix/store daily.
-  nix.gc = {
-    automatic = true;
-    options = "--delete-older-than 7d";
-  };
-  nix.optimise.automatic = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   boot.loader.grub = {
     # no need to set devices, disko will add all devices that have a EF02 partition to the list already
     # devices = [ ];
@@ -27,15 +13,35 @@
     efiInstallAsRemovable = true;
   };
 
+  boot = {
+    # Add kernel modules detected by nixos-generate-config:
+    initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "xen_blkfront" "sr_mod" ];
+    initrd.kernelModules = [ ];
+    kernelModules = [ ];
+    extraModulePackages = [ ];
+  };
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
   services.openssh.enable = true;
 
   environment.systemPackages = map lib.lowPrio [
     pkgs.curl
     pkgs.gitMinimal
-    pkgs.vim
   ];
 
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMkKyMS0O7nzToTh/3LCrwJB++zc29R8U6UlzfzT0xV9"
   ];
+
+  networking.firewall.enable = true;
+  networking.firewall.allowedTCPPorts = [ 22 ];
+
+  system.stateVersion = "23.11";
+
+
+  virtualisation.xen.guest = {
+    enable = true;
+    recommendedHVMSettings = true;
+  };
 }
