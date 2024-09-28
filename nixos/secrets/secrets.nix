@@ -18,5 +18,5 @@ in
   "mcc_openvpn_auth.age".publicKeys = users ++ machines;
 
   "polar_fox_cg_wg_pk.age".publicKeys = users ++ machines;
-  "polar_fox_cg_wg_servers_pub.age".publicKeys = users ++ machines;
+  "snowball_cg_wg_pk.age".publicKeys = users ++ machines;
 }

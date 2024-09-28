@@ -95,7 +95,7 @@
         { command = "steam"; }
 
         # betterbird
-        { command = "betterbird"; }
+        { command = "thunderbird"; }
         { command = "birdtray"; }
 
         # clockify

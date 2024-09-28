@@ -54,7 +54,7 @@
       enable = false;
     };
     twingate = {
-      enable = true;
+      enable = false;
     };
     desktop = {
       enable = true;
@@ -63,6 +63,11 @@
     tailscale = {
       enable = true;
       authkeyPath = config.age.secrets.tailscale.path;
+    };
+    officeWg = {
+      enable = true;
+      address = "192.168.250.3/32";
+      privateKeyFile = config.age.secrets.snowballWgPk.path;
     };
   };
 }

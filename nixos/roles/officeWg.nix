@@ -32,11 +32,15 @@ in
         peers = [
           {
             allowedIPs = [
-              "192.168.250.1/24,192.168.240.0/24"
+              "192.168.250.0/24,192.168.240.0/24"
             ];
             endpoint = "46.254.69.178:51820";
             publicKey = "0Iko9oTbMfQRte2nAICUlB7wdvngFCWlTJkHs2ovl1U=";
           }
+        ];
+        dns = [
+          "192.168.240.193"
+          "192.168.240.178"
         ];
         privateKeyFile = cfg.privateKeyFile;
       };
