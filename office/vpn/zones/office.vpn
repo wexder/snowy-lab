@@ -1,0 +1,18 @@
+$ORIGIN office.vpn.
+@	3600 IN	SOA sns.dns.icann.org. noc.dns.icann.org. (
+				2017042745 ; serial
+				7200       ; refresh (2 hours)
+				3600       ; retry (1 hour)
+				1209600    ; expire (2 weeks)
+				3600       ; minimum (1 hour)
+				)
+
+
+; name servers - NS records
+@    IN    NS    ns1
+@    IN    NS    ns2
+
+polar-fox          IN A     192.168.250.2
+snowball           IN A     192.168.250.3
+pixel              IN A     192.168.250.4
+walrus             IN A     192.168.250.5

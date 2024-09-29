@@ -36,6 +36,13 @@
       system = system.x86_64-linux;
     };
 
+    walrus = {
+      config = ./hosts/walrus.nix;
+      hw = ./hw/walrus.nix;
+      home = ./home/walrus.nix;
+      system = system.x86_64-linux;
+    };
+
     altostratus = {
       config = ./hosts/altostratus.nix;
       hw = ./hw/altostratus.nix;

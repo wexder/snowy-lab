@@ -19,6 +19,9 @@
 
     nixos-hardware.url = "github:wexder/nixos-hardware/feature/t4-gen4";
 
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+
     zig.url = "github:mitchellh/zig-overlay";
     zig.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -33,7 +36,7 @@
     openziti.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, agenix, flake-utils, home-manager, nixos-generators, zig, zls, openziti, stable, ... }@attrs:
+  outputs = { self, nixpkgs, agenix, flake-utils, disko, home-manager, nixos-generators, zig, zls, openziti, stable, ... }@attrs:
     let
       inherit (nixpkgs.lib)
         mapAttrs mapAttrs' nixosSystem;
@@ -61,6 +64,7 @@
                   stable = stable.legacyPackages.${node.system};
                 };
                 modules = [
+                  disko.nixosModules.disko
                   node.config
                   node.hw
                   home-manager.nixosModules.home-manager
@@ -98,6 +102,7 @@
                   hostName = host;
                 };
                 modules = [
+                  disko.nixosModules.disko
                   node.config
                   # home-manager.nixosModules.home-manager
                   # {
@@ -118,6 +123,7 @@
                   hostName = host;
                 };
                 modules = [
+                  disko.nixosModules.disko
                   node.config
                   # home-manager.nixosModules.home-manager
                   # {

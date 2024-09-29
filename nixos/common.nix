@@ -80,7 +80,7 @@
     home = "/home/wexder";
     description = "wexder";
     extraGroups = [ "wheel" ];
-    hashedPasswordFile = "/etc/passwordFile-wexder";
+    hashedPasswordFile = lib.mkDefault "/etc/passwordFile-wexder";
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMkKyMS0O7nzToTh/3LCrwJB++zc29R8U6UlzfzT0xV9"
     ];
@@ -106,6 +106,7 @@
       mccVPNAuth.file = ./secrets/mcc_openvpn_auth.age;
       polarFoxCgWgPk.file = ./secrets/polar_fox_cg_wg_pk.age;
       snowballWgPk.file = ./secrets/snowball_cg_wg_pk.age;
+      walrusWgPk.file = ./secrets/walrus_cg_wg_pk.age;
     };
 
     # TODO replace with more generic path

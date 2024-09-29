@@ -98,12 +98,17 @@ in
         #   nssmdns4 = true;
         #   openFirewall = true;
         # }; # testing, mDNS, printing
-        # services.printing.enable = true; # testing
+        # services.printing = {
+        #   enable = true;
+        #   drivers = [
+        #     pkgs.gutenprint
+        #     pkgs.hplip
+        #   ];
+        # }; #testing
         # hardware.sane.enable = true; # enables support for SANE scanners
 
         # users.extraGroups.scanner.members = [ "wexder" ];
         # users.extraGroups.lp.members = [ "wexder" ];
-
 
         services.pipewire = {
           enable = true;
