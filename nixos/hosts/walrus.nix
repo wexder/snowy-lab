@@ -25,6 +25,7 @@
   environment.systemPackages = [
     pkgs.brightnessctl
   ];
+  users.users.wexder.password = "test";
   users.users.wexder.hashedPasswordFile = null;
 
   roles = {
