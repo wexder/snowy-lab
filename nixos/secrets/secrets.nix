@@ -6,7 +6,9 @@ let
   polar-bear = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFUiqS1ZGBpYEdV4D8TSE8/A94tnxLF9YYlUOU3yQHaa";
   snowball = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID6W1y/Xu1VfR6FKxl7yF1XcU3yNFlMDSdFvTrlXfcGu";
 
-  machines = [ polar-fox polar-bear snowball ];
+  walrus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFhGi29oh/fgvTW9PsKbqgt/+S+J9Jvwac3HszgvVdYn";
+
+  machines = [ polar-fox polar-bear snowball walrus ];
 in
 {
   "tailscale.age".publicKeys = users ++ machines;
