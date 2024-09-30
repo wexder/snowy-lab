@@ -1,5 +1,7 @@
 { lib, config, pkgs, modulesPath, ... }:
 {
+  users.groups.plugdev = { };
+  users.users.wexder.extraGroups = [ "plugdev" ];
   services.udev.extraRules = ''
     # Make the event device node associated with the CM touch chip readers accessible by everyone
     DRIVERS=="usb", ATTRS{idVendor}=="147e", ATTRS{idProduct}=="2016",  MODE="0666"

@@ -38,6 +38,12 @@
     netbird = {
       enable = false;
     };
+    lsp = {
+      go = true;
+      rust = true;
+      zig = false;
+      cpp = true;
+    };
     twingate = {
       enable = true;
     };

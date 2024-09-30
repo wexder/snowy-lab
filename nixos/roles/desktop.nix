@@ -52,6 +52,21 @@ in
           fira-code-nerdfont
         ];
 
+          networking.firewall.allowedTCPPortRanges =[
+          # kdeconnect
+          {
+            from = 1714;
+            to = 1716;
+          }
+          ];
+          networking.firewall.allowedUDPPortRanges =[
+          # kdeconnect
+          {
+            from = 1714;
+            to = 1716;
+          }
+          ];
+
         environment.sessionVariables.NIXOS_OZONE_WL = "1";
         environment.systemPackages = [
           slack
@@ -64,7 +79,8 @@ in
           pkgs.slurp
           pkgs.libreoffice
           pkgs.wallutils
-          stable.betterbird
+          # stable.betterbird
+          pkgs.thunderbird
           pkgs.birdtray
 
           pkgs.clockify

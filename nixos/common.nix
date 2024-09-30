@@ -106,11 +106,17 @@
       mccVPNAuth.file = ./secrets/mcc_openvpn_auth.age;
       polarFoxCgWgPk.file = ./secrets/polar_fox_cg_wg_pk.age;
       snowballWgPk.file = ./secrets/snowball_cg_wg_pk.age;
-      walrusWgPk.file = ./secrets/walrus_cg_wg_pk.age;
+      walrusWgPk = {
+          file = ./secrets/walrus_cg_wg_pk.age;
+      };
     };
 
     # TODO replace with more generic path
-    identityPaths = [ "/home/wexder/.ssh/age" ];
+    identityPaths = [
+        "/home/wexder/.ssh/age"
+        "/etc/nixos/age"
+        "/persist/age"
+    ];
   };
 
   services.openvpn.servers = {
