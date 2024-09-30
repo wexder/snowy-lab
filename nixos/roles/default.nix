@@ -4,20 +4,21 @@
     ./cad.nix
     ./desktop.nix
     ./dev.nix
-    ./lsp.nix
     ./dns.nix
     ./docker.nix
     ./games.nix
     ./jupyter.nix
+    ./lsp.nix
+    ./netbird.nix
+    ./officeWg.nix
     ./prometheus.nix
     ./tailscale.nix
-    ./netbird.nix
     ./twingate.nix
     ./videoEditing.nix
     ./virtualization.nix
     ./wine.nix
     ./xMinimalDesktop.nix
     ./xMinimalDesktop.nix
-    ./officeWg.nix
+  ./laptop.nix
   ];
 }

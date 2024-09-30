@@ -24,15 +24,20 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+
+    networking.firewall.allowedUDPPorts = [ 51820 ];
+
     networking.wg-quick.interfaces = {
       officeWg0 = {
         address = [
           cfg.address
         ];
+        listenPort = 51820;
         peers = [
           {
             allowedIPs = [
-              "192.168.250.0/24,192.168.240.0/24"
+              "192.168.250.0/24"
+              "192.168.240.0/24"
             ];
             endpoint = "46.254.69.178:51820";
             publicKey = "0Iko9oTbMfQRte2nAICUlB7wdvngFCWlTJkHs2ovl1U=";

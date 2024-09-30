@@ -114,8 +114,6 @@
     # TODO replace with more generic path
     identityPaths = [
         "/home/wexder/.ssh/age"
-        "/etc/nixos/age"
-        "/persist/age"
     ];
   };
 
@@ -144,5 +142,4 @@
   #   IPv4: \4
   # '';
   # networking.dhcpcd.runHook = "${pkgs.utillinux}/bin/agetty --reload";
-
 }

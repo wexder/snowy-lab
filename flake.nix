@@ -2,7 +2,8 @@
   description = "Input into the snowy lab";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    # nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs.url = "github:Keksgesicht/nixpkgs";
     stable.url = "github:NixOS/nixpkgs/24.05";
 
     agenix.url = "github:ryantm/agenix";
@@ -64,6 +65,7 @@
                   stable = stable.legacyPackages.${node.system};
                 };
                 modules = [
+                  agenix.nixosModules.default
                   disko.nixosModules.disko
                   node.config
                   node.hw
@@ -73,7 +75,6 @@
                     home-manager.useUserPackages = true;
                     home-manager.users.wexder = import node.home;
                   }
-                  agenix.nixosModules.default
                   {
                     environment.systemPackages = [ agenix.packages.${node.system}.default ];
                   }

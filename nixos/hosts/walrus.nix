@@ -29,6 +29,9 @@
   users.users.wexder.hashedPasswordFile = null;
 
   roles = {
+    laptop = {
+        enable = true;
+    };
     docker = {
       enable = true;
     };
