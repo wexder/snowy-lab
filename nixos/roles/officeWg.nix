@@ -24,8 +24,14 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-
     networking.firewall.allowedUDPPorts = [ 51820 ];
+    environment.etc = {
+      "systemd/resolved.conf.d/vpn.conf".text = ''
+        [Resolve]
+        DNS=192.168.240.193 192.168.240.178
+        Domains=~office.local-k8s.tech. ~office.vpn.
+      '';
+    };
 
     networking.wg-quick.interfaces = {
       officeWg0 = {
@@ -42,10 +48,6 @@ in
             endpoint = "46.254.69.178:51820";
             publicKey = "0Iko9oTbMfQRte2nAICUlB7wdvngFCWlTJkHs2ovl1U=";
           }
-        ];
-        dns = [
-          "192.168.240.193"
-          "192.168.240.178"
         ];
         privateKeyFile = cfg.privateKeyFile;
       };

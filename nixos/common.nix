@@ -117,14 +117,14 @@
     ];
   };
 
-  services.openvpn.servers = {
-    mccVPN = {
-      config = ''
-        config ${config.age.secrets.mccVPN.path}
-        auth-user-pass ${config.age.secrets.mccVPNAuth.path}
-      '';
-    };
-  };
+  # services.openvpn.servers = {
+  #   mccVPN = {
+  #     config = ''
+  #       config ${config.age.secrets.mccVPN.path}
+  #       auth-user-pass ${config.age.secrets.mccVPNAuth.path}
+  #     '';
+  #   };
+  # };
 
   # Dev hosts
   networking.extraHosts =
