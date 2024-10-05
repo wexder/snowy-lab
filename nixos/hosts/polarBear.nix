@@ -39,6 +39,9 @@
       enable = true;
     };
     tailscale = {
+      enable = false;
+    };
+    twingate = {
       enable = true;
     };
     jupyter = {
