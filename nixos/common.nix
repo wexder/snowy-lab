@@ -107,13 +107,13 @@
       polarFoxCgWgPk.file = ./secrets/polar_fox_cg_wg_pk.age;
       snowballWgPk.file = ./secrets/snowball_cg_wg_pk.age;
       walrusWgPk = {
-          file = ./secrets/walrus_cg_wg_pk.age;
+        file = ./secrets/walrus_cg_wg_pk.age;
       };
     };
 
     # TODO replace with more generic path
     identityPaths = [
-        "/home/wexder/.ssh/age"
+      "/home/wexder/.ssh/age"
     ];
   };
 
@@ -129,6 +129,9 @@
   # Dev hosts
   networking.extraHosts =
     ''
+      192.168.240.19 kratos.local-k8s.local
+      192.168.240.19 heimdall.local-k8s.local
+      192.168.240.19 bragi.local-k8s.local
       127.0.0.1 local-k8s.local
       127.0.0.1 minio
     '';
