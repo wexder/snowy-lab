@@ -2,8 +2,7 @@
   description = "Input into the snowy lab";
 
   inputs = {
-    # nixpkgs.url = "github:NixOS/nixpkgs";
-    nixpkgs.url = "github:Keksgesicht/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/master";
     stable.url = "github:NixOS/nixpkgs/24.05";
 
     agenix.url = "github:ryantm/agenix";
@@ -54,6 +53,19 @@
           # Bare metal systems.
           metalSystems = mapAttrs
             (host: node:
+              let
+                stablePkgs = import stable {
+                  inherit (node) system;
+                  overlays = [ ];
+                  config = {
+                    allowUnfree = true;
+                    allowBroken = true;
+                    permittedInsecurePackages = [
+                      "electron-25.9.0"
+                    ];
+                  };
+                };
+              in
               nixosSystem {
                 inherit (node) system;
                 specialArgs = attrs // {
@@ -62,7 +74,7 @@
                   zig = zig.packages.${node.system};
                   zls = zls.packages.${node.system};
                   openziti = openziti.packages.${node.system};
-                  stable = stable.legacyPackages.${node.system};
+                  stable = stablePkgs;
                 };
                 modules = [
                   agenix.nixosModules.default

@@ -20,6 +20,7 @@
           AutoConnect = true;
         };
       };
+    networkmanager.wifi.backend = "iwd";
   };
 
   environment.systemPackages = [
@@ -33,7 +34,7 @@
       enable = false;
     };
     cad = {
-      enable = false;
+      enable = true;
     };
     docker = {
       enable = true;

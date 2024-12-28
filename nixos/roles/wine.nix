@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, stable, lib, ... }:
 let
   cfg = config.roles.wine;
 in
@@ -11,15 +11,15 @@ in
     {
       environment.systemPackages = [
         # pkgs.wine-wayland
-        pkgs.winetricks
-        pkgs.wineWowPackages.waylandFull
-        pkgs.wineWowPackages.fonts
-        pkgs.playonlinux
+        stable.winetricks
+        stable.wineWowPackages.waylandFull
+        stable.wineWowPackages.fonts
+        stable.playonlinux
         # pkgs.vkd3d
         # pkgs.vkdt-wayland
         # pkgs.dxvk
-        pkgs.q4wine # testing
-        pkgs.bottles # testing
+        stable.q4wine # testing
+        stable.bottles # testing
       ];
     };
 }

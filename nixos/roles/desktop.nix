@@ -47,25 +47,24 @@ in
         services.blueman.enable = true;
         programs.thunar.enable = true;
 
-        fonts.packages = with pkgs; [
-          nerdfonts
-          fira-code-nerdfont
-        ];
+        fonts.packages = [
 
-          networking.firewall.allowedTCPPortRanges =[
+        ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+
+        networking.firewall.allowedTCPPortRanges = [
           # kdeconnect
           {
             from = 1714;
             to = 1716;
           }
-          ];
-          networking.firewall.allowedUDPPortRanges =[
+        ];
+        networking.firewall.allowedUDPPortRanges = [
           # kdeconnect
           {
             from = 1714;
             to = 1716;
           }
-          ];
+        ];
 
         environment.sessionVariables.NIXOS_OZONE_WL = "1";
         environment.systemPackages = [
@@ -96,9 +95,9 @@ in
           pkgs.appflowy # testing
           # pkgs.floorp # testing
           pkgs.simple-scan # testing
-          pkgs.affine # testing
           pkgs.gimp # testing
           pkgs.inkscape # testing
+          pkgs.ghostty # testing
         ];
 
         security.pam.loginLimits = [

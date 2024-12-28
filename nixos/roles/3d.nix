@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, stable, lib, ... }:
 let
   cfg = config.roles."3d";
 in
@@ -11,7 +11,7 @@ in
     {
 
       environment.systemPackages = [
-        pkgs.bambu-studio
+        stable.bambu-studio
       ];
     };
 }

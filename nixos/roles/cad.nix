@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, stable, pkgs, lib, ... }:
 let
   cfg = config.roles.cad;
   py-slvr = pkgs.python3Packages.buildPythonPackage rec {
@@ -31,10 +31,10 @@ in
     {
 
       environment.systemPackages = [
-        pkgs.freecad
-        pkgs.kicad
-        pkgs.openscad
-        pkgs.opencascade-occt
+        pkgs.freecad-wayland
+        stable.kicad
+        stable.openscad
+        stable.opencascade-occt
         # (pkgs.python3.withPackages (python-pkgs: [
         #   # py-slvr
         # ]))
