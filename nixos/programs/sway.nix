@@ -63,14 +63,13 @@
     xwayland = true;
     config = {
       modifier = "Mod4";
-      # Use kitty as default terminal
-      terminal = "alacritty";
+      terminal = "ghostty";
       startup = [
         { command = "kdeconnect-indicator"; }
         { command = "mako"; }
         { command = "slack"; }
         { command = "setrandom -m scale /home/wexder/.config/wallpapers"; }
-        { command = "alacritty"; }
+        { command = "ghostty"; }
 
         ## cliphist
         { command = "wl-paste --type text --watch cliphist store #Stores only text data"; }
@@ -183,7 +182,7 @@
         in
         lib.mkOptionDefault {
           # start a terminal
-          "${modifier}+Return" = "exec alacritty";
+          "${modifier}+Return" = "exec ghostty";
 
           # kill focused window
           "${modifier}+q" = "kill";

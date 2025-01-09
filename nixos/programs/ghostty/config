@@ -1,0 +1,9 @@
+background = #000000
+foreground = #F9F9F9
+background-opacity = 0.85
+window-decoration = false
+gtk-tabs-location = hidden
+confirm-close-surface = false
+font-size = 11
+desktop-notifications = false
+resize-overlay = never

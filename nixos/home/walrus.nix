@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../programs/ghostty.nix
     ../programs/alacritty.nix
     ../programs/firefox.nix
     ../programs/git.nix
