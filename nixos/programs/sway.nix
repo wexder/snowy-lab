@@ -82,7 +82,7 @@
         { command = "playerctld daemon"; }
 
         # browser
-        { command = "firefox"; }
+        { command = "zen"; }
 
         # music
         { command = "tidal-hifi"; }
