@@ -15,7 +15,7 @@ in
         # pkgs.blender-hip
         # blender
         pkgs.movit
-        pkgs.kdenlive
+        pkgs.kdePackages.kdenlive
       ];
     };
 }

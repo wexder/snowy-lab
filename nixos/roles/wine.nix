@@ -19,7 +19,7 @@ in
         # pkgs.vkdt-wayland
         # pkgs.dxvk
         stable.q4wine # testing
-        stable.bottles # testing
+        # stable.bottles # testing
       ];
     };
 }

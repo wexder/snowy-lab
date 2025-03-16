@@ -8,7 +8,7 @@
     ./docker.nix
     ./games.nix
     ./jupyter.nix
-    ./lsp.nix
+    ./laptop.nix
     ./netbird.nix
     ./officeWg.nix
     ./prometheus.nix
@@ -17,8 +17,8 @@
     ./videoEditing.nix
     ./virtualization.nix
     ./wine.nix
+    ./wireshark.nix
     ./xMinimalDesktop.nix
     ./xMinimalDesktop.nix
-  ./laptop.nix
   ];
 }

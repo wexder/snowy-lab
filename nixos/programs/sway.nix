@@ -7,7 +7,6 @@
     ./mako.nix
     ./wofi.nix
     ./waybar.nix
-    ./firefox.nix
     ./kanshi.nix
   ];
 
@@ -203,24 +202,11 @@
           # exit sway (logs you out of your Wayland session)
           "${modifier}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
 
-          "${modifier}+F12" = "exec shutdown now";
           "${modifier}+Control+L" = "exec swaylock -f -i /home/wexder/.config/wallpapers/mountains-on-mars.png -s fill";
           "${modifier}+shift+return" = "exec thunar";
-          "${modifier}+F2" = "exec cantata";
-          "${modifier}+F3" = "exec mpv --player-operation-mode=pseudo-gui";
-          "${modifier}+F4" = "exec firefox";
-          "${modifier}+F5" = "exec kate";
-          "${modifier}+F6" = "exec lutris";
-          "${modifier}+F7" = "exec notify-send $(weather)";
-          "${modifier}+F8" = "exec pkill kmousetool || kmousetool";
-          "${modifier}+shift+F4" = "exec firefox --private-window";
           "Print" = "exec grim -g \"$(slurp)\" - | swappy -f -";
           "Control+Print" = "exec grim - | swappy -f -";
           "${modifier}+tab" = "workspace back_and_forth";
-
-          #
-          # Multimedia keys
-          #
 
           # Pulse Audio controls
           # not working

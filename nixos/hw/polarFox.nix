@@ -14,8 +14,8 @@
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" "iwlwifi" "iwlmvm" ];
   boot.extraModulePackages = [
-    config.boot.kernelPackages.rtl8812au
-    config.boot.kernelPackages.rtl88xxau-aircrack
+    # config.boot.kernelPackages.rtl8812au
+    # config.boot.kernelPackages.rtl88xxau-aircrack
   ];
   hardware.ksm.enable = true;
   hardware.firmware = [

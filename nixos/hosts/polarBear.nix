@@ -29,12 +29,6 @@
     dev = {
       enable = true;
     };
-    lsp = {
-      go = true;
-      rust = true;
-      zig = true;
-      cpp = true;
-    };
     xMinimalDesktop = {
       enable = true;
     };

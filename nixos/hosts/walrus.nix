@@ -30,7 +30,7 @@
 
   roles = {
     laptop = {
-        enable = true;
+      enable = true;
     };
     docker = {
       enable = true;
@@ -40,12 +40,6 @@
     };
     netbird = {
       enable = false;
-    };
-    lsp = {
-      go = true;
-      rust = true;
-      zig = false;
-      cpp = true;
     };
     twingate = {
       enable = true;

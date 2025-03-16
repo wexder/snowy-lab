@@ -17,6 +17,7 @@ in
           postgresql
           kubectl
           nil
+          go
           rustup
           cachix
           gnumake

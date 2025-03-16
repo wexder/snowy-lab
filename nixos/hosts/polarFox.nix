@@ -31,7 +31,7 @@
 
   roles = {
     "3d" = {
-      enable = false;
+      enable = true;
     };
     cad = {
       enable = true;
@@ -47,12 +47,6 @@
       enable = true;
       loginManager = true;
       syncthing = true;
-    };
-    lsp = {
-      go = true;
-      rust = true;
-      zig = true;
-      cpp = true;
     };
     games = {
       enable = true;
@@ -76,6 +70,9 @@
       enable = true;
       address = "192.168.250.2/32";
       privateKeyFile = config.age.secrets.polarFoxCgWgPk.path;
+    };
+    wireshark = {
+      enable = true;
     };
   };
 }

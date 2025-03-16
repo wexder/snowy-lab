@@ -32,7 +32,7 @@ in
 
       environment.systemPackages = [
         pkgs.freecad-wayland
-        stable.kicad
+        pkgs.kicad
         stable.openscad
         stable.opencascade-occt
         # (pkgs.python3.withPackages (python-pkgs: [

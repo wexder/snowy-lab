@@ -1,4 +1,4 @@
-{ config, pkgs, stable, lib, ... }:
+{ config, pkgs, stable, lib, zen-browser, ... }:
 let
   cfg = config.roles.desktop;
   slack = pkgs.slack.overrideAttrs (oldAttrs: rec {
@@ -76,9 +76,10 @@ in
           pkgs.grim
           pkgs.swappy
           pkgs.slurp
-          pkgs.libreoffice
+          stable.libreoffice
           pkgs.wallutils
           # stable.betterbird
+          zen-browser.default
           pkgs.thunderbird
           pkgs.birdtray
 
@@ -189,7 +190,7 @@ in
           after = [ "graphical-session.target" ];
           serviceConfig = {
             Type = "simple";
-            ExecStart = "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
+            ExecStart = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
             Restart = "on-failure";
             RestartSec = 1;
             TimeoutStopSec = 10;
@@ -207,22 +208,22 @@ in
               "thunderbird" = {
                 id = "thunderbird";
                 path = "/home/wexder/.thunderbird/";
-                devices = [ "master" ];
+                devices = [ "polar-bear" ];
               };
               "documents" = {
                 id = "documents";
                 path = "/home/wexder/documents/";
-                devices = [ "master" ];
+                devices = [ "polar-bear" ];
               };
               "obsidian" = {
                 id = "obsidian";
                 path = "/home/wexder/obsidian/";
-                devices = [ "master" ];
+                devices = [ "polar-bear" ];
               };
             };
             devices = {
-              master = {
-                id = "ID6PX4V-UUGCGKQ-6WJTJQX-LFVTPQ5-PNUFMQ6-H4DCVCP-FGVG4DB-2LH3SA5";
+              polar-bear = {
+                id = "WYQIGNT-BE6FGPD-EW4X2WP-N7VQUV4-ASLKO3W-YZ2QW6H-IQUPC4E-7WW3NQ7";
               };
             };
           };
