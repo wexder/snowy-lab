@@ -7,7 +7,7 @@ in
     enable = lib.mkEnableOption "Enable local llm";
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     services.ollama = {
       enable = true;
       openFirewall = false;
