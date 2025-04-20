@@ -22,6 +22,11 @@
       };
   };
 
+  # Needed for tmux
+  environment.systemPackages = [
+    pkgs.ghostty
+  ];
+
   services.syncthing = {
     enable = true;
     user = "wexder";
