@@ -18,6 +18,7 @@
   };
   nix.optimise.automatic = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.trusted-users = [ "wexder" ];
 
   # latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -117,14 +118,14 @@
     ];
   };
 
-  # services.openvpn.servers = {
-  #   mccVPN = {
-  #     config = ''
-  #       config ${config.age.secrets.mccVPN.path}
-  #       auth-user-pass ${config.age.secrets.mccVPNAuth.path}
-  #     '';
-  #   };
-  # };
+  services.openvpn.servers = {
+    mccVPN = {
+      config = ''
+        config ${config.age.secrets.mccVPN.path}
+        auth-user-pass ${config.age.secrets.mccVPNAuth.path}
+      '';
+    };
+  };
 
   # Dev hosts
   networking.extraHosts =

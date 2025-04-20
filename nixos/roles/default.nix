@@ -9,6 +9,7 @@
     ./games.nix
     ./jupyter.nix
     ./laptop.nix
+    ./llm.nix
     ./netbird.nix
     ./officeWg.nix
     ./prometheus.nix

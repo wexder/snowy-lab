@@ -42,6 +42,12 @@
       home = ./home/walrus.nix;
       system = system.x86_64-linux;
     };
+    #
+    # test-server = {
+    #   config = ./hosts/test-server.nix;
+    #   hw = ./hw/test-server.nix;
+    #   home = ./home/test-server.nix;
+    #   system = system.x86_64-linux;
     # };
   };
 }

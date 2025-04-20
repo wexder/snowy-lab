@@ -9,7 +9,6 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs";
 
     flake-utils.url = "github:numtide/flake-utils";
-    flake-utils.inputs.nixpkgs.follows = "nixpkgs";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -29,18 +28,17 @@
   outputs = { self, nixpkgs, agenix, flake-utils, disko, home-manager, nixos-generators, stable, zen-browser, ... }@attrs:
     let
       inherit (nixpkgs.lib)
-        mapAttrs mapAttrs' nixosSystem;
+        mapAttrs nixosSystem;
 
-      inherit (flake-utils.lib) eachSystemMap system;
+      inherit (flake-utils.lib) system;
 
       # catalog.nodes defines the systems available in this flake.
       catalog = import ./nixos/catalog.nix { inherit system; };
     in
-    rec {
+    {
       # Convert nodes into a set of nixos configs.
       nixosConfigurations =
         let
-          # Bare metal systems.
           metalSystems = mapAttrs
             (host: node:
               let
