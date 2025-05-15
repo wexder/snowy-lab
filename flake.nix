@@ -24,14 +24,16 @@
     zen-browser.url = "github:youwen5/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
 
-    # testing
     tuxedo-nixos.url = "github:sund3RRR/tuxedo-nixos";
+
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     # will be swapped for my own solution
     deploy-rs.url = "github:serokell/deploy-rs";
   };
 
-  outputs = { self, deploy-rs, nixpkgs, agenix, flake-utils, disko, home-manager, nixos-generators, stable, zen-browser, tuxedo-nixos, ... }@attrs:
+  outputs = { self, nix-darwin, deploy-rs, nixpkgs, agenix, flake-utils, disko, home-manager, nixos-generators, stable, zen-browser, tuxedo-nixos, ... }@attrs:
     let
       inherit (nixpkgs.lib)
         mapAttrs nixosSystem;
@@ -42,6 +44,10 @@
       catalog = import ./nixos/catalog.nix { inherit system; };
     in
     {
+      darwinConfigurations."air" = nix-darwin.lib.darwinSystem {
+        modules = [ (import ./nixos/hosts/air.nix {}) ];
+      };
+
       # Convert nodes into a set of nixos configs.
       nixosConfigurations =
         let
