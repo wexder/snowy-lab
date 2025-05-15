@@ -1,16 +1,20 @@
-{ config, pkgs, lib, ... }:
-let
-  cfg = config.gpus.intel;
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.gpus.intel;
+in {
   options.gpus.intel = {
     enable = lib.mkEnableOption "Enable amd intel";
   };
 
-  config = lib.mkIf cfg.enable
+  config =
+    lib.mkIf cfg.enable
     {
       services.xserver.enable = true;
-      services.xserver.videoDrivers = [ "intel" ];
+      services.xserver.videoDrivers = ["intel"];
       # Enable OpenGL
       hardware.graphics = {
         enable = true;

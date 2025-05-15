@@ -1,4 +1,9 @@
-{ lib, modulesPath, pkgs, ... }: {
+{
+  lib,
+  modulesPath,
+  pkgs,
+  ...
+}: {
   networking.useDHCP = true;
   networking.networkmanager.enable = false;
 
@@ -8,19 +13,18 @@
 
   security.sudo.extraRules = [
     {
-      users = [ "wexder" ];
+      users = ["wexder"];
       commands = [
         {
           command = "ALL";
-          options = [ "NOPASSWD" "SETENV" ];
+          options = ["NOPASSWD" "SETENV"];
         }
       ];
     }
   ];
 
-  swapDevices = [ ];
+  swapDevices = [];
   nix.settings.max-jobs = lib.mkDefault 2;
-
 
   # files for rebuilding
   environment.etc = {

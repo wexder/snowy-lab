@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ./alacritty.nix
     ./audio.nix
@@ -10,14 +14,14 @@
     ./kanshi.nix
   ];
 
-  home.file.".config/sway/kill.sh".text = (builtins.readFile ./sway/kill.sh);
+  home.file.".config/sway/kill.sh".text = builtins.readFile ./sway/kill.sh;
   # home.file.".config/lan-mouse/config.toml".text = (builtins.readFile ./lan-mouse/config.toml);
-  home.file.".config/wallpapers".source = (pkgs.fetchFromGitHub {
+  home.file.".config/wallpapers".source = pkgs.fetchFromGitHub {
     owner = "wexder";
     repo = "snowy-lab-wallpapers";
     rev = "1ab613b4692a98969923691b110508499cc15bee";
     hash = "sha256-HqDO+io+IHTfrGXYOdStVV7DigfZviPYuLQk/boxzG4=";
-  });
+  };
 
   home.packages = [
     pkgs.dbus # make dbus-update-activation-environment available in the path
@@ -47,9 +51,9 @@
     theme = {
       name = "Catppuccin-Macchiato-Compact-Pink-Dark";
       package = pkgs.catppuccin-gtk.override {
-        accents = [ "pink" ];
+        accents = ["pink"];
         size = "compact";
-        tweaks = [ "rimless" "black" ];
+        tweaks = ["rimless" "black"];
         variant = "macchiato";
       };
     };
@@ -64,45 +68,45 @@
       modifier = "Mod4";
       terminal = "ghostty";
       startup = [
-        { command = "swayidle -w before-sleep 'swaylock -f -i /home/wexder/.config/wallpapers/mountains-on-mars.png -s fill'"; }
-        { command = "kdeconnect-indicator"; }
-        { command = "mako"; }
-        { command = "slack"; }
-        { command = "setrandom -m scale /home/wexder/.config/wallpapers"; }
-        { command = "ghostty"; }
+        {command = "swayidle -w before-sleep 'swaylock -f -i /home/wexder/.config/wallpapers/mountains-on-mars.png -s fill'";}
+        {command = "kdeconnect-indicator";}
+        {command = "mako";}
+        {command = "slack";}
+        {command = "setrandom -m scale /home/wexder/.config/wallpapers";}
+        {command = "ghostty";}
 
         ## cliphist
-        { command = "wl-paste --type text --watch cliphist store #Stores only text data"; }
-        { command = "wl-paste --type image --watch cliphist store #Stores only image data"; }
+        {command = "wl-paste --type text --watch cliphist store #Stores only text data";}
+        {command = "wl-paste --type image --watch cliphist store #Stores only image data";}
 
         # waybar
-        { command = "waybar"; }
+        {command = "waybar";}
 
         # audio
-        { command = "playerctld daemon"; }
+        {command = "playerctld daemon";}
 
         # browser
-        { command = "zen"; }
+        {command = "zen";}
 
         # music
-        { command = "tidal-hifi"; }
+        {command = "tidal-hifi";}
 
         # passwords
-        { command = "bitwarden"; }
+        {command = "bitwarden";}
 
         # steam
-        { command = "steam"; }
+        {command = "steam";}
 
         # betterbird
-        { command = "thunderbird"; }
+        {command = "thunderbird";}
 
         # clockify
-        { command = "clockify"; }
+        {command = "clockify";}
 
         # kanshi
-        { command = "kanshi"; }
+        {command = "kanshi";}
 
-        { command = "tuxedo-control-center"; }
+        {command = "tuxedo-control-center";}
 
         # lan-mouse
         # { command = "lan-mouse --daemon"; }
@@ -118,7 +122,7 @@
           Return = "mode default";
         };
       };
-      bars = [ ];
+      bars = [];
       input = {
         "*" = {
           xkb_layout = "us,cz";
@@ -176,10 +180,9 @@
           indicator = "#d76a92";
         };
       };
-      keybindings =
-        let
-          modifier = config.wayland.windowManager.sway.config.modifier;
-        in
+      keybindings = let
+        modifier = config.wayland.windowManager.sway.config.modifier;
+      in
         lib.mkOptionDefault {
           # start a terminal
           "${modifier}+Return" = "exec ghostty";
@@ -338,5 +341,4 @@
       exec systemctl --user import-environment
     '';
   };
-
 }

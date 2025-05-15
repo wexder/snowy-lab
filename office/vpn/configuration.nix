@@ -1,4 +1,11 @@
-{ modulesPath, config, lib, pkgs, latestPkgs, ... }: {
+{
+  modulesPath,
+  config,
+  lib,
+  pkgs,
+  latestPkgs,
+  ...
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -15,10 +22,10 @@
 
   boot = {
     # Add kernel modules detected by nixos-generate-config:
-    initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "xen_blkfront" "sr_mod" ];
-    initrd.kernelModules = [ ];
-    kernelModules = [ ];
-    extraModulePackages = [ ];
+    initrd.availableKernelModules = ["ata_piix" "uhci_hcd" "xen_blkfront" "sr_mod"];
+    initrd.kernelModules = [];
+    kernelModules = [];
+    extraModulePackages = [];
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
@@ -35,10 +42,9 @@
   ];
 
   networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [ 22 ];
+  networking.firewall.allowedTCPPorts = [22];
 
   system.stateVersion = "23.11";
-
 
   virtualisation.xen.guest = {
     enable = true;

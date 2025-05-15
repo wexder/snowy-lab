@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ../common.nix
   ];
@@ -10,16 +13,15 @@
     };
 
     wireless.iwd.enable = true;
-    wireless.iwd.settings =
-      {
-        Network = {
-          EnableIPv6 = true;
-          RoutePriorityOffset = 300;
-        };
-        Settings = {
-          AutoConnect = true;
-        };
+    wireless.iwd.settings = {
+      Network = {
+        EnableIPv6 = true;
+        RoutePriorityOffset = 300;
       };
+      Settings = {
+        AutoConnect = true;
+      };
+    };
   };
 
   # Needed for tmux
@@ -36,17 +38,17 @@
         "thunderbird" = {
           id = "thunderbird";
           path = "/home/wexder/.thunderbird/";
-          devices = [ "polar-fox" "walrus" ];
+          devices = ["polar-fox" "walrus"];
         };
         "documents" = {
           id = "documents";
           path = "/home/wexder/documents/";
-          devices = [ "polar-fox" "walrus" ];
+          devices = ["polar-fox" "walrus"];
         };
         "obsidian" = {
           id = "obsidian";
           path = "/home/wexder/obsidian/";
-          devices = [ "polar-fox" "walrus" "pixel" ];
+          devices = ["polar-fox" "walrus" "pixel"];
         };
       };
       devices = {
@@ -90,7 +92,7 @@
       enable = true;
     };
     mccDev = {
-        enable = true;
+      enable = true;
     };
   };
 }

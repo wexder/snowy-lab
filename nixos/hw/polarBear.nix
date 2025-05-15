@@ -1,18 +1,22 @@
-{ lib, config, pkgs, modulesPath, ... }:
 {
+  lib,
+  config,
+  pkgs,
+  modulesPath,
+  ...
+}: {
   boot.loader.systemd-boot.enable = true;
 
-  imports =
-    [
-      ./common.nix
-      ./bluetooth.nix
-      ./hid.nix
-    ];
+  imports = [
+    ./common.nix
+    ./bluetooth.nix
+    ./hid.nix
+  ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "sr_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "sr_mod"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-intel"];
+  boot.extraModulePackages = [];
   hardware.ksm.enable = true;
 
   fileSystems = {
@@ -31,15 +35,20 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  swapDevices = [{ device = "/swapfile"; size = 16382; }];
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 16382;
+    }
+  ];
 
   gpus.nvidia.enable = true;
 
-  environment.systemPackages = with pkgs;[
+  environment.systemPackages = with pkgs; [
     nut
   ];
 
-  environment.etc."passwordFile-ups".text = (builtins.readFile ./polarBear/ups-pass);
+  environment.etc."passwordFile-ups".text = builtins.readFile ./polarBear/ups-pass;
 
   power.ups = {
     enable = true;

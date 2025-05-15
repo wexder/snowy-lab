@@ -1,5 +1,8 @@
-{ lib, buildGoModule, fetchFromGitHub }:
-
+{
+  lib,
+  buildGoModule,
+  fetchFromGitHub,
+}:
 buildGoModule rec {
   pname = "gow";
   version = "0.0.1";
@@ -17,5 +20,5 @@ buildGoModule rec {
   doCheck = false;
 
   # Only build gopls, and not the integration tests or documentation generator.
-  subPackages = [ "." ];
+  subPackages = ["."];
 }

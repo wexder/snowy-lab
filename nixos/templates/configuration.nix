@@ -9,10 +9,11 @@
 #                           o--o                      #
 #                                                     #
 #######################################################
-
-{ config, pkgs, ... }:
-
 {
-  imports = [ ];
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 }

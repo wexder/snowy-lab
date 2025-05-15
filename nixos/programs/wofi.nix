@@ -1,8 +1,12 @@
-{ config, lib, pkgs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   programs.wofi = {
     enable = true;
-    style = (builtins.readFile ./wofi/menu.css);
+    style = builtins.readFile ./wofi/menu.css;
     settings = {
       width = 400;
       height = 250;

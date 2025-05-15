@@ -1,8 +1,12 @@
-{ config, lib, pkgs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   programs.waybar = {
     enable = true;
-    style = (builtins.readFile ./waybar/style.css);
+    style = builtins.readFile ./waybar/style.css;
     # style = (builtins.readFile ./waybar/dark.css);
     settings = {
       mainBar = {
@@ -13,9 +17,9 @@
         margin-bottom = 0;
         margin-right = 0;
         spacing = 5; # Gaps between modules (4px)
-        modules-left = [ "sway/workspaces" "cpu" "memory" ];
-        modules-center = [ "sway/window" ];
-        modules-right = [ "tray" "backlight" "pulseaudio" "network" "sway/language" "battery" "clock" "custom/power-menu" ];
+        modules-left = ["sway/workspaces" "cpu" "memory"];
+        modules-center = ["sway/window"];
+        modules-right = ["tray" "backlight" "pulseaudio" "network" "sway/language" "battery" "clock" "custom/power-menu"];
         "sway/window" = {
           format = "{title}";
           max-length = 50;
@@ -56,7 +60,7 @@
         backlight = {
           device = "eDP-1";
           format = "{icon} {percent}%";
-          format-icons = [ "" "" "" "" "" "" "" "" "" ];
+          format-icons = ["" "" "" "" "" "" "" "" ""];
           on-click = "";
         };
         network = {
@@ -77,7 +81,7 @@
             phone = "";
             portable = "";
             car = "";
-            default = [ "" "" "" ];
+            default = ["" "" ""];
           };
           on-click = "pavucontrol";
           on-click-right = "blueberry";
@@ -98,7 +102,7 @@
           format-plugged = "  {capacity}%";
           format-alt = "{icon} {time}";
           format-full = "  {capacity}%";
-          format-icons = [ " " " " " " " " " " ];
+          format-icons = [" " " " " " " " " "];
         };
       };
     };

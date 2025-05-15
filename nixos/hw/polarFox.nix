@@ -1,18 +1,22 @@
-{ lib, config, pkgs, modulesPath, ... }:
 {
+  lib,
+  config,
+  pkgs,
+  modulesPath,
+  ...
+}: {
   boot.loader.systemd-boot.enable = true;
 
-  imports =
-    [
-      ./common.nix
-      ./bluetooth.nix
-      ./hid.nix
-      (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [
+    ./common.nix
+    ./bluetooth.nix
+    ./hid.nix
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.kernelModules = [ "kvm-amd" "iwlwifi" "iwlmvm" ];
+  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
+  boot.initrd.kernelModules = ["amdgpu"];
+  boot.kernelModules = ["kvm-amd" "iwlwifi" "iwlmvm"];
   boot.extraModulePackages = [
     # config.boot.kernelPackages.rtl8812au
     # config.boot.kernelPackages.rtl88xxau-aircrack
@@ -40,7 +44,12 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  swapDevices = [{ device = "/swapfile"; size = 8192; }];
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 8192;
+    }
+  ];
 
   gpus.amd.enable = true;
 }

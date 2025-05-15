@@ -1,8 +1,11 @@
-{ config, pkgs, lib, ... }:
-let
-  cfg = config.gpus.amd;
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.gpus.amd;
+in {
   options.gpus.amd = {
     enable = lib.mkEnableOption "Enable amd gpu";
     rocm = lib.mkEnableOption "Enable amd rocm";
@@ -11,7 +14,7 @@ in
     lib.mkMerge [
       {
         services.xserver.enable = true;
-        services.xserver.videoDrivers = [ "amdgpu" ];
+        services.xserver.videoDrivers = ["amdgpu"];
         # Enable OpenGL
         hardware.graphics = {
           enable = true;
@@ -29,14 +32,15 @@ in
           ];
         };
 
-        boot.initrd.kernelModules = [ "amdgpu" ];
+        boot.initrd.kernelModules = ["amdgpu"];
         environment.systemPackages = [
           pkgs.amdgpu_top
           pkgs.clinfo
         ];
       }
 
-      (lib.mkIf cfg.rocm
+      (
+        lib.mkIf cfg.rocm
         {
           hardware.graphics = {
             extraPackages = [
@@ -53,5 +57,6 @@ in
           ];
         }
       )
-    ]);
+    ]
+  );
 }

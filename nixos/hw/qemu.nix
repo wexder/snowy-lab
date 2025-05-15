@@ -1,18 +1,22 @@
 # QEMU Guest Hardware
-{ lib, modulesPath, pkgs, ... }: {
+{
+  lib,
+  modulesPath,
+  pkgs,
+  ...
+}: {
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/vda";
 
   networking.useDHCP = false;
 
   # Hardware configuration
-  imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
+  imports = [(modulesPath + "/profiles/qemu-guest.nix")];
 
-  boot.initrd.availableKernelModules =
-    [ "ahci" "xhci_pci" "virtio_pci" "virtio_blk" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.availableKernelModules = ["ahci" "xhci_pci" "virtio_pci" "virtio_blk"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = [];
+  boot.extraModulePackages = [];
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
@@ -25,17 +29,17 @@
 
   security.sudo.extraRules = [
     {
-      users = [ "wexder" ];
+      users = ["wexder"];
       commands = [
         {
           command = "ALL";
-          options = [ "NOPASSWD" "SETENV" ];
+          options = ["NOPASSWD" "SETENV"];
         }
       ];
     }
   ];
 
-  swapDevices = [ ];
+  swapDevices = [];
 
   nix.settings.max-jobs = lib.mkDefault 2;
 
@@ -50,7 +54,11 @@
     enable = true;
   };
   virtualisation.forwardPorts = [
-    { from = "host"; host.port = 2222; guest.port = 22; }
+    {
+      from = "host";
+      host.port = 2222;
+      guest.port = 22;
+    }
   ];
 
   services.greetd = {

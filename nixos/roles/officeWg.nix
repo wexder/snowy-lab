@@ -1,8 +1,11 @@
-{ config, pkgs, lib, ... }:
-let
-  cfg = config.roles.officeWg;
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.roles.officeWg;
+in {
   options.roles.officeWg = {
     enable = lib.mkEnableOption "Enable office wireguard";
     address = lib.mkOption {
@@ -24,7 +27,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    networking.firewall.allowedUDPPorts = [ 51820 ];
+    networking.firewall.allowedUDPPorts = [51820];
     environment.etc = {
       "systemd/resolved.conf.d/vpn.conf".text = ''
         [Resolve]
@@ -56,4 +59,3 @@ in
     };
   };
 }
-

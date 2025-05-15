@@ -1,13 +1,17 @@
-{ config, stable, lib, ... }:
-let
-  cfg = config.roles.wine;
-in
 {
+  config,
+  stable,
+  lib,
+  ...
+}: let
+  cfg = config.roles.wine;
+in {
   options.roles.wine = {
     enable = lib.mkEnableOption "Wine";
   };
 
-  config = lib.mkIf cfg.enable
+  config =
+    lib.mkIf cfg.enable
     {
       environment.systemPackages = [
         # pkgs.wine-wayland

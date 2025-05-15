@@ -1,5 +1,11 @@
-{ config, pkgs, stable, zen-browser, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  stable,
+  zen-browser,
+  lib,
+  ...
+}: let
   cfg = config.roles.desktop;
   slack = pkgs.slack.overrideAttrs (oldAttrs: {
     fixupPhase = ''
@@ -8,12 +14,11 @@ let
       rm $out/bin/slack
       makeWrapper $out/lib/slack/slack $out/bin/slack \
         --prefix XDG_DATA_DIRS : $GSETTINGS_SCHEMAS_PATH \
-        --suffix PATH : ${lib.makeBinPath [ pkgs.xdg-utils ]} \
+        --suffix PATH : ${lib.makeBinPath [pkgs.xdg-utils]} \
         --add-flags "--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations,WebRTCPipeWireCapturer"
     '';
   });
-in
-{
+in {
   options.roles.desktop = {
     enable = lib.mkOption {
       default = false;
@@ -41,15 +46,16 @@ in
     lib.mkMerge [
       {
         security.rtkit.enable = true;
-        security.pam.services.swaylock = { };
+        security.pam.services.swaylock = {};
 
         programs.xwayland.enable = true;
         services.blueman.enable = true;
         programs.thunar.enable = true;
 
-        fonts.packages = [
-
-        ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+        fonts.packages =
+          [
+          ]
+          ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 
         networking.firewall.allowedTCPPortRanges = [
           # kdeconnect
@@ -101,7 +107,12 @@ in
         ];
 
         security.pam.loginLimits = [
-          { domain = "@users"; item = "rtprio"; type = "-"; value = 1; }
+          {
+            domain = "@users";
+            item = "rtprio";
+            type = "-";
+            value = 1;
+          }
         ];
 
         services.udev.packages = [
@@ -118,17 +129,17 @@ in
         programs.gnupg.agent.enable = true;
         services.pcscd.enable = true; # testing
 
-         services.avahi = {
-  nssmdns = true;
-  enable = true;
-  ipv4 = true;
-  ipv6 = false;
-  publish = {
-    enable = true;
-    addresses = true;
-    workstation = true;
-  };
-  };
+        services.avahi = {
+          nssmdns = true;
+          enable = true;
+          ipv4 = true;
+          ipv6 = false;
+          publish = {
+            enable = true;
+            addresses = true;
+            workstation = true;
+          };
+        };
         services.printing = {
           enable = true;
           drivers = [
@@ -137,8 +148,8 @@ in
           ];
         }; #testing
         hardware.sane.enable = true; # enables support for SANE scanners
-        users.extraGroups.scanner.members = [ "wexder" ];
-        users.extraGroups.lp.members = [ "wexder" ];
+        users.extraGroups.scanner.members = ["wexder"];
+        users.extraGroups.lp.members = ["wexder"];
 
         services.pipewire = {
           enable = true;
@@ -184,7 +195,7 @@ in
           extraPortals = [
             pkgs.xdg-desktop-portal-gtk
           ];
-          configPackages = [ pkgs.sway ];
+          configPackages = [pkgs.sway];
         };
 
         services.greetd = {
@@ -200,16 +211,16 @@ in
         systemd = {
           user.services.polkit-gnome-authentication-agent-1 = {
             description = "polkit-gnome-authentication-agent-1";
-            wantedBy = [ "graphical-session.target" ];
-            wants = [ "graphical-session.target" ];
-            after = [ "graphical-session.target" ];
+            wantedBy = ["graphical-session.target"];
+            wants = ["graphical-session.target"];
+            after = ["graphical-session.target"];
             serviceConfig = {
-                Type = "simple";
-                ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-                Restart = "on-failure";
-                RestartSec = 1;
-                TimeoutStopSec = 10;
-              };
+              Type = "simple";
+              ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+              Restart = "on-failure";
+              RestartSec = 1;
+              TimeoutStopSec = 10;
+            };
           };
         };
       }
@@ -224,17 +235,17 @@ in
               "thunderbird" = {
                 id = "thunderbird";
                 path = "/home/wexder/.thunderbird/";
-                devices = [ "polar-bear" ];
+                devices = ["polar-bear"];
               };
               "documents" = {
                 id = "documents";
                 path = "/home/wexder/documents/";
-                devices = [ "polar-bear" ];
+                devices = ["polar-bear"];
               };
               "obsidian" = {
                 id = "obsidian";
                 path = "/home/wexder/obsidian/";
-                devices = [ "polar-bear" ];
+                devices = ["polar-bear"];
               };
             };
             devices = {
@@ -248,4 +259,3 @@ in
     ]
   );
 }
-

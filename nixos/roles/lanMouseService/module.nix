@@ -1,12 +1,13 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.services.lan-mouse;
   configFile = pkgs.writeText "config.toml" cfg.config;
-in
-{
+in {
   options.services.lan-mouse = {
     enable = mkEnableOption (lib.mdDoc "Lan mouse service");
 
@@ -21,7 +22,7 @@ in
         # optional port (defaults to 4242)
         port = 4242
         # # optional frontend -> defaults to gtk if available
-        # # possible values are "cli" and "gtk" 
+        # # possible values are "cli" and "gtk"
         # frontend = "gtk"
 
         # define a client on the right side with host name "iridium"
@@ -50,11 +51,11 @@ in
       '';
     };
 
-    package = mkPackageOption pkgs "lan-mouse" { };
+    package = mkPackageOption pkgs "lan-mouse" {};
 
     extraArgs = mkOption {
-      default = [ "--daemon" ];
-      example = [ "--daemon" ];
+      default = ["--daemon"];
+      example = ["--daemon"];
       type = types.listOf types.str;
       description = lib.mdDoc "Extra arguments to pass to lan-mouse.";
     };
@@ -63,8 +64,8 @@ in
   config = mkIf cfg.enable {
     systemd.services.lan-mouse = {
       description = "Lan mouse daemon";
-      after = [ "network.target" ];
-      wantedBy = [ "multi-user.target" ];
+      after = ["network.target"];
+      wantedBy = ["multi-user.target"];
       serviceConfig = {
         PermissionsStartOnly = true;
         LimitNPROC = 512;

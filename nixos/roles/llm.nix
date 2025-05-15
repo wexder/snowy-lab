@@ -1,8 +1,11 @@
-{ config, pkgs, lib, ... }:
-let
-  cfg = config.roles.llm;
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.roles.llm;
+in {
   options.roles.llm = {
     enable = lib.mkEnableOption "Enable local llm";
   };

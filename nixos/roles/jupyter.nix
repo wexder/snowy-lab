@@ -1,36 +1,39 @@
-{ config, pkgs, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   cfg = config.roles.jupyter;
-  pythonJupyter = pkgs.python3.withPackages (ps: with ps; [ jupyterlab jupyterlab-lsp python-lsp-server ]);
-  pythonKernel = pkgs.python310.withPackages (pythonPackages: with pythonPackages;
-    [
-      pytorch-bin
-      jupyterlab
-      jupyterlab-lsp
-      ipykernel
-      ipython
-      pandas
-      scikit-learn
-    ]);
+  pythonJupyter = pkgs.python3.withPackages (ps: with ps; [jupyterlab jupyterlab-lsp python-lsp-server]);
+  pythonKernel = pkgs.python310.withPackages (pythonPackages: with pythonPackages; [
+    pytorch-bin
+    jupyterlab
+    jupyterlab-lsp
+    ipykernel
+    ipython
+    pandas
+    scikit-learn
+  ]);
   cuda = pkgs.cudaPackages.cudatoolkit;
   cudnn = pkgs.cudaPackages.cudnn;
-in
-{
+in {
   options.roles.jupyter = {
     enable = lib.mkEnableOption "Enable jupyter lab";
   };
 
-  config = lib.mkIf cfg.enable
+  config =
+    lib.mkIf cfg.enable
     {
       nixpkgs.config = {
         cudaSupport = true;
         cudaVersion = "12";
       };
 
-      users.groups.jupyter.members = [ "wexder" ];
-      users.groups.jupyter = { };
+      users.groups.jupyter.members = ["wexder"];
+      users.groups.jupyter = {};
 
-      environment.systemPackages = with pkgs;[
+      environment.systemPackages = with pkgs; [
         pythonKernel
       ];
 

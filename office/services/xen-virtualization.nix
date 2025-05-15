@@ -1,19 +1,16 @@
 # Common configuration for Xen DomU NixOS virtual machines.
-{ config
-, lib
-, pkgs
-, ...
-}:
-
-let
-  cfg = config.virtualisation.xen;
-in
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.virtualisation.xen;
+in {
   ## Interface ##
   options.virtualisation.xen.guest = {
     enable = lib.options.mkEnableOption "the Xen Guest Agent daemon, for easier XenStore access inside unprivileged domains";
-    package = lib.options.mkPackageOption pkgs "Xen Guest Agent" { default = "xen-guest-agent"; };
+    package = lib.options.mkPackageOption pkgs "Xen Guest Agent" {default = "xen-guest-agent";};
     recommendedPVSettings = lib.options.mkEnableOption "the recommended settings for Xen PV/PVH guests. Disabling both `recommendedPVSettings` and `recommendedHVMSettings` will only enable the Xen Guest Agent service.";
     recommendedHVMSettings = lib.options.mkEnableOption "the recommended settings for Xen HVM guests. Disabling both `recommendedPVSettings` and `recommendedHVMSettings` will only enable the Xen Guest Agent service.";
   };
@@ -35,15 +32,14 @@ in
       }
     ];
 
-    environment.systemPackages = [ cfg.guest.package ];
+    environment.systemPackages = [cfg.guest.package];
 
     systemd = {
-      packages = [ cfg.guest.package ];
-      services.xen-guest-agent.wantedBy = [ "multi-user.target" ];
+      packages = [cfg.guest.package];
+      services.xen-guest-agent.wantedBy = ["multi-user.target"];
     };
 
     boot = lib.modules.mkIf (cfg.guest.recommendedPVSettings || cfg.guest.recommendedHVMSettings) {
-
       # PV/PVH guests don't need a kernel or initrd, as they're provided by Xen.
       #TODO: This doesn't make any sense! Why are we loading modules to a kernel that doesn't exist?
       kernel.enable = !cfg.guest.recommendedPVSettings;
@@ -82,5 +78,5 @@ in
       timesyncd.enable = false;
     };
   };
-  meta.maintainers = with lib.maintainers; [ sigmasquadron ];
+  meta.maintainers = with lib.maintainers; [sigmasquadron];
 }

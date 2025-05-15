@@ -1,5 +1,5 @@
 # Catalog defines the systems & services on my network.
-{ system }: {
+{system}: {
   nodes = {
     snowy-deck = {
       config = ./hosts/snowyDeck.nix;

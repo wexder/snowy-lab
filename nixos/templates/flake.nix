@@ -6,7 +6,11 @@
       url = "github:wexder/snowy-lab";
     };
   };
-  outputs = { self, nixpkgs, config }: {
+  outputs = {
+    self,
+    nixpkgs,
+    config,
+  }: {
     nixosConfigurations = config.nixosConfigurations;
   };
 }

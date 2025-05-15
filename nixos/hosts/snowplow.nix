@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ../common.nix
   ];
@@ -10,16 +13,15 @@
     };
 
     wireless.iwd.enable = true;
-    wireless.iwd.settings =
-      {
-        Network = {
-          EnableIPv6 = true;
-          RoutePriorityOffset = 300;
-        };
-        Settings = {
-          AutoConnect = true;
-        };
+    wireless.iwd.settings = {
+      Network = {
+        EnableIPv6 = true;
+        RoutePriorityOffset = 300;
       };
+      Settings = {
+        AutoConnect = true;
+      };
+    };
   };
 
   environment.systemPackages = [
@@ -32,15 +34,15 @@
     enable = true;
     smartSupport = true;
     levels = [
-      [ 0 0 55 ]
-      [ 1 53 57 ]
-      [ 2 55 61 ]
-      [ 3 60 66 ]
-      [ 4 63 67 ]
-      [ 5 65 71 ]
-      [ 6 70 76 ]
-      [ 7 75 85 ]
-      [ "level auto" 80 32767 ]
+      [0 0 55]
+      [1 53 57]
+      [2 55 61]
+      [3 60 66]
+      [4 63 67]
+      [5 65 71]
+      [6 70 76]
+      [7 75 85]
+      ["level auto" 80 32767]
     ];
   };
 

@@ -1,8 +1,11 @@
-{ config, pkgs, lib, ... }:
-let
-  cfg = config.roles.dns;
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.roles.dns;
+in {
   options.roles.dns = {
     enable = lib.mkEnableOption "Coredns server";
 
@@ -13,7 +16,8 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable
+  config =
+    lib.mkIf cfg.enable
     {
       services.coredns = {
         enable = true;

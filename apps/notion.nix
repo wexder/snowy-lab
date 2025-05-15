@@ -1,5 +1,8 @@
-{ appimageTools, lib, fetchurl }:
-let
+{
+  appimageTools,
+  lib,
+  fetchurl,
+}: let
   pname = "notion-app";
   version = "2.0.18-1";
   name = "${pname}-v${version}";
@@ -9,27 +12,26 @@ let
     sha256 = "sha256-B/FZ+CsxQMTze7mTZWycop1ayM5toJEydtP/aoOwlZ0=";
   };
 
-  appimageContents = appimageTools.extract { inherit name src; };
+  appimageContents = appimageTools.extract {inherit name src;};
 in
-appimageTools.wrapType2 {
-  inherit name src;
+  appimageTools.wrapType2 {
+    inherit name src;
 
-  extraInstallCommands = ''
-    mv $out/bin/${name} $out/bin/${pname}
+    extraInstallCommands = ''
+      mv $out/bin/${name} $out/bin/${pname}
 
-    install -m 444 -D ${appimageContents}/${pname}.desktop -t $out/share/applications
-    substituteInPlace $out/share/applications/${pname}.desktop \
-      --replace 'Exec=AppRun' 'Exec=${pname}'
-    cp -r ${appimageContents}/usr/share/icons $out/share
-  '';
+      install -m 444 -D ${appimageContents}/${pname}.desktop -t $out/share/applications
+      substituteInPlace $out/share/applications/${pname}.desktop \
+        --replace 'Exec=AppRun' 'Exec=${pname}'
+      cp -r ${appimageContents}/usr/share/icons $out/share
+    '';
 
-  meta = with lib; {
-    description = "Notion Desktop builds with Notion Enhancer for Windows, MacOS and Linux.";
-    homepage = "https://github.com/notion-enhancer/desktop";
-    license = licenses.unfree;
-    maintainers = with maintainers; [ sei40kr ];
-    platforms = [ "x86_64-linux" ];
-    mainProgram = "notion-app";
-  };
-}
-
+    meta = with lib; {
+      description = "Notion Desktop builds with Notion Enhancer for Windows, MacOS and Linux.";
+      homepage = "https://github.com/notion-enhancer/desktop";
+      license = licenses.unfree;
+      maintainers = with maintainers; [sei40kr];
+      platforms = ["x86_64-linux"];
+      mainProgram = "notion-app";
+    };
+  }

@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ../common.nix
   ];
@@ -10,16 +14,15 @@
     };
 
     wireless.iwd.enable = true;
-    wireless.iwd.settings =
-      {
-        Network = {
-          EnableIPv6 = true;
-          RoutePriorityOffset = 300;
-        };
-        Settings = {
-          AutoConnect = true;
-        };
+    wireless.iwd.settings = {
+      Network = {
+        EnableIPv6 = true;
+        RoutePriorityOffset = 300;
       };
+      Settings = {
+        AutoConnect = true;
+      };
+    };
     networkmanager.wifi.backend = "iwd";
   };
 
@@ -52,7 +55,7 @@
       enable = true;
     };
     mccDev = {
-        enable = true;
+      enable = true;
     };
     twingate = {
       enable = true;

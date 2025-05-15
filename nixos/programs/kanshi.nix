@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   services.kanshi = {
     enable = true;
     systemdTarget = "sway-session.target";
@@ -50,7 +54,6 @@
             position = "2160,1231";
           }
         ];
-
       }
     ];
   };

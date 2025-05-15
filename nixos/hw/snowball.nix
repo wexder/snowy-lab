@@ -1,20 +1,25 @@
-{ lib, pkgs, config, modulesPath, nixos-hardware, ... }:
 {
+  lib,
+  pkgs,
+  config,
+  modulesPath,
+  nixos-hardware,
+  ...
+}: {
   boot.loader.systemd-boot.enable = true;
 
-  imports =
-    [
-      ./common.nix
-      ./bluetooth.nix
-      ./hid.nix
-      (modulesPath + "/installer/scan/not-detected.nix")
-      nixos-hardware.nixosModules.lenovo-thinkpad-x1-nano-gen1
-    ];
+  imports = [
+    ./common.nix
+    ./bluetooth.nix
+    ./hid.nix
+    (modulesPath + "/installer/scan/not-detected.nix")
+    nixos-hardware.nixosModules.lenovo-thinkpad-x1-nano-gen1
+  ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "thunderbolt" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" "iwlwifi" "iwlmvm" ];
-  hardware.firmware = [ ];
+  boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "thunderbolt" "usb_storage" "sd_mod"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-intel" "iwlwifi" "iwlmvm"];
+  hardware.firmware = [];
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   networking.networkmanager.wifi.backend = "iwd";
 
@@ -33,7 +38,12 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  swapDevices = [{ device = "/swapfile"; size = 8192; }];
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 8192;
+    }
+  ];
 
   gpus.intel.enable = true;
 }

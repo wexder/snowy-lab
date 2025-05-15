@@ -1,5 +1,11 @@
-{ lib, config, pkgs, modulesPath, nixos-hardware, ... }:
 {
+  lib,
+  config,
+  pkgs,
+  modulesPath,
+  nixos-hardware,
+  ...
+}: {
   boot.loader.grub = {
     # no need to set devices, disko will add all devices that have a EF02 partition to the list already
     # devices = [ ];
@@ -7,18 +13,17 @@
     efiInstallAsRemovable = true;
   };
 
-  imports =
-    [
-      ./common.nix
-      ./drives/test-server.nix
-      # nixos-hardware.nixosModules.lenovo-ideapad-slim-5
-    ];
+  imports = [
+    ./common.nix
+    ./drives/test-server.nix
+    # nixos-hardware.nixosModules.lenovo-ideapad-slim-5
+  ];
 
-  boot.initrd.availableKernelModules = [ "vmd" "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" "iwlwifi" "iwlmvm" ];
+  boot.initrd.availableKernelModules = ["vmd" "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-intel" "iwlwifi" "iwlmvm"];
   networking.networkmanager.wifi.backend = "iwd";
-  boot.extraModulePackages = [ ];
+  boot.extraModulePackages = [];
   hardware.enableRedistributableFirmware = true;
 
   networking.useDHCP = lib.mkDefault true;

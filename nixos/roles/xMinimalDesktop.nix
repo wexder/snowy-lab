@@ -1,8 +1,11 @@
-{ config, pkgs, lib, ... }:
-let
-  cfg = config.roles.xMinimalDesktop;
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.roles.xMinimalDesktop;
+in {
   options.roles.xMinimalDesktop = {
     enable = lib.mkOption {
       default = false;
@@ -11,7 +14,8 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable
+  config =
+    lib.mkIf cfg.enable
     {
       services.xserver.enable = true;
       services.displayManager.sddm.enable = true;

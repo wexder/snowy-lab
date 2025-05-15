@@ -1,34 +1,41 @@
-{ config, pkgs, attrs, ... }:
 {
+  config,
+  pkgs,
+  attrs,
+  ...
+}: {
+  imports = [
+    ../roles
+  ];
+
   networking = {
     hostName = "snowflake";
   };
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages =
-    [
-      pkgs.neovim
-      pkgs.git
-      pkgs.tmux
-      pkgs.tmux-sessionizer
-      pkgs.jq
-      pkgs.neovim-unwrapped
-      pkgs.wget
-      pkgs.curl
-      pkgs.lazydocker
-      pkgs.lazygit
-      pkgs.unzip
-      pkgs.ripgrep
-      pkgs.age
-      pkgs.ssh-to-age
-    ];
+  environment.systemPackages = [
+    pkgs.neovim
+    pkgs.git
+    pkgs.tmux
+    pkgs.tmux-sessionizer
+    pkgs.jq
+    pkgs.neovim-unwrapped
+    pkgs.wget
+    pkgs.curl
+    pkgs.lazydocker
+    pkgs.lazygit
+    pkgs.unzip
+    pkgs.ripgrep
+    pkgs.age
+    pkgs.ssh-to-age
+  ];
 
   # Necessary for using flakes on this system.
   nix.settings.experimental-features = "nix-command flakes";
 
   # Enable alternative shell support in nix-darwin.
-  programs.zsh.enable = true;  # default shell on catalina
+  programs.zsh.enable = true; # default shell on catalina
 
   # Set Git commit hash for darwin-version.
   system.configurationRevision = attrs.rev or attrs.dirtyRev or null;
@@ -44,12 +51,12 @@
   security.pam.services.sudo_local.touchIdAuth = true;
 
   homebrew = {
-      enable = true;
-      onActivation.cleanup = "uninstall";
-  
-      taps = [];
-      brews = [];
-      casks = [ "ghostty" ];
+    enable = true;
+    onActivation.cleanup = "uninstall";
+
+    taps = [];
+    brews = [];
+    casks = ["ghostty"];
   };
 
   system.defaults = {

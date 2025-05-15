@@ -1,8 +1,13 @@
 # Common config shared among all machines
-{ pkgs, hostName, lib, ... }: {
+{
+  pkgs,
+  hostName,
+  lib,
+  ...
+}: {
   system.stateVersion = "24.05";
 
-  imports = [ ./roles ];
+  imports = [./roles];
   nixpkgs.config = {
     allowUnfree = true;
     allowBroken = true;
@@ -17,8 +22,8 @@
     options = "--delete-older-than 7d";
   };
   nix.optimise.automatic = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.settings.trusted-users = [ "wexder" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.trusted-users = ["wexder"];
 
   # latest kernel
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
@@ -67,13 +72,14 @@
     isNormalUser = true;
     home = "/home/wexder";
     description = "wexder";
-    extraGroups = [ "wheel" ];
+    extraGroups = ["wheel"];
     hashedPasswordFile = lib.mkDefault "/etc/passwordFile-wexder";
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMkKyMS0O7nzToTh/3LCrwJB++zc29R8U6UlzfzT0xV9"
     ];
   };
-  environment.shells = with pkgs; [ zsh ];
+
+  environment.shells = with pkgs; [zsh];
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
   systemd.oomd.enable = true;
@@ -101,19 +107,19 @@
   };
 
   # WebDAV
-#   services.davfs2.enable = true;
-#   systemd.mounts = [
-#   {
-#     enable = true;
-#     description = "Webdav mount point";
-#     after = [ "network-online.target" ];
-#     wants = [ "network-online.target" ];
-#   
-#     what = "https://$fqdn/remote.php/dav/files/$myuser";
-#     where = "/mnt/nextcloud";
-#     options = uid=1000,gid=1000,file_mode=0664,dir_mode=2775
-#     type = "davfs";
-#     mountConfig.TimeoutSec = 15;
-#   }
-# ];
+  #   services.davfs2.enable = true;
+  #   systemd.mounts = [
+  #   {
+  #     enable = true;
+  #     description = "Webdav mount point";
+  #     after = [ "network-online.target" ];
+  #     wants = [ "network-online.target" ];
+  #
+  #     what = "https://$fqdn/remote.php/dav/files/$myuser";
+  #     where = "/mnt/nextcloud";
+  #     options = uid=1000,gid=1000,file_mode=0664,dir_mode=2775
+  #     type = "davfs";
+  #     mountConfig.TimeoutSec = 15;
+  #   }
+  # ];
 }

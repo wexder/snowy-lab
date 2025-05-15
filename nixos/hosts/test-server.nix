@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ../common.nix
   ];
@@ -10,16 +13,15 @@
     };
 
     wireless.iwd.enable = true;
-    wireless.iwd.settings =
-      {
-        Network = {
-          EnableIPv6 = true;
-          RoutePriorityOffset = 300;
-        };
-        Settings = {
-          AutoConnect = true;
-        };
+    wireless.iwd.settings = {
+      Network = {
+        EnableIPv6 = true;
+        RoutePriorityOffset = 300;
       };
+      Settings = {
+        AutoConnect = true;
+      };
+    };
   };
 
   environment.systemPackages = [

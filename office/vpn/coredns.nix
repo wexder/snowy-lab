@@ -1,5 +1,8 @@
-{ lib, pkgs, ... }:
-let
+{
+  lib,
+  pkgs,
+  ...
+}: let
   officeZone = lib.fileset.toSource {
     root = ./.;
     fileset = ./zones/office.local-k8s.tech;
@@ -8,11 +11,9 @@ let
     root = ./.;
     fileset = ./zones/office.vpn;
   };
-in
-{
-
-  networking.firewall.allowedTCPPorts = [ 53 ];
-  networking.firewall.allowedUDPPorts = [ 53 ];
+in {
+  networking.firewall.allowedTCPPorts = [53];
+  networking.firewall.allowedUDPPorts = [53];
 
   services.coredns = {
     enable = true;

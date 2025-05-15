@@ -1,11 +1,14 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   boot = {
     # kernelPackages = pkgs.linuxPackages_rpi4;
     tmp = {
       useTmpfs = true;
     };
-    initrd.availableKernelModules = [ "usbhid" "usb_storage" ];
+    initrd.availableKernelModules = ["usbhid" "usb_storage"];
     # ttyAMA0 is the serial console broken out to the GPIO
     kernelParams = [
       "8250.nr_uarts=1"
@@ -36,18 +39,23 @@
   };
 
   # !!! Adding a swap file is optional, but strongly recommended!
-  swapDevices = [{ device = "/swapfile"; size = 1024; }];
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 1024;
+    }
+  ];
 
   # WiFi
   hardware = {
     enableRedistributableFirmware = true;
-    firmware = [ pkgs.wireless-regdb ];
+    firmware = [pkgs.wireless-regdb];
   };
 
   nix = {
     settings = {
       # auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = ["nix-command" "flakes"];
     };
     gc = {
       automatic = true;

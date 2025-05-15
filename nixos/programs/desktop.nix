@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   home.packages = [
     pkgs.libsForQt5.kdeconnect-kde
     pkgs.dbeaver-bin
@@ -16,4 +20,3 @@
 
   services.blueman-applet.enable = true;
 }
-

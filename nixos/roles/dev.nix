@@ -1,8 +1,11 @@
-{ config, pkgs, lib, ... }:
-let
-  cfg = config.roles.dev;
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.roles.dev;
+in {
   options.roles.dev = {
     enable = lib.mkEnableOption "Enable dev tools";
     android = lib.mkEnableOption "Enable android dev tools";
@@ -11,7 +14,7 @@ in
   config = lib.mkMerge [
     (lib.mkIf cfg.enable
       {
-        environment.systemPackages = with pkgs;[
+        environment.systemPackages = with pkgs; [
           bash
           doctl
           postgresql
@@ -24,7 +27,6 @@ in
           glibc
         ];
 
-
         programs.direnv = {
           enable = true;
           loadInNixShell = true;
@@ -36,8 +38,8 @@ in
     (lib.mkIf cfg.android
       {
         programs.adb.enable = true;
-        users.users.wexder.extraGroups = [ "adbusers" "plugdev" ];
-        users.groups.plugdev = { };
+        users.users.wexder.extraGroups = ["adbusers" "plugdev"];
+        users.groups.plugdev = {};
       })
   ];
 }
