@@ -14,6 +14,7 @@
       ../programs/git.nix
       ../programs/zsh.nix
       ../programs/nvim.nix
+      ../programs/aerospace.nix
     ];
 
     # Let home Manager install and manage itself.
