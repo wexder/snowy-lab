@@ -13,8 +13,8 @@ in {
   config = lib.mkIf cfg.enable {
     age = {
       secrets = {
-        mccVPN.file = ../secrets/mcc_openvpn.age;
-        mccVPNAuth.file = ../secrets/mcc_openvpn_auth.age;
+        mccVPN.file = ../../secrets/mcc_openvpn.age;
+        mccVPNAuth.file = ../../secrets/mcc_openvpn_auth.age;
       };
     };
 

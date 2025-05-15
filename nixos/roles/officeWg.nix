@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   lib,
   ...
 }: let
@@ -27,7 +26,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    networking.firewall.allowedUDPPorts = [51820];
     environment.etc = {
       "systemd/resolved.conf.d/vpn.conf".text = ''
         [Resolve]

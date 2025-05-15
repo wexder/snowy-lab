@@ -68,6 +68,7 @@
       ];
       specialArgs = {
         inherit attrs;
+        isLinux = false;
       };
     };
 
@@ -108,6 +109,7 @@
                 hostName = host;
                 stable = stablePkgs;
                 zen-browser = zen-browser.packages.${node.system};
+                isLinux = true;
               };
             modules = [
               tuxedo-nixos.nixosModules.default
