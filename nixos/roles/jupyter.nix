@@ -6,15 +6,16 @@
 }: let
   cfg = config.roles.jupyter;
   pythonJupyter = pkgs.python3.withPackages (ps: with ps; [jupyterlab jupyterlab-lsp python-lsp-server]);
-  pythonKernel = pkgs.python310.withPackages (pythonPackages: with pythonPackages; [
-    pytorch-bin
-    jupyterlab
-    jupyterlab-lsp
-    ipykernel
-    ipython
-    pandas
-    scikit-learn
-  ]);
+  pythonKernel = pkgs.python310.withPackages (pythonPackages:
+    with pythonPackages; [
+      pytorch-bin
+      jupyterlab
+      jupyterlab-lsp
+      ipykernel
+      ipython
+      pandas
+      scikit-learn
+    ]);
   cuda = pkgs.cudaPackages.cudatoolkit;
   cudnn = pkgs.cudaPackages.cudnn;
 in {
