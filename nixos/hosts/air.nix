@@ -64,4 +64,10 @@
     screencapture.location = "~/Pictures/screenshots";
     screensaver.askForPasswordDelay = 0;
   };
+
+  roles = {
+    aerospace = {
+      enable = true;
+    };
+  };
 }
