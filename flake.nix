@@ -45,7 +45,12 @@
     in
     {
       darwinConfigurations."air" = nix-darwin.lib.darwinSystem {
-        modules = [ (import ./nixos/hosts/air.nix {}) ];
+        modules = [ 
+		./nixos/hosts/air.nix
+		./nixos/home/air.nix
+                home-manager.darwinModules.home-manager
+	];
+	specialArgs = { inherit attrs; };
       };
 
       # Convert nodes into a set of nixos configs.

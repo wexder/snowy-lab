@@ -1,5 +1,5 @@
 # Common config shared among all machines
-{ config, pkgs, hostName, lib, ... }: {
+{ pkgs, hostName, lib, ... }: {
   system.stateVersion = "24.05";
 
   imports = [ ./roles ];
