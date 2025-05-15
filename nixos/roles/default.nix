@@ -8,7 +8,6 @@ in {
   imports =
     [
       ./officeWg.nix
-      ./twingate.nix
     ]
     ++ lib.optionals isLinux [
       ./linux
