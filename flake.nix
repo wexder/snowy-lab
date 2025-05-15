@@ -66,7 +66,10 @@
         home-manager.darwinModules.default
         agenix.darwinModules.default
       ];
-      specialArgs = {inherit attrs;};
+      specialArgs = {
+        inherit attrs;
+        isLinux = false;
+      };
     };
 
     # Convert nodes into a set of nixos configs.
@@ -106,6 +109,7 @@
                 hostName = host;
                 stable = stablePkgs;
                 zen-browser = zen-browser.packages.${node.system};
+                isLinux = true;
               };
             modules = [
               tuxedo-nixos.nixosModules.default
