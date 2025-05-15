@@ -1,7 +1,7 @@
-{ config, pkgs, stable, lib, zen-browser, ... }:
+{ config, pkgs, stable, zen-browser, lib, ... }:
 let
   cfg = config.roles.desktop;
-  slack = pkgs.slack.overrideAttrs (oldAttrs: rec {
+  slack = pkgs.slack.overrideAttrs (oldAttrs: {
     fixupPhase = ''
       sed -i -e 's/,"WebRTCPipeWireCapturer"/,"LebRTCPipeWireCapturer"/' $out/lib/slack/resources/app.asar
 
@@ -80,25 +80,24 @@ in
           pkgs.wallutils
           # stable.betterbird
           zen-browser.default
+          stable.chromium
           pkgs.thunderbird
-          pkgs.birdtray
+          pkgs.discord
+          pkgs.ghostty
+          pkgs.signal-desktop
 
-          pkgs.clockify
+          stable.clockify
 
-          pkgs.ledger-live-desktop # testing
           pkgs.yubioath-flutter # testing
           pkgs.pcsclite # testing
           pkgs.pulseaudio # testing
           pkgs.alsa-utils # testing
-          pkgs.helvum # testing
 
           pkgs.obsidian # testing
-          pkgs.appflowy # testing
-          # pkgs.floorp # testing
           pkgs.simple-scan # testing
           pkgs.gimp # testing
           pkgs.inkscape # testing
-          pkgs.ghostty # testing
+          pkgs.rpi-imager
         ];
 
         security.pam.loginLimits = [
@@ -107,24 +106,39 @@ in
 
         services.udev.packages = [
           pkgs.yubikey-personalization
+          pkgs.opensc
+          pkgs.yubico-piv-tool
+          pkgs.pcsclite
+          pkgs.pcsc-tools
+          pkgs.opensc
+          pkgs.gnupg
+          pkgs.gnupg-pkcs11-scd
         ];
-        # services.pcscd.enable = true; # testing
-        # services.avahi = {
-        #   enable = true;
-        #   nssmdns4 = true;
-        #   openFirewall = true;
-        # }; # testing, mDNS, printing
-        # services.printing = {
-        #   enable = true;
-        #   drivers = [
-        #     pkgs.gutenprint
-        #     pkgs.hplip
-        #   ];
-        # }; #testing
-        # hardware.sane.enable = true; # enables support for SANE scanners
+        hardware.gpgSmartcards.enable = true;
+        programs.gnupg.agent.enable = true;
+        services.pcscd.enable = true; # testing
 
-        # users.extraGroups.scanner.members = [ "wexder" ];
-        # users.extraGroups.lp.members = [ "wexder" ];
+         services.avahi = {
+  nssmdns = true;
+  enable = true;
+  ipv4 = true;
+  ipv6 = false;
+  publish = {
+    enable = true;
+    addresses = true;
+    workstation = true;
+  };
+  };
+        services.printing = {
+          enable = true;
+          drivers = [
+            pkgs.gutenprint
+            # pkgs.hplip
+          ];
+        }; #testing
+        hardware.sane.enable = true; # enables support for SANE scanners
+        users.extraGroups.scanner.members = [ "wexder" ];
+        users.extraGroups.lp.members = [ "wexder" ];
 
         services.pipewire = {
           enable = true;
@@ -183,17 +197,19 @@ in
           };
         };
 
-        systemd.user.services.polkit-kde-authentication-agent-1 = {
-          description = "polkit-kde-authentication-agent-1";
-          wantedBy = [ "graphical-session.target" ];
-          wants = [ "graphical-session.target" ];
-          after = [ "graphical-session.target" ];
-          serviceConfig = {
-            Type = "simple";
-            ExecStart = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
-            Restart = "on-failure";
-            RestartSec = 1;
-            TimeoutStopSec = 10;
+        systemd = {
+          user.services.polkit-gnome-authentication-agent-1 = {
+            description = "polkit-gnome-authentication-agent-1";
+            wantedBy = [ "graphical-session.target" ];
+            wants = [ "graphical-session.target" ];
+            after = [ "graphical-session.target" ];
+            serviceConfig = {
+                Type = "simple";
+                ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+                Restart = "on-failure";
+                RestartSec = 1;
+                TimeoutStopSec = 10;
+              };
           };
         };
       }

@@ -16,16 +16,22 @@
     nixos-generators.url = "github:nix-community/nixos-generators";
     nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixos-hardware.url = "github:wexder/nixos-hardware/feature/t4-gen4";
+    nixos-hardware.url = "github:nixos/nixos-hardware";
 
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
     zen-browser.url = "github:youwen5/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
+
+    # testing
+    tuxedo-nixos.url = "github:sund3RRR/tuxedo-nixos";
+
+    # will be swapped for my own solution
+    deploy-rs.url = "github:serokell/deploy-rs";
   };
 
-  outputs = { self, nixpkgs, agenix, flake-utils, disko, home-manager, nixos-generators, stable, zen-browser, ... }@attrs:
+  outputs = { self, deploy-rs, nixpkgs, agenix, flake-utils, disko, home-manager, nixos-generators, stable, zen-browser, tuxedo-nixos, ... }@attrs:
     let
       inherit (nixpkgs.lib)
         mapAttrs nixosSystem;
@@ -44,7 +50,17 @@
               let
                 stablePkgs = import stable {
                   inherit (node) system;
-                  overlays = [ ];
+                  overlays = [(
+                  final: prev:
+                    {
+                      clockify = prev.clockify.overrideAttrs (old: {
+                        src = prev.fetchurl {
+                          url = "https://web.archive.org/web/20250419021523/https://clockify.me/downloads/Clockify_Setup.AppImage";
+                          hash = "sha256-/L70C+sTFJPzXkt1NSak2wVTRtFy2zInIlmLPG5LqeY=";
+                        };
+                      });
+                    }
+                  )];
                   config = {
                     allowUnfree = true;
                     allowBroken = true;
@@ -63,6 +79,7 @@
                   zen-browser = zen-browser.packages.${node.system};
                 };
                 modules = [
+                  tuxedo-nixos.nixosModules.default
                   agenix.nixosModules.default
                   disko.nixosModules.disko
                   node.config

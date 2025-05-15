@@ -50,19 +50,12 @@
     dev = {
       enable = true;
     };
-    netbird = {
-      enable = false;
-    };
     twingate = {
       enable = false;
     };
     desktop = {
       enable = true;
       syncthing = true;
-    };
-    tailscale = {
-      enable = true;
-      authkeyPath = config.age.secrets.tailscale.path;
     };
     officeWg = {
       enable = true;

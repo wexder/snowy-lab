@@ -6,14 +6,13 @@
     ./dev.nix
     ./dns.nix
     ./docker.nix
+    ./flatpak.nix
     ./games.nix
     ./jupyter.nix
     ./laptop.nix
-    ./llm.nix
-    ./netbird.nix
+    ./mcc.nix
     ./officeWg.nix
     ./prometheus.nix
-    ./tailscale.nix
     ./twingate.nix
     ./videoEditing.nix
     ./virtualization.nix

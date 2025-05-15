@@ -22,6 +22,8 @@ in
       services.xrdp.defaultWindowManager = "startplasma-x11";
       services.xrdp.openFirewall = true;
 
+      environment.systemPackages = [pkgs.firefox];
+
       environment.plasma5.excludePackages = with pkgs.libsForQt5; [
         elisa
         gwenview

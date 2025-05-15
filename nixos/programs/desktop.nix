@@ -8,20 +8,10 @@
     pkgs.resp-app
     # pkgs.notion-app-enhanced
     # notion
-    pkgs.chromium
     pkgs.bitwarden
-    pkgs.bitwarden-cli
     pkgs.vlc
     pkgs.kooha
     pkgs.tigervnc
-
-    pkgs.obsidian # testing
-    # pkgs.appflowy # testing
-    # pkgs.floorp # testing
-    pkgs.scrcpy # testing, android screen mirror
-    pkgs.birdtray # testing
-    pkgs.qflipper # testing
-    pkgs.signal-desktop # testing
   ];
 
   services.blueman-applet.enable = true;

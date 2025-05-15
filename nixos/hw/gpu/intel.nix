@@ -20,6 +20,7 @@ in
           pkgs.vaapiIntel # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
           pkgs.vaapiVdpau
           pkgs.libvdpau-va-gl
+          pkgs.vpl-gpu-rt
         ];
       };
     };

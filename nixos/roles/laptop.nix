@@ -9,20 +9,28 @@ in
 
   config = lib.mkIf cfg.enable
     {
-        # powerManagement.powertop.enable = true;
+        services.upower.enable = true;
+        powerManagement.powertop.enable = true;
+        powerManagement.enable = true;
+        # services.thermald.enable = true;
+        services.cpupower-gui.enable = true;
+        environment.systemPackages = [
+          pkgs.powertop
+          pkgs.powerstat
+        ];
 
-# services.auto-cpufreq.enable = true;
-# services.auto-cpufreq.settings = {
-#   battery = {
-#      governor = "powersave";
-#      turbo = "never";
-#   };
-#   charger = {
-#      governor = "performance";
-#      turbo = "auto";
-#   };
-# };
-# services.tlp.enable = true;
+    # services.system76-scheduler.settings.cfsProfiles.enable = true; # Better scheduling for CPU cycles - thanks System76!!!
 
+        # services.auto-cpufreq.enable = true;
+        # services.auto-cpufreq.settings = {
+        #   battery = {
+        #     governor = "powersave";
+        #     turbo = "never";
+        #   };
+        #   charger = {
+        #     governor = "performance";
+        #     turbo = "auto";
+        #   };
+        # };
     };
 }

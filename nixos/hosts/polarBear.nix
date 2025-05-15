@@ -73,9 +73,6 @@
     xMinimalDesktop = {
       enable = true;
     };
-    tailscale = {
-      enable = false;
-    };
     twingate = {
       enable = true;
     };
@@ -91,6 +88,9 @@
     };
     virtualisation = {
       enable = true;
+    };
+    mccDev = {
+        enable = true;
     };
   };
 }

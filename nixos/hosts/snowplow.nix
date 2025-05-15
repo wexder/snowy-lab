@@ -57,9 +57,5 @@
       enable = true;
       syncthing = true;
     };
-    tailscale = {
-      enable = true;
-      # authkeyPath = config.age.secrets.tailscale.path;
-    };
   };
 }

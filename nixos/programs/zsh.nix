@@ -29,7 +29,7 @@
       lzg = "lazygit";
       lg = "lazygit";
       lzd = "lazydocker";
-      twg = "sudo twingate stop && sudo twingate start && sudo twingate status";
+      twg = "sudo twingate stop && sudo twingate start && sudo twingate auth Nuclino";
     };
 
     oh-my-zsh = {

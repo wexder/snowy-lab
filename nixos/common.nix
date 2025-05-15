@@ -21,30 +21,27 @@
   nix.settings.trusted-users = [ "wexder" ];
 
   # latest kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
+  time.timeZone = "Europe/Prague";
   networking.hostName = hostName;
   networking.networkmanager.enable = lib.mkDefault true;
   services.resolved.enable = true;
 
   environment.systemPackages = [
-    pkgs.iwd
     pkgs.git
     pkgs.tmux
     pkgs.tmux-sessionizer
     pkgs.htop
     pkgs.jq
     pkgs.neovim-unwrapped
-    pkgs.tree
     pkgs.wget
     pkgs.curl
     pkgs.lazydocker
     pkgs.lazygit
-    pkgs.gcc
     pkgs.unzip
     pkgs.ripgrep
     pkgs.fwupd
-    pkgs.pciutils
     pkgs.nfs-utils
     pkgs.age
     pkgs.ssh-to-age
@@ -54,11 +51,6 @@
     EDITOR = "nvim";
   };
 
-  # TODO 
-  # services.getty.helpLine =
-  #   ">>> Flake node: ${hostName}, environment: ${environment}";
-
-  programs.mosh.enable = true;
   services.openssh = {
     enable = true;
     settings = {
@@ -66,14 +58,9 @@
     };
   };
 
-
-  time.timeZone = "Europe/Prague";
-
-  users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMkKyMS0O7nzToTh/3LCrwJB++zc29R8U6UlzfzT0xV9"
-  ];
-
-  security.polkit.enable = true;
+  security.polkit = {
+    enable = true;
+  };
 
   users.mutableUsers = false;
   users.users.wexder = {
@@ -99,12 +86,8 @@
 
   age = {
     secrets = {
-      tailscale.file = ./secrets/tailscale.age;
-      netclient.file = ./secrets/netclient.age;
       transmissionWgPk.file = ./secrets/transmission_wg_pk.age;
       transmissionWgPub.file = ./secrets/transmission_wg_pub.age;
-      mccVPN.file = ./secrets/mcc_openvpn.age;
-      mccVPNAuth.file = ./secrets/mcc_openvpn_auth.age;
       polarFoxCgWgPk.file = ./secrets/polar_fox_cg_wg_pk.age;
       snowballWgPk.file = ./secrets/snowball_cg_wg_pk.age;
       walrusWgPk = {
@@ -112,38 +95,25 @@
       };
     };
 
-    # TODO replace with more generic path
     identityPaths = [
       "/home/wexder/.ssh/age"
     ];
   };
 
-  services.openvpn.servers = {
-    mccVPN = {
-      config = ''
-        config ${config.age.secrets.mccVPN.path}
-        auth-user-pass ${config.age.secrets.mccVPNAuth.path}
-      '';
-    };
-  };
-
-  # Dev hosts
-  networking.extraHosts =
-    ''
-      192.168.240.19 kratos.local-k8s.local
-      192.168.240.19 heimdall.local-k8s.local
-      192.168.240.19 bragi.local-k8s.local
-      127.0.0.1 local-k8s.local
-      127.0.0.1 minio
-    '';
-
-  security.pki.certificateFiles = [
-    ./secrets/ca.pem
-  ];
-
-
-  # environment.etc."issue.d/ip.issue".text = ''
-  #   IPv4: \4
-  # '';
-  # networking.dhcpcd.runHook = "${pkgs.utillinux}/bin/agetty --reload";
+  # WebDAV
+#   services.davfs2.enable = true;
+#   systemd.mounts = [
+#   {
+#     enable = true;
+#     description = "Webdav mount point";
+#     after = [ "network-online.target" ];
+#     wants = [ "network-online.target" ];
+#   
+#     what = "https://$fqdn/remote.php/dav/files/$myuser";
+#     where = "/mnt/nextcloud";
+#     options = uid=1000,gid=1000,file_mode=0664,dir_mode=2775
+#     type = "davfs";
+#     mountConfig.TimeoutSec = 15;
+#   }
+# ];
 }

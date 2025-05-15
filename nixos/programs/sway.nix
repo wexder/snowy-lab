@@ -64,6 +64,7 @@
       modifier = "Mod4";
       terminal = "ghostty";
       startup = [
+        { command = "swayidle -w before-sleep 'swaylock -f -i /home/wexder/.config/wallpapers/mountains-on-mars.png -s fill'"; }
         { command = "kdeconnect-indicator"; }
         { command = "mako"; }
         { command = "slack"; }
@@ -94,14 +95,14 @@
 
         # betterbird
         { command = "thunderbird"; }
-        { command = "birdtray"; }
 
         # clockify
         { command = "clockify"; }
 
         # kanshi
-        # { command = "exec sleep 5; systemctl --user start kanshi.service"; }
         { command = "kanshi"; }
+
+        { command = "tuxedo-control-center"; }
 
         # lan-mouse
         # { command = "lan-mouse --daemon"; }

@@ -1,4 +1,9 @@
 { config, pkgs, ... }:
+let
+  proxmark3 = pkgs.proxmark3.override {
+    withGeneric = true;
+  };
+in
 {
   imports = [
     ../common.nix
@@ -24,12 +29,25 @@
 
   environment.systemPackages = [
     pkgs.brightnessctl
+    proxmark3
+    pkgs.intel-undervolt
+    config.boot.kernelPackages.cpupower
+    config.boot.kernelPackages.x86_energy_perf_policy  
   ];
+
   users.users.wexder.password = "test";
   users.users.wexder.hashedPasswordFile = null;
+  users.users.wexder.extraGroups = [ "dialout" "bluetooth" ];
+
+  hardware.flipperzero.enable = true;
+
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   roles = {
     laptop = {
+      enable = true;
+    };
+    cad = {
       enable = true;
     };
     docker = {
@@ -38,9 +56,6 @@
     dev = {
       enable = true;
     };
-    netbird = {
-      enable = false;
-    };
     twingate = {
       enable = true;
     };
@@ -48,14 +63,25 @@
       enable = true;
       syncthing = true;
     };
-    tailscale = {
-      enable = false;
-      authkeyPath = config.age.secrets.tailscale.path;
+    mccDev = {
+        enable = true;
+    };
+    "3d" = {
+      enable = true;
     };
     officeWg = {
       enable = true;
       address = "192.168.250.5/32";
       privateKeyFile = config.age.secrets.walrusWgPk.path;
+    };
+    virtualisation = {
+      enable = true;
+    };
+    wine = {
+      enable = true;
+    };
+    flatpak = {
+      enable = true;
     };
   };
 }

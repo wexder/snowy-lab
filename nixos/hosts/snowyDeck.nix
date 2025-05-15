@@ -12,8 +12,5 @@
     dev = {
       enable = true;
     };
-    tailscale = {
-      enable = true;
-    };
   };
 }

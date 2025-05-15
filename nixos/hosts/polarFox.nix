@@ -51,8 +51,8 @@
     games = {
       enable = true;
     };
-    tailscale = {
-      enable = false;
+    mccDev = {
+        enable = true;
     };
     twingate = {
       enable = true;
