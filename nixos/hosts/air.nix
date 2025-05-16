@@ -71,7 +71,7 @@
 
     taps = [];
     brews = [];
-    casks = ["ghostty" "zen"];
+    casks = ["ghostty" "zen" "signal"];
   };
 
   system = {
