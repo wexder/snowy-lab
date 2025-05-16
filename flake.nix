@@ -26,7 +26,7 @@
 
     tuxedo-nixos.url = "github:sund3RRR/tuxedo-nixos";
 
-    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.url = "github:nix-darwin/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     # will be swapped for my own solution

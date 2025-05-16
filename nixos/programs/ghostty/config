@@ -7,3 +7,4 @@ confirm-close-surface = false
 font-size = 11
 desktop-notifications = false
 resize-overlay = never
+macos-titlebar-style = hidden

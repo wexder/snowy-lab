@@ -4,8 +4,20 @@
   attrs,
   ...
 }: {
+  imports = [
+    ../roles
+  ];
+
   networking = {
     hostName = "snowflake";
+  };
+
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowBroken = true;
+    permittedInsecurePackages = [
+      "electron-25.9.0"
+    ];
   };
 
   # List packages installed in system profile. To search by name, run:
@@ -25,6 +37,9 @@
     pkgs.ripgrep
     pkgs.age
     pkgs.ssh-to-age
+    pkgs.obsidian
+    pkgs.slack
+    pkgs.raycast
   ];
 
   # Necessary for using flakes on this system.
@@ -44,7 +59,11 @@
   nixpkgs.hostPlatform = "aarch64-darwin";
 
   # Allow TouchID for sudo
-  security.pam.services.sudo_local.touchIdAuth = true;
+  security.pam.services.sudo_local = {
+    enable = true;
+    touchIdAuth = true;
+    reattach = true;
+  };
 
   homebrew = {
     enable = true;
@@ -52,17 +71,23 @@
 
     taps = [];
     brews = [];
-    casks = ["ghostty"];
+    casks = ["ghostty" "zen"];
   };
 
-  system.defaults = {
-    dock.autohide = true;
-    dock.mru-spaces = false;
-    finder.AppleShowAllExtensions = true;
-    finder.FXPreferredViewStyle = "clmv";
-    loginwindow.LoginwindowText = "codegrowers.com";
-    screencapture.location = "~/Pictures/screenshots";
-    screensaver.askForPasswordDelay = 0;
+  system = {
+    keyboard = {
+      enableKeyMapping = true;
+      swapLeftCtrlAndFn = true;
+    };
+    defaults = {
+      dock.autohide = true;
+      dock.mru-spaces = false;
+      finder.AppleShowAllExtensions = true;
+      finder.FXPreferredViewStyle = "clmv";
+      loginwindow.LoginwindowText = "codegrowers.com";
+      screencapture.location = "~/Pictures/screenshots";
+      screensaver.askForPasswordDelay = 0;
+    };
   };
 
   roles = {
