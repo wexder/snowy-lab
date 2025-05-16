@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   attrs,
   ...
@@ -88,6 +87,18 @@
       screencapture.location = "~/Pictures/screenshots";
       screensaver.askForPasswordDelay = 0;
     };
+  };
+
+  age = {
+    secrets = {
+      airWgPk = {
+        file = ./secrets/air_cg_wg_pk.age;
+      };
+    };
+
+    identityPaths = [
+      "/Users/vladimirzahradnik/.ssh/age"
+    ];
   };
 
   roles = {

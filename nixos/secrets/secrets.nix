@@ -19,4 +19,5 @@ in {
   "polar_fox_cg_wg_pk.age".publicKeys = users ++ machines;
   "snowball_cg_wg_pk.age".publicKeys = users ++ machines;
   "walrus_cg_wg_pk.age".publicKeys = users ++ machines;
+  "air_cg_wg_pk.age".publicKeys = users ++ machines;
 }
