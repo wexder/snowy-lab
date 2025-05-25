@@ -6,11 +6,6 @@
 }: let
   cfg = config.roles.dev;
 in {
-  options.roles.dev = {
-    enable = lib.mkEnableOption "Enable dev tools";
-    android = lib.mkEnableOption "Enable android dev tools";
-  };
-
   config = lib.mkMerge [
     (lib.mkIf cfg.enable
       {
@@ -26,14 +21,6 @@ in {
           gnumake
           glibc
         ];
-
-        programs.direnv = {
-          enable = true;
-          loadInNixShell = true;
-          nix-direnv = {
-            enable = true;
-          };
-        };
       })
     (lib.mkIf cfg.android
       {

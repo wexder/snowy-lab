@@ -7,6 +7,7 @@
 in {
   imports =
     [
+      ./dev.nix
       ./officeWg.nix
     ]
     ++ lib.optionals isLinux [

@@ -65,6 +65,9 @@
         ./nixos/home/air.nix
         home-manager.darwinModules.default
         agenix.darwinModules.default
+        {
+          environment.systemPackages = [agenix.packages.aarch64-darwin.default];
+        }
       ];
       specialArgs = {
         inherit attrs;

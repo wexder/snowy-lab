@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   attrs,
   ...
@@ -70,7 +71,7 @@
 
     taps = [];
     brews = [];
-    casks = ["ghostty" "zen" "signal"];
+    casks = ["ghostty" "zen" "signal" "eloston-chromium" "mullvadvpn"];
   };
 
   system = {
@@ -92,7 +93,7 @@
   age = {
     secrets = {
       airWgPk = {
-        file = ./secrets/air_cg_wg_pk.age;
+        file = ../secrets/air_cg_wg_pk.age;
       };
     };
 
@@ -103,6 +104,14 @@
 
   roles = {
     aerospace = {
+      enable = true;
+    };
+    officeWg = {
+      enable = true;
+      address = "192.168.250.8/32";
+      privateKeyFile = config.age.secrets.airWgPk.path;
+    };
+    dev = {
       enable = true;
     };
   };
