@@ -1,9 +1,8 @@
-{
-  lib,
-  config,
-  pkgs,
-  modulesPath,
-  ...
+{ lib
+, config
+, pkgs
+, modulesPath
+, ...
 }: {
   boot.loader.systemd-boot.enable = true;
 
@@ -13,10 +12,10 @@
     ./hid.nix
   ];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "sr_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "sr_mod" ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = [ ];
   hardware.ksm.enable = true;
 
   fileSystems = {

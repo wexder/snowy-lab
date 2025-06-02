@@ -38,17 +38,17 @@
         "thunderbird" = {
           id = "thunderbird";
           path = "/home/wexder/.thunderbird/";
-          devices = ["polar-fox" "walrus"];
+          devices = [ "polar-fox" "walrus" "snowflake" ];
         };
         "documents" = {
           id = "documents";
           path = "/home/wexder/documents/";
-          devices = ["polar-fox" "walrus"];
+          devices = [ "polar-fox" "walrus" "snowflake" ];
         };
         "obsidian" = {
           id = "obsidian";
           path = "/home/wexder/obsidian/";
-          devices = ["polar-fox" "walrus" "pixel"];
+          devices = [ "polar-fox" "walrus" "pixel" "snowflake" ];
         };
       };
       devices = {
@@ -60,6 +60,9 @@
         };
         pixel = {
           id = "VYI5BP3-NBVRZX4-JGWGRFA-O42HSBU-FBVDOAK-EZU5Z7N-HBYQZQK-24HU4AO";
+        };
+        snowflake = {
+          id = "HEYQRXA-NJNSJXA-UYLL2DQ-V7CJ5JP-NP534AD-BH7R4W2-MELM7CF-XLMEZAY";
         };
       };
     };

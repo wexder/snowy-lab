@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   imports = [
     ./3d.nix
     ./cad.nix
@@ -10,6 +10,7 @@
     ./games.nix
     ./jupyter.nix
     ./laptop.nix
+    ./llm.nix
     ./mcc.nix
     ./officeWg.nix
     ./prometheus.nix
