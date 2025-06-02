@@ -32,14 +32,13 @@
   };
 
   boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "thunderbolt" "usb_storage" "sd_mod" "sdhci_pci"];
-  boot.initrd.kernelModules = ["xe"];
+  boot.initrd.kernelModules = ["xe" "acpi_call"];
   boot.kernelModules = ["kvm-intel" "iwlwifi" "iwlmvm" "tuxedo_keyboard"];
   networking.networkmanager.wifi.backend = "iwd";
-  boot.extraModulePackages = with config.boot.kernelPackages; [tuxedo-drivers cpupower x86_energy_perf_policy];
+  boot.extraModulePackages = with config.boot.kernelPackages; [tuxedo-drivers acpi_call];
   hardware.firmware = [];
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  services.thermald.enable = lib.mkDefault true;
   services.fstrim.enable = lib.mkDefault true;
 
   hardware.tuxedo-control-center.enable = true;

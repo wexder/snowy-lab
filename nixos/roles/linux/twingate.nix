@@ -1,10 +1,16 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.roles.twingate;
 in {
+  options.roles.twingate = {
+    enable = lib.mkEnableOption "Enable twingate";
+    package = lib.mkPackageOption pkgs "twingate" {};
+  };
+
   config =
     lib.mkIf cfg.enable
     {
