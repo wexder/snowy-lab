@@ -16,7 +16,7 @@
       domain = "*";
       item = "nofile";
       type = "-";
-      value = "32768";
+      value = "524288";
     }
     {
       domain = "*";

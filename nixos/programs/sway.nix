@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }: {
   imports = [
     ./alacritty.nix
@@ -45,18 +44,26 @@
   gtk = {
     enable = true;
     cursorTheme = {
-      name = "Vanilla-DMZ";
-      package = pkgs.vanilla-dmz;
+      name = "Quintom_Snow";
+      package = pkgs.quintom-cursor-theme;
     };
     theme = {
       name = "Catppuccin-Macchiato-Compact-Pink-Dark";
       package = pkgs.catppuccin-gtk.override {
-        accents = ["pink"];
+        accents = [ "pink" ];
         size = "compact";
-        tweaks = ["rimless" "black"];
+        tweaks = [ "rimless" "black" ];
         variant = "macchiato";
       };
     };
+  };
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+    name = "Quintom_Snow";
+    size = 32;
+    package = pkgs.quintom-cursor-theme;
   };
 
   wayland.windowManager.sway = {
@@ -68,45 +75,45 @@
       modifier = "Mod4";
       terminal = "ghostty";
       startup = [
-        {command = "swayidle -w before-sleep 'swaylock -f -i /home/wexder/.config/wallpapers/mountains-on-mars.png -s fill'";}
-        {command = "kdeconnect-indicator";}
-        {command = "mako";}
-        {command = "slack";}
-        {command = "setrandom -m scale /home/wexder/.config/wallpapers";}
-        {command = "ghostty";}
+        { command = "swayidle -w before-sleep 'swaylock -f -i /home/wexder/.config/wallpapers/mountains-on-mars.png -s fill'"; }
+        { command = "kdeconnect-indicator"; }
+        { command = "mako"; }
+        { command = "slack"; }
+        { command = "setrandom -m scale /home/wexder/.config/wallpapers"; }
+        { command = "ghostty"; }
 
         ## cliphist
-        {command = "wl-paste --type text --watch cliphist store #Stores only text data";}
-        {command = "wl-paste --type image --watch cliphist store #Stores only image data";}
+        { command = "wl-paste --type text --watch cliphist store #Stores only text data"; }
+        { command = "wl-paste --type image --watch cliphist store #Stores only image data"; }
 
         # waybar
-        {command = "waybar";}
+        { command = "waybar"; }
 
         # audio
-        {command = "playerctld daemon";}
+        { command = "playerctld daemon"; }
 
         # browser
-        {command = "zen";}
+        { command = "zen"; }
 
         # music
-        {command = "tidal-hifi";}
+        { command = "tidal-hifi"; }
 
         # passwords
-        {command = "bitwarden";}
+        { command = "bitwarden"; }
 
         # steam
-        {command = "steam";}
+        { command = "steam"; }
 
         # betterbird
-        {command = "thunderbird";}
+        { command = "thunderbird"; }
 
         # clockify
-        {command = "clockify";}
+        { command = "clockify"; }
 
         # kanshi
-        {command = "kanshi";}
+        { command = "kanshi"; }
 
-        {command = "tuxedo-control-center";}
+        { command = "tuxedo-control-center"; }
 
         # lan-mouse
         # { command = "lan-mouse --daemon"; }
@@ -122,7 +129,7 @@
           Return = "mode default";
         };
       };
-      bars = [];
+      bars = [ ];
       input = {
         "*" = {
           xkb_layout = "us,cz";
@@ -180,9 +187,10 @@
           indicator = "#d76a92";
         };
       };
-      keybindings = let
-        modifier = config.wayland.windowManager.sway.config.modifier;
-      in
+      keybindings =
+        let
+          modifier = config.wayland.windowManager.sway.config.modifier;
+        in
         lib.mkOptionDefault {
           # start a terminal
           "${modifier}+Return" = "exec ghostty";
