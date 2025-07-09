@@ -1,7 +1,6 @@
-{
-  config,
-  pkgs,
-  ...
+{ config
+, pkgs
+, ...
 }: {
   imports = [
     ../common.nix
@@ -26,26 +25,30 @@
 
   environment.systemPackages = [
     pkgs.brightnessctl
-    pkgs.prusa-slicer
+    config.boot.kernelPackages.cpupower
+    config.boot.kernelPackages.x86_energy_perf_policy
   ];
 
   services.thinkfan = {
     enable = true;
     smartSupport = true;
     levels = [
-      [0 0 55]
-      [1 53 57]
-      [2 55 61]
-      [3 60 66]
-      [4 63 67]
-      [5 65 71]
-      [6 70 76]
-      [7 75 85]
-      ["level auto" 80 32767]
+      [ 0 0 55 ]
+      [ 1 53 57 ]
+      [ 2 55 61 ]
+      [ 3 60 66 ]
+      [ 4 63 67 ]
+      [ 5 65 71 ]
+      [ 6 70 76 ]
+      [ 7 75 85 ]
+      [ "level auto" 80 32767 ]
     ];
   };
 
   roles = {
+    laptop = {
+      enable = true;
+    };
     docker = {
       enable = true;
     };

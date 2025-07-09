@@ -1,12 +1,13 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{ config
+, pkgs
+, ...
+}:
+let
   proxmark3 = pkgs.proxmark3.override {
     withGeneric = true;
   };
-in {
+in
+{
   imports = [
     ../common.nix
   ];
@@ -29,7 +30,6 @@ in {
   };
 
   environment.systemPackages = [
-    pkgs.brightnessctl
     proxmark3
     pkgs.intel-undervolt
     config.boot.kernelPackages.cpupower
@@ -38,7 +38,7 @@ in {
 
   users.users.wexder.password = "test";
   users.users.wexder.hashedPasswordFile = null;
-  users.users.wexder.extraGroups = ["dialout" "bluetooth"];
+  users.users.wexder.extraGroups = [ "dialout" "bluetooth" ];
 
   hardware.flipperzero.enable = true;
 

@@ -1,13 +1,12 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }: {
   home.packages = [
     pkgs.libsForQt5.kdeconnect-kde
     pkgs.dbeaver-bin
-    pkgs.postman
+    # pkgs.postman
     pkgs.caprine-bin
     pkgs.resp-app
     # pkgs.notion-app-enhanced
