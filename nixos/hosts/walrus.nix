@@ -32,8 +32,6 @@ in
   environment.systemPackages = [
     proxmark3
     pkgs.intel-undervolt
-    config.boot.kernelPackages.cpupower
-    config.boot.kernelPackages.x86_energy_perf_policy
   ];
 
   users.users.wexder.password = "test";

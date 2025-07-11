@@ -67,7 +67,7 @@
     enable = true;
   };
 
-  users.mutableUsers = false;
+  users.mutableUsers = true; # TODO find better solution
   users.users.wexder = {
     isNormalUser = true;
     home = "/home/wexder";

@@ -24,6 +24,8 @@ in
           pkgs.powertop
           pkgs.powerstat
           pkgs.auto-cpufreq
+          config.boot.kernelPackages.cpupower
+          config.boot.kernelPackages.x86_energy_perf_policy
         ];
 
         # services.auto-cpufreq = {

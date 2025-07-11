@@ -23,11 +23,8 @@
     };
   };
 
-  environment.systemPackages = [
-    pkgs.brightnessctl
-    config.boot.kernelPackages.cpupower
-    config.boot.kernelPackages.x86_energy_perf_policy
-  ];
+  users.users.wexder.initialPassword = "test";
+  users.users.wexder.hashedPasswordFile = null;
 
   services.thinkfan = {
     enable = true;
