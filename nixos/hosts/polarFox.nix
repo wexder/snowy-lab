@@ -74,6 +74,9 @@
       address = "192.168.250.2/32";
       privateKeyFile = config.age.secrets.polarFoxCgWgPk.path;
     };
+    work = {
+      enable = true;
+    };
     wireshark = {
       enable = true;
     };

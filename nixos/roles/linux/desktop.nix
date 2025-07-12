@@ -7,17 +7,6 @@
   ...
 }: let
   cfg = config.roles.desktop;
-  slack = pkgs.slack.overrideAttrs (oldAttrs: {
-    fixupPhase = ''
-      sed -i -e 's/,"WebRTCPipeWireCapturer"/,"LebRTCPipeWireCapturer"/' $out/lib/slack/resources/app.asar
-
-      rm $out/bin/slack
-      makeWrapper $out/lib/slack/slack $out/bin/slack \
-        --prefix XDG_DATA_DIRS : $GSETTINGS_SCHEMAS_PATH \
-        --suffix PATH : ${lib.makeBinPath [pkgs.xdg-utils]} \
-        --add-flags "--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations,WebRTCPipeWireCapturer"
-    '';
-  });
 in {
   options.roles.desktop = {
     enable = lib.mkOption {
@@ -74,7 +63,6 @@ in {
 
         environment.sessionVariables.NIXOS_OZONE_WL = "1";
         environment.systemPackages = [
-          slack
           pkgs.whatsapp-for-linux
           pkgs.wayvnc
           pkgs.pavucontrol
@@ -82,28 +70,25 @@ in {
           pkgs.grim
           pkgs.swappy
           pkgs.slurp
-          stable.libreoffice
+          pkgs.onlyoffice-desktopeditors
           pkgs.wallutils
-          # stable.betterbird
+
           zen-browser.default
           stable.chromium
           pkgs.thunderbird
+
+          pkgs.obsidian
+
           pkgs.discord
           pkgs.ghostty
           pkgs.signal-desktop
-
-          stable.clockify
 
           pkgs.yubioath-flutter # testing
           pkgs.pcsclite # testing
           pkgs.pulseaudio # testing
           pkgs.alsa-utils # testing
 
-          pkgs.obsidian # testing
           pkgs.simple-scan # testing
-          pkgs.gimp # testing
-          pkgs.inkscape # testing
-          pkgs.rpi-imager
         ];
 
         security.pam.loginLimits = [

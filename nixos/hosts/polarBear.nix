@@ -38,17 +38,17 @@
         "thunderbird" = {
           id = "thunderbird";
           path = "/home/wexder/.thunderbird/";
-          devices = [ "polar-fox" "walrus" "snowflake" ];
+          devices = ["polar-fox" "walrus" "snowflake"];
         };
         "documents" = {
           id = "documents";
           path = "/home/wexder/documents/";
-          devices = [ "polar-fox" "walrus" "snowflake" ];
+          devices = ["polar-fox" "walrus" "snowflake"];
         };
         "obsidian" = {
           id = "obsidian";
           path = "/home/wexder/obsidian/";
-          devices = [ "polar-fox" "walrus" "pixel" "snowflake" ];
+          devices = ["polar-fox" "walrus" "pixel" "snowflake"];
         };
       };
       devices = {

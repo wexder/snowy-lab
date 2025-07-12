@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   imports = [
     ./3d.nix
     ./cad.nix
@@ -19,6 +19,7 @@
     ./virtualization.nix
     ./wine.nix
     ./wireshark.nix
+    ./work.nix
     ./xMinimalDesktop.nix
   ];
 }

@@ -1,6 +1,7 @@
-{ config
-, pkgs
-, ...
+{
+  config,
+  pkgs,
+  ...
 }: {
   imports = [
     ../common.nix
@@ -30,15 +31,15 @@
     enable = true;
     smartSupport = true;
     levels = [
-      [ 0 0 55 ]
-      [ 1 53 57 ]
-      [ 2 55 61 ]
-      [ 3 60 66 ]
-      [ 4 63 67 ]
-      [ 5 65 71 ]
-      [ 6 70 76 ]
-      [ 7 75 85 ]
-      [ "level auto" 80 32767 ]
+      [0 0 55]
+      [1 53 57]
+      [2 55 61]
+      [3 60 66]
+      [4 63 67]
+      [5 65 71]
+      [6 70 76]
+      [7 75 85]
+      ["level auto" 80 32767]
     ];
   };
 
@@ -52,12 +53,18 @@
     dev = {
       enable = true;
     };
+    games = {
+      enable = true;
+    };
     twingate = {
       enable = false;
     };
     desktop = {
       enable = true;
       syncthing = true;
+    };
+    work = {
+      enable = false;
     };
     officeWg = {
       enable = true;
