@@ -80,5 +80,8 @@
     wireshark = {
       enable = true;
     };
+    zerotier = {
+        enable = true;
+    };
   };
 }

@@ -21,5 +21,6 @@
     ./wireshark.nix
     ./work.nix
     ./xMinimalDesktop.nix
+    ./zerotier.nix
   ];
 }
