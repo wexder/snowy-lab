@@ -1,7 +1,6 @@
-{
-  config,
-  pkgs,
-  ...
+{ config
+, pkgs
+, ...
 }: {
   imports = [
     ../common.nix
@@ -38,17 +37,17 @@
         "thunderbird" = {
           id = "thunderbird";
           path = "/home/wexder/.thunderbird/";
-          devices = ["polar-fox" "walrus" "snowflake"];
+          devices = [ "polar-fox" "walrus" "snowflake" "snowball" ];
         };
         "documents" = {
           id = "documents";
           path = "/home/wexder/documents/";
-          devices = ["polar-fox" "walrus" "snowflake"];
+          devices = [ "polar-fox" "walrus" "snowflake" "snowball" ];
         };
         "obsidian" = {
           id = "obsidian";
           path = "/home/wexder/obsidian/";
-          devices = ["polar-fox" "walrus" "pixel" "snowflake"];
+          devices = [ "polar-fox" "walrus" "pixel" "snowflake" "snowball" ];
         };
       };
       devices = {
@@ -63,6 +62,9 @@
         };
         snowflake = {
           id = "HEYQRXA-NJNSJXA-UYLL2DQ-V7CJ5JP-NP534AD-BH7R4W2-MELM7CF-XLMEZAY";
+        };
+        snowball = {
+          id = "ZH4HMPO-LTPXSUA-EBRLTNJ-KWDM6F7-KVSJUCW-KPMDJAJ-DJWJ2VF-HBQNOQQ";
         };
       };
     };
@@ -87,6 +89,10 @@
     llm = {
       enable = false;
     };
+    games = {
+      enable = true;
+      server = true;
+    };
     prometheus = {
       enable = true;
       nut = true;
@@ -95,6 +101,9 @@
       enable = true;
     };
     mccDev = {
+      enable = true;
+    };
+    zerotier = {
       enable = true;
     };
   };

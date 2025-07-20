@@ -1,9 +1,8 @@
-{
-  lib,
-  config,
-  pkgs,
-  modulesPath,
-  ...
+{ lib
+, config
+, pkgs
+, modulesPath
+, ...
 }: {
   boot.loader.systemd-boot.enable = true;
 
@@ -13,11 +12,14 @@
     ./hid.nix
   ];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "sr_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "sr_mod" ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = [ ];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   hardware.ksm.enable = true;
+
+  services.openssh.enable = true;
 
   fileSystems = {
     "/" = {
@@ -49,6 +51,8 @@
   ];
 
   environment.etc."passwordFile-ups".text = builtins.readFile ./polarBear/ups-pass;
+  # TODO Fix
+  environment.etc."passwordFile-upsm".text = builtins.readFile ./polarBear/upsdm-pass;
 
   power.ups = {
     enable = true;
@@ -60,6 +64,14 @@
         user = "ups";
         passwordFile = "/etc/passwordFile-ups";
         powerValue = 2;
+      };
+    };
+    users = {
+      wexder = {
+        passwordFile = "/etc/passwordFile-upsm";
+        upsmon = "primary";
+        actions = [ "set" "fsd" ];
+        instcmds = [ "ALL" ];
       };
     };
     upsd = {
