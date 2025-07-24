@@ -35,7 +35,10 @@ in {
 
   users.users.wexder.password = "test";
   users.users.wexder.hashedPasswordFile = null;
-  users.users.wexder.extraGroups = ["dialout" "bluetooth"];
+  users.users.wexder.extraGroups = [
+    "dialout"
+    "bluetooth"
+  ];
 
   hardware.flipperzero.enable = true;
 
@@ -63,6 +66,7 @@ in {
     };
     mccDev = {
       enable = true;
+      use_netbird = true;
     };
     "3d" = {
       enable = true;

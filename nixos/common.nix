@@ -1,12 +1,13 @@
 # Common config shared among all machines
-{ pkgs
-, hostName
-, lib
-, ...
+{
+  pkgs,
+  hostName,
+  lib,
+  ...
 }: {
   system.stateVersion = "24.05";
 
-  imports = [ ./roles ];
+  imports = [./roles];
   nixpkgs.config = {
     allowUnfree = true;
     allowBroken = true;
@@ -21,8 +22,11 @@
     options = "--delete-older-than 7d";
   };
   nix.optimise.automatic = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.settings.trusted-users = [ "wexder" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+  nix.settings.trusted-users = ["wexder"];
 
   # latest kernel
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
@@ -50,6 +54,7 @@
     pkgs.nfs-utils
     pkgs.age
     pkgs.ssh-to-age
+    pkgs.nushell
   ];
 
   environment.sessionVariables = {
@@ -72,14 +77,14 @@
     isNormalUser = true;
     home = "/home/wexder";
     description = "wexder";
-    extraGroups = [ "wheel" ];
+    extraGroups = ["wheel"];
     hashedPasswordFile = lib.mkDefault "/etc/passwordFile-wexder";
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMkKyMS0O7nzToTh/3LCrwJB++zc29R8U6UlzfzT0xV9"
     ];
   };
 
-  environment.shells = with pkgs; [ zsh ];
+  environment.shells = with pkgs; [zsh];
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
   systemd.oomd.enable = true;
@@ -105,6 +110,14 @@
       "/home/wexder/.ssh/age"
     ];
   };
+
+  # Mandatory
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  # Optionally (BEWARE: requires a different format with the added /UTF-8)
+  i18n.supportedLocales = [
+    "all"
+  ];
 
   # WebDAV
   #   services.davfs2.enable = true;

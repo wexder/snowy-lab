@@ -19,8 +19,8 @@
   home.file.".config/wallpapers".source = pkgs.fetchFromGitHub {
     owner = "wexder";
     repo = "snowy-lab-wallpapers";
-    rev = "1ab613b4692a98969923691b110508499cc15bee";
-    hash = "sha256-HqDO+io+IHTfrGXYOdStVV7DigfZviPYuLQk/boxzG4=";
+    rev = "ac4ee28c9f72b322ee047a0a046273ef52c8b04e";
+    hash = "sha256-kEuiRqPltWAlrPeTqOfd+hk8FTi1c90YvY6j5fA8cUY=";
   };
 
   home.packages = [
@@ -53,7 +53,10 @@
       package = pkgs.catppuccin-gtk.override {
         accents = ["pink"];
         size = "compact";
-        tweaks = ["rimless" "black"];
+        tweaks = [
+          "rimless"
+          "black"
+        ];
         variant = "macchiato";
       };
     };
@@ -76,7 +79,9 @@
       modifier = "Mod4";
       terminal = "ghostty";
       startup = [
-        {command = "swayidle -w before-sleep 'swaylock -f -i /home/wexder/.config/wallpapers/mountains-on-mars.png -s fill'";}
+        {
+          command = "swayidle -w before-sleep 'swaylock -f -i /home/wexder/.config/wallpapers/nix-vegas.png -s fill'";
+        }
         {command = "kdeconnect-indicator";}
         {command = "mako";}
         {command = "slack";}
@@ -222,8 +227,8 @@
 
           # Pulse Audio controls
           # not working
-          "--locked XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume 0 +5%"; #increase sound volume
-          "--locked XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume 0 -5%"; #decrease sound volume
+          "--locked XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume 0 +5%"; # increase sound volume
+          "--locked XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume 0 -5%"; # decrease sound volume
           "--locked XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute 0 toggle"; # mute sound
           # Media --locked player controls
           "--locked XF86AudioPlay" = "exec playerctl play-pause";
