@@ -9,13 +9,8 @@ $ORIGIN office.local-k8s.tech.
 
 
 ; name servers - NS records
-@    IN    NS    ns1
-@    IN    NS    ns2
+@    IN    NS    ns1.digitalocean.com.
+@    IN    NS    ns2.digitalocean.com.
+@    IN    NS    ns3.digitalocean.com.
 
-nas                IN A     192.168.240.111
-vpn1               IN A     192.168.240.193
-vpn2               IN A     192.168.240.178
-k8s                IN A     192.168.240.85
-xao                IN A     192.168.240.219
-xcp-ng-father      IN A     192.168.240.230
-xcp-ng-mother      IN A     192.168.240.42
+@records@

@@ -10,8 +10,8 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
     ./disk-config.nix
-    ./coredns.nix
-    ../common/xen.nix
+    ../../common/xen.nix
+    ../../vpn
   ];
   boot.loader.grub = {
     # no need to set devices, disko will add all devices that have a EF02 partition to the list already
@@ -49,5 +49,11 @@
   virtualisation.xen.guest = {
     enable = true;
     recommendedHVMSettings = true;
+  };
+
+  age = {
+    identityPaths = [
+      "/root/.ssh/id_ed25519"
+    ];
   };
 }

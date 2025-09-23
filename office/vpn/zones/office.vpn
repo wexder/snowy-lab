@@ -12,7 +12,4 @@ $ORIGIN office.vpn.
 @    IN    NS    ns1
 @    IN    NS    ns2
 
-polar-fox          IN A     192.168.250.2
-snowball           IN A     192.168.250.3
-pixel              IN A     192.168.250.4
-walrus             IN A     192.168.250.5
+@records@

@@ -1,7 +1,8 @@
 { config
 , pkgs
 , ...
-}: {
+}:
+{
   imports = [
     ../common.nix
   ];
@@ -37,17 +38,33 @@
         "thunderbird" = {
           id = "thunderbird";
           path = "/home/wexder/.thunderbird/";
-          devices = [ "polar-fox" "walrus" "snowflake" "snowball" ];
+          devices = [
+            "polar-fox"
+            "walrus"
+            "snowflake"
+            "snowball"
+          ];
         };
         "documents" = {
           id = "documents";
           path = "/home/wexder/documents/";
-          devices = [ "polar-fox" "walrus" "snowflake" "snowball" ];
+          devices = [
+            "polar-fox"
+            "walrus"
+            "snowflake"
+            "snowball"
+          ];
         };
         "obsidian" = {
           id = "obsidian";
           path = "/home/wexder/obsidian/";
-          devices = [ "polar-fox" "walrus" "pixel" "snowflake" "snowball" ];
+          devices = [
+            "polar-fox"
+            "walrus"
+            "pixel"
+            "snowflake"
+            "snowball"
+          ];
         };
       };
       devices = {
@@ -102,8 +119,12 @@
     };
     mccDev = {
       enable = true;
+      use_netbird = false;
     };
     zerotier = {
+      enable = true;
+    };
+    wyoming = {
       enable = true;
     };
   };

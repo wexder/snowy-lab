@@ -44,7 +44,11 @@ in
           ];
         }
         (lib.mkIf cfg.server {
-          services.sunshine.enable = true;
+          services.sunshine = {
+            enable = true;
+            capSysAdmin = true;
+            autoStart = true;
+          };
         })
       ]);
 }

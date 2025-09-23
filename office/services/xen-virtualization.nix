@@ -78,5 +78,6 @@ in {
       timesyncd.enable = false;
     };
   };
-  meta.maintainers = with lib.maintainers; [sigmasquadron];
+
+  meta.maintainers = with lib.maintainers; [ sigmasquadron ];
 }

@@ -3,7 +3,8 @@
 , pkgs
 , modulesPath
 , ...
-}: {
+}:
+{
   boot.loader.systemd-boot.enable = true;
 
   imports = [
@@ -12,11 +13,22 @@
     ./hid.nix
   ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "sr_mod" ];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "ahci"
+    "nvme"
+    "usbhid"
+    "usb_storage"
+    "sd_mod"
+    "sr_mod"
+  ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = [
+    "aarch64-linux"
+    "armv7l-linux"
+  ];
   hardware.ksm.enable = true;
 
   services.openssh.enable = true;
@@ -54,39 +66,39 @@
   # TODO Fix
   environment.etc."passwordFile-upsm".text = builtins.readFile ./polarBear/upsdm-pass;
 
-  power.ups = {
-    enable = true;
-    mode = "netserver";
-    openFirewall = true;
-    upsmon = {
-      monitor."serverups" = {
-        system = "serverups@localhost:3493";
-        user = "ups";
-        passwordFile = "/etc/passwordFile-ups";
-        powerValue = 2;
-      };
-    };
-    users = {
-      wexder = {
-        passwordFile = "/etc/passwordFile-upsm";
-        upsmon = "primary";
-        actions = [ "set" "fsd" ];
-        instcmds = [ "ALL" ];
-      };
-    };
-    upsd = {
-      listen = [
-        {
-          address = "0.0.0.0";
-          port = 3493;
-        }
-      ];
-    };
-    ups."serverups" = {
-      driver = "usbhid-ups";
-      port = "auto";
-      description = "Server UPS";
-      shutdownOrder = 0;
-    };
-  };
+  # power.ups = {
+  #   enable = true;
+  #   mode = "netserver";
+  #   openFirewall = true;
+  #   upsmon = {
+  #     monitor."serverups" = {
+  #       system = "serverups@localhost:3493";
+  #       user = "ups";
+  #       passwordFile = "/etc/passwordFile-ups";
+  #       powerValue = 2;
+  #     };
+  #   };
+  #   users = {
+  #     wexder = {
+  #       passwordFile = "/etc/passwordFile-upsm";
+  #       upsmon = "primary";
+  #       actions = [ "set" "fsd" ];
+  #       instcmds = [ "ALL" ];
+  #     };
+  #   };
+  #   upsd = {
+  #     listen = [
+  #       {
+  #         address = "0.0.0.0";
+  #         port = 3493;
+  #       }
+  #     ];
+  #   };
+  #   ups."serverups" = {
+  #     driver = "usbhid-ups";
+  #     port = "auto";
+  #     description = "Server UPS";
+  #     shutdownOrder = 0;
+  #   };
+  # };
 }

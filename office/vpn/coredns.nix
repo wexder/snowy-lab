@@ -1,15 +1,18 @@
-{
-  lib,
-  pkgs,
-  ...
-}: let
-  officeZone = lib.fileset.toSource {
-    root = ./.;
-    fileset = ./zones/office.local-k8s.tech;
+{ lib, pkgs, ... }:
+let
+  toZoneRow = subdomain: type: ip: "${subdomain} IN ${type} ${ip}";
+  hostnames = (import ./hostnames.nix { }).dns;
+  getIp = value: if builtins.isString value then value else value.ip;
+  toARows = records: builtins.concatStringsSep "\n" (
+    builtins.attrValues (
+      builtins.mapAttrs (hostname: ip: toZoneRow hostname "A" (getIp ip)) records
+    )
+  );
+  officeZone = pkgs.replaceVars ./zones/office.local-k8s.tech {
+    records = toARows hostnames.office;
   };
-  officeVpnZone = lib.fileset.toSource {
-    root = ./.;
-    fileset = ./zones/office.vpn;
+  officeVpnZone = pkgs.replaceVars ./zones/office.vpn {
+    records = toARows hostnames.vpn;
   };
 in {
   networking.firewall.allowedTCPPorts = [53];
@@ -19,8 +22,8 @@ in {
     enable = true;
     config = ''
       . {
-          file ${officeZone}/zones/office.local-k8s.tech office.local-k8s.tech
-          file ${officeVpnZone}/zones/office.vpn office.vpn
+          file ${officeZone} office.local-k8s.tech
+          file ${officeVpnZone} office.vpn
 
           bind 0.0.0.0
           forward . 8.8.8.8
