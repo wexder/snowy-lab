@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ../common.nix
   ];
@@ -34,10 +35,10 @@
 
   roles = {
     "3d" = {
-      enable = true;
+      enable = false;
     };
     cad = {
-      enable = true;
+      enable = false;
     };
     docker = {
       enable = true;
@@ -56,9 +57,10 @@
     };
     mccDev = {
       enable = true;
+      use_netbird = false;
     };
     twingate = {
-      enable = true;
+      enable = false;
     };
     videoEditing = {
       enable = true;
@@ -81,7 +83,7 @@
       enable = true;
     };
     zerotier = {
-        enable = true;
+      enable = true;
     };
   };
 }

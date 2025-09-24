@@ -4,10 +4,11 @@
   hostName,
   lib,
   ...
-}: {
+}:
+{
   system.stateVersion = "24.05";
 
-  imports = [./roles];
+  imports = [ ./roles ];
   nixpkgs.config = {
     allowUnfree = true;
     allowBroken = true;
@@ -26,7 +27,8 @@
     "nix-command"
     "flakes"
   ];
-  nix.settings.trusted-users = ["wexder"];
+  nix.settings.trusted-users = [ "wexder" ];
+  programs.nix-ld.enable = true;
 
   # latest kernel
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
@@ -77,14 +79,14 @@
     isNormalUser = true;
     home = "/home/wexder";
     description = "wexder";
-    extraGroups = ["wheel"];
+    extraGroups = [ "wheel" ];
     hashedPasswordFile = lib.mkDefault "/etc/passwordFile-wexder";
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMkKyMS0O7nzToTh/3LCrwJB++zc29R8U6UlzfzT0xV9"
     ];
   };
 
-  environment.shells = with pkgs; [zsh];
+  environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
   systemd.oomd.enable = true;

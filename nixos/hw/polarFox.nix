@@ -4,7 +4,8 @@
   pkgs,
   modulesPath,
   ...
-}: {
+}:
+{
   boot.loader.systemd-boot.enable = true;
 
   imports = [
@@ -14,9 +15,25 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
-  boot.initrd.kernelModules = ["amdgpu"];
-  boot.kernelModules = ["kvm-amd" "iwlwifi" "iwlmvm"];
+  boot.initrd.availableKernelModules = [
+    "nvme"
+    "xhci_pci"
+    "ahci"
+    "usb_storage"
+    "usbhid"
+    "sd_mod"
+  ];
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.kernelModules = [
+    "kvm-amd"
+    "iwlwifi"
+    "iwlmvm"
+  ];
+  boot.binfmt.emulatedSystems = [
+    "aarch64-linux"
+    "armv7l-linux"
+  ];
+
   boot.extraModulePackages = [
     # config.boot.kernelPackages.rtl8812au
     # config.boot.kernelPackages.rtl88xxau-aircrack

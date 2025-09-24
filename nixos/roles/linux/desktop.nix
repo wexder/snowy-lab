@@ -5,9 +5,11 @@
   zen-browser,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.roles.desktop;
-in {
+in
+{
   options.roles.desktop = {
     enable = lib.mkOption {
       default = false;
@@ -35,16 +37,14 @@ in {
     lib.mkMerge [
       {
         security.rtkit.enable = true;
-        security.pam.services.swaylock = {};
+        security.pam.services.swaylock = { };
 
         programs.xwayland.enable = true;
-        services.blueman.enable = true;
+        # services.blueman.enable = true;
         programs.thunar.enable = true;
 
-        fonts.packages =
-          [
-          ]
-          ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+        fonts.packages = [
+        ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 
         networking.firewall.allowedTCPPortRanges = [
           # kdeconnect
@@ -131,10 +131,10 @@ in {
             pkgs.gutenprint
             # pkgs.hplip
           ];
-        }; #testing
+        }; # testing
         hardware.sane.enable = true; # enables support for SANE scanners
-        users.extraGroups.scanner.members = ["wexder"];
-        users.extraGroups.lp.members = ["wexder"];
+        users.extraGroups.scanner.members = [ "wexder" ];
+        users.extraGroups.lp.members = [ "wexder" ];
 
         services.pipewire = {
           enable = true;
@@ -180,7 +180,7 @@ in {
           extraPortals = [
             pkgs.xdg-desktop-portal-gtk
           ];
-          configPackages = [pkgs.sway];
+          configPackages = [ pkgs.sway ];
         };
 
         services.greetd = {
@@ -196,9 +196,9 @@ in {
         systemd = {
           user.services.polkit-gnome-authentication-agent-1 = {
             description = "polkit-gnome-authentication-agent-1";
-            wantedBy = ["graphical-session.target"];
-            wants = ["graphical-session.target"];
-            after = ["graphical-session.target"];
+            wantedBy = [ "graphical-session.target" ];
+            wants = [ "graphical-session.target" ];
+            after = [ "graphical-session.target" ];
             serviceConfig = {
               Type = "simple";
               ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
@@ -220,17 +220,17 @@ in {
               "thunderbird" = {
                 id = "thunderbird";
                 path = "/home/wexder/.thunderbird/";
-                devices = ["polar-bear"];
+                devices = [ "polar-bear" ];
               };
               "documents" = {
                 id = "documents";
                 path = "/home/wexder/documents/";
-                devices = ["polar-bear"];
+                devices = [ "polar-bear" ];
               };
               "obsidian" = {
                 id = "obsidian";
                 path = "/home/wexder/obsidian/";
-                devices = ["polar-bear"];
+                devices = [ "polar-bear" ];
               };
             };
             devices = {

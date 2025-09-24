@@ -40,10 +40,13 @@ in {
             name = "mcc";
             port = 51823;
             ui.enable = true;
-            service.name = "mcc";
             openFirewall = true;
           };
         };
+
+      environment.systemPackages = [
+        pkgs.netbird
+      ];
       })
     ]
   );

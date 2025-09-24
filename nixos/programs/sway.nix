@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ./alacritty.nix
     ./audio.nix
@@ -42,6 +43,13 @@
     NIXOS_OZONE_WL = 1;
   };
   services.cliphist.enable = true;
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
+
   gtk = {
     enable = true;
     cursorTheme = {
@@ -51,7 +59,7 @@
     theme = {
       name = "Catppuccin-Macchiato-Compact-Pink-Dark";
       package = pkgs.catppuccin-gtk.override {
-        accents = ["pink"];
+        accents = [ "pink" ];
         size = "compact";
         tweaks = [
           "rimless"
@@ -82,44 +90,44 @@
         {
           command = "swayidle -w before-sleep 'swaylock -f -i /home/wexder/.config/wallpapers/nix-vegas.png -s fill'";
         }
-        {command = "kdeconnect-indicator";}
-        {command = "mako";}
-        {command = "slack";}
-        {command = "setrandom -m scale /home/wexder/.config/wallpapers";}
-        {command = "ghostty";}
+        { command = "kdeconnect-indicator"; }
+        { command = "mako"; }
+        { command = "slack"; }
+        { command = "setrandom -m scale /home/wexder/.config/wallpapers"; }
+        { command = "ghostty"; }
 
         ## cliphist
-        {command = "wl-paste --type text --watch cliphist store #Stores only text data";}
-        {command = "wl-paste --type image --watch cliphist store #Stores only image data";}
+        { command = "wl-paste --type text --watch cliphist store #Stores only text data"; }
+        { command = "wl-paste --type image --watch cliphist store #Stores only image data"; }
 
         # waybar
-        {command = "waybar";}
+        { command = "waybar"; }
 
         # audio
-        {command = "playerctld daemon";}
+        { command = "playerctld daemon"; }
 
         # browser
-        {command = "zen";}
+        { command = "zen"; }
 
         # music
-        {command = "tidal-hifi";}
+        { command = "tidal-hifi"; }
 
         # passwords
-        {command = "bitwarden";}
+        { command = "bitwarden"; }
 
         # steam
-        {command = "steam";}
+        { command = "steam"; }
 
         # betterbird
-        {command = "thunderbird";}
+        { command = "thunderbird"; }
 
         # clockify
-        {command = "clockify";}
+        { command = "clockify"; }
 
         # kanshi
-        {command = "kanshi";}
+        { command = "kanshi"; }
 
-        {command = "tuxedo-control-center";}
+        { command = "tuxedo-control-center"; }
 
         # lan-mouse
         # { command = "lan-mouse --daemon"; }
@@ -135,7 +143,7 @@
           Return = "mode default";
         };
       };
-      bars = [];
+      bars = [ ];
       input = {
         "*" = {
           xkb_layout = "us,cz";
@@ -193,9 +201,10 @@
           indicator = "#d76a92";
         };
       };
-      keybindings = let
-        modifier = config.wayland.windowManager.sway.config.modifier;
-      in
+      keybindings =
+        let
+          modifier = config.wayland.windowManager.sway.config.modifier;
+        in
         lib.mkOptionDefault {
           # start a terminal
           "${modifier}+Return" = "exec ghostty";
@@ -217,9 +226,11 @@
           "Mod1+N" = "exec setrandom -m scale /home/wexder/.config/wallpapers";
 
           # exit sway (logs you out of your Wayland session)
-          "${modifier}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
+          "${modifier}+Shift+e" =
+            "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
 
-          "${modifier}+Control+L" = "exec swaylock -f -i /home/wexder/.config/wallpapers/mountains-on-mars.png -s fill";
+          "${modifier}+Control+L" =
+            "exec swaylock -f -i /home/wexder/.config/wallpapers/mountains-on-mars.png -s fill";
           "${modifier}+shift+return" = "exec thunar";
           "Print" = "exec grim -g \"$(slurp)\" - | swappy -f -";
           "Control+Print" = "exec grim - | swappy -f -";

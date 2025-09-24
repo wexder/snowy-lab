@@ -22,13 +22,10 @@ in {
 
           ## amdvlk: an open-source Vulkan driver from AMD
           extraPackages = [
-            # pkgs.amdvlk
-            # pkgs.rocm-opencl-runtime
-            # pkgs.rocm-opencl-icd
-            # pkgs.rocmPackages.rocm-runtime
+            pkgs.amdvlk
           ];
           extraPackages32 = [
-            # pkgs.driversi686Linux.amdvlk
+            pkgs.driversi686Linux.amdvlk
           ];
         };
 
