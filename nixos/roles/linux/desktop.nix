@@ -44,7 +44,8 @@ in
         programs.thunar.enable = true;
 
         fonts.packages = [
-        ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+        ]
+        ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 
         networking.firewall.allowedTCPPortRanges = [
           # kdeconnect
@@ -235,7 +236,7 @@ in
             };
             devices = {
               polar-bear = {
-                id = "WYQIGNT-BE6FGPD-EW4X2WP-N7VQUV4-ASLKO3W-YZ2QW6H-IQUPC4E-7WW3NQ7";
+                id = "DTSBGY4-AHFZVTH-MKZOZSP-5XQGZ2Y-LHEE6QL-NWMI44M-5R2KBF4-SDPZPQ6";
               };
             };
           };

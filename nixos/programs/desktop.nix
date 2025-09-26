@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   home.packages = [
     pkgs.kdePackages.kdeconnect-kde
     pkgs.dbeaver-bin
