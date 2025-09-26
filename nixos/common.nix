@@ -57,6 +57,7 @@
     pkgs.age
     pkgs.ssh-to-age
     pkgs.nushell
+    pkgs.zig # CC compiler
   ];
 
   environment.sessionVariables = {

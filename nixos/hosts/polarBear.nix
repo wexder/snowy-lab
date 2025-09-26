@@ -112,8 +112,8 @@
       server = true;
     };
     prometheus = {
-      enable = true;
-      nut = true;
+      enable = false;
+      nut = false;
     };
     virtualisation = {
       enable = true;
