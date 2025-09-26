@@ -38,6 +38,7 @@
     pkgs.age
     pkgs.ssh-to-age
     pkgs.obsidian
+    pkgs.pandoc
     pkgs.slack
     pkgs.raycast
   ];
@@ -71,7 +72,13 @@
 
     taps = [];
     brews = [];
-    casks = ["ghostty" "zen" "signal" "eloston-chromium" "mullvadvpn"];
+    casks = [
+      "ghostty"
+      "zen"
+      "signal"
+      "eloston-chromium"
+      "mullvadvpn"
+    ];
   };
 
   system = {

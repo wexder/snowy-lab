@@ -31,11 +31,30 @@
     resumeDevice = "/dev/disk/by-label/nixos";
   };
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "thunderbolt" "usb_storage" "sd_mod" "sdhci_pci"];
-  boot.initrd.kernelModules = ["xe" "acpi_call"];
-  boot.kernelModules = ["kvm-intel" "iwlwifi" "iwlmvm" "tuxedo_keyboard"];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "nvme"
+    "thunderbolt"
+    "usb_storage"
+    "sd_mod"
+    "sdhci_pci"
+  ];
+  boot.initrd.kernelModules = [
+    "xe"
+    "acpi_call"
+  ];
+  boot.kernelModules = [
+    "kvm-intel"
+    "iwlwifi"
+    "iwlmvm"
+    "tuxedo_keyboard"
+  ];
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
   networking.networkmanager.wifi.backend = "iwd";
-  boot.extraModulePackages = with config.boot.kernelPackages; [tuxedo-drivers acpi_call];
+  boot.extraModulePackages = with config.boot.kernelPackages; [
+    tuxedo-drivers
+    acpi_call
+  ];
   hardware.firmware = [];
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 

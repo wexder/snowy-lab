@@ -1,8 +1,8 @@
-{ config
-, pkgs
-, ...
-}:
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ../common.nix
   ];
@@ -125,7 +125,7 @@
       enable = true;
     };
     wyoming = {
-      enable = true;
+      enable = false;
     };
   };
 }

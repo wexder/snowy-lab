@@ -13,7 +13,7 @@ in {
   networking = {
     hostName = "walrus";
     firewall = {
-      enable = true;
+      enable = false;
     };
 
     wireless.iwd.enable = true;
@@ -86,6 +86,9 @@ in {
       enable = true;
     };
     flatpak = {
+      enable = true;
+    };
+    zerotier = {
       enable = true;
     };
   };

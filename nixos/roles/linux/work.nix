@@ -31,6 +31,8 @@ in {
         environment.systemPackages = [
           slack
           stable.clockify
+          # TODO needs more testing
+          # pkgs.teams-for-linux
         ];
       }
     ]

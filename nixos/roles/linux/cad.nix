@@ -31,17 +31,16 @@ in {
     enable = lib.mkEnableOption "Enable CAD software";
   };
 
-  config =
-    lib.mkIf cfg.enable
-    {
-      environment.systemPackages = [
-        pkgs.freecad-wayland
-        pkgs.kicad
-        stable.openscad
-        stable.opencascade-occt
-        # (pkgs.python3.withPackages (python-pkgs: [
-        #   # py-slvr
-        # ]))
-      ];
-    };
+  config = lib.mkIf cfg.enable {
+    environment.systemPackages = [
+      # pkgs.freecad-wayland
+      # pkgs.kicad
+      pkgs.egl-wayland
+      pkgs.openscad
+      pkgs.opencascade-occt
+      # (pkgs.python3.withPackages (python-pkgs: [
+      #   # py-slvr
+      # ]))
+    ];
+  };
 }

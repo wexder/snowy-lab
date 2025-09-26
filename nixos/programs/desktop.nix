@@ -5,7 +5,7 @@
   ...
 }: {
   home.packages = [
-    pkgs.libsForQt5.kdeconnect-kde
+    pkgs.kdePackages.kdeconnect-kde
     pkgs.dbeaver-bin
     # pkgs.postman
     pkgs.caprine-bin
@@ -18,5 +18,5 @@
     pkgs.tigervnc
   ];
 
-  services.blueman-applet.enable = true;
+  # services.blueman-applet.enable = true;
 }
