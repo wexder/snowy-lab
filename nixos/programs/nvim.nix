@@ -3,10 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
-  programs.neovim.plugins = [
-    pkgs.vimPlugins.packer-nvim
-  ];
+}:
+{
 
   # home.file.".config/nvim".source = (pkgs.fetchFromGitHub {
   #   owner = "wexder";

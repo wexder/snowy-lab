@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   ...
 }:
@@ -75,14 +74,14 @@
         walrus = {
           id = "ZPVTWIR-CJTCRIV-Q7AAP7C-UGIRTRZ-QDRRMBO-U6CJUIV-UEAAPHR-AQWUXQG";
         };
-        pixel = {
-          id = "VYI5BP3-NBVRZX4-JGWGRFA-O42HSBU-FBVDOAK-EZU5Z7N-HBYQZQK-24HU4AO";
-        };
         snowflake = {
           id = "HEYQRXA-NJNSJXA-UYLL2DQ-V7CJ5JP-NP534AD-BH7R4W2-MELM7CF-XLMEZAY";
         };
         snowball = {
           id = "ZH4HMPO-LTPXSUA-EBRLTNJ-KWDM6F7-KVSJUCW-KPMDJAJ-DJWJ2VF-HBQNOQQ";
+        };
+        pixel = {
+          id = "AQUF75E-QT4IREH-MKOAKPM-YA4O24V-FKOKGF7-YJPP3KO-GBDVL2X-AY25OAN";
         };
       };
     };
@@ -105,7 +104,7 @@
       enable = false;
     };
     llm = {
-      enable = false;
+      enable = true;
     };
     games = {
       enable = true;
@@ -120,7 +119,7 @@
     };
     mccDev = {
       enable = true;
-      use_netbird = false;
+      use_netbird = true;
     };
     zerotier = {
       enable = true;

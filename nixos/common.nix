@@ -46,6 +46,7 @@
     pkgs.htop
     pkgs.jq
     pkgs.neovim-unwrapped
+    pkgs.tree-sitter
     pkgs.wget
     pkgs.curl
     pkgs.lazydocker

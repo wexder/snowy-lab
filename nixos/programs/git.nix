@@ -1,12 +1,15 @@
-{ config
-, lib
-, pkgs
-, ...
-}: {
+{
+  ...
+}:
+{
   programs.git = {
     enable = true;
     lfs.enable = true;
-    userName = "Vladimir Zahradnik";
-    userEmail = "wexder19@gmail.com";
+    settings = {
+      user = {
+        email = "wexder19@gmail.com";
+        name = "Vladimir Zahradnik";
+      };
+    };
   };
 }

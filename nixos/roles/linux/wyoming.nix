@@ -1,11 +1,20 @@
-{ config
-, lib
-, pkgs
-, utils
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  utils,
+  ...
 }:
 let
   cfg = config.roles.wyoming;
+  piper-tts = pkgs.piper-tts.overrideAttrs (old: {
+    src = pkgs.fetchFromGitHub {
+      owner = "OHF-Voice";
+      repo = "piper1-gpl";
+      rev = "387ca06bfd0e7557c6d0d54ce34d36e7bb28389a";
+      hash = "sha256-94k3bYyb3B1O5T4FhvrYIv9CFXtNqepXeaENX9d35XA=";
+    };
+  });
   piper = pkgs.wyoming-piper.overrideAttrs (old: {
     version = "1.6.4";
     src = pkgs.fetchFromGitHub {
