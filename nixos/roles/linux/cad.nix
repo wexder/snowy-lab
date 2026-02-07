@@ -4,7 +4,8 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.roles.cad;
   py-slvr = pkgs.python3Packages.buildPythonPackage rec {
     pname = "slvs_py";
@@ -26,7 +27,8 @@
     propagatedBuildInputs = [
     ];
   };
-in {
+in
+{
   options.roles.cad = {
     enable = lib.mkEnableOption "Enable CAD software";
   };
@@ -34,7 +36,7 @@ in {
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [
       # pkgs.freecad-wayland
-      # pkgs.kicad
+      pkgs.kicad
       pkgs.egl-wayland
       pkgs.openscad
       pkgs.opencascade-occt

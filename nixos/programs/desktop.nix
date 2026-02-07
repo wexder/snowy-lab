@@ -43,6 +43,7 @@ in
 
     # services.blueman-applet.enable = true;
 
+    services.cliphist.enable = true;
     home.file.".config/wallpapers".source = pkgs.fetchFromGitHub {
       owner = "wexder";
       repo = "snowy-lab-wallpapers";
@@ -50,53 +51,55 @@ in
       hash = "sha256-kEuiRqPltWAlrPeTqOfd+hk8FTi1c90YvY6j5fA8cUY=";
     };
 
-    home.pointerCursor = {
-      gtk.enable = true;
-      x11.enable = true;
-      name = "Quintom_Snow";
-      size = 32;
-      package = pkgs.quintom-cursor-theme;
-    };
+    # home.pointerCursor = {
+    #   gtk.enable = true;
+    #   x11.enable = true;
+    #   name = "Quintom_Snow";
+    #   size = 32;
+    #   package = pkgs.quintom-cursor-theme;
+    # };
 
     gtk = {
       enable = true;
-      cursorTheme = {
-        name = "Quintom_Snow";
-        package = pkgs.quintom-cursor-theme;
-      };
       theme = {
-        name = "Catppuccin-Macchiato-Compact-Pink-Dark";
-        package = pkgs.catppuccin-gtk.override {
-          accents = [ "pink" ];
-          size = "compact";
-          tweaks = [
-            "rimless"
-            "black"
-          ];
-          variant = "macchiato";
+        name = "Breeze-Dark";
+        package = pkgs.kdePackages.breeze-gtk;
+      };
+      iconTheme = {
+        name = "Papirus-Dark";
+        package = pkgs.catppuccin-papirus-folders.override {
+          flavor = "mocha";
+          accent = "lavender";
         };
+      };
+      cursorTheme = {
+        name = "Catppuccin-Mocha-Light-Cursors";
+        package = pkgs.catppuccin-cursors.mochaLight;
+      };
+      gtk3 = {
+        extraConfig.gtk-application-prefer-dark-theme = true;
+      };
+    };
+    qt = {
+      enable = true;
+      platformTheme = "gtk";
+      style = {
+        name = "gtk2";
+        package = pkgs.kdePackages.breeze-gtk;
       };
     };
 
-    # programs.dconf.profiles.user.databases = [
-    #   {
-    #     settings."org/gnome/desktop/interface" = {
-    #       color-scheme = "prefer-dark";
-    #       gtk-theme = "Catppuccin-Macchiato-Compact-Pink-Dark";
-    #       # icon-theme = "Flat-Remix-Red-Dark";
-    #       # font-name = "Noto Sans Medium 11";
-    #       # document-font-name = "Noto Sans Medium 11";
-    #       # monospace-font-name = "Noto Sans Mono Medium 11";
-    #     };
-    #   }
-    # ];
-
-    services.cliphist.enable = true;
+    home.pointerCursor = {
+      gtk.enable = true;
+      name = "Catppuccin-Mocha-Light-Cursors";
+      package = pkgs.catppuccin-cursors.mochaLight;
+      size = 16;
+    };
 
     dconf.settings = {
       "org/gnome/desktop/interface" = {
+        gtk-theme = "Breeze-Dark";
         color-scheme = "prefer-dark";
-        gtk-theme = "Catppuccin-Macchiato-Compact-Pink-Dark";
       };
     };
 
