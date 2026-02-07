@@ -3,25 +3,28 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.roles.virtualisation;
-in {
+in
+{
   options.roles.virtualisation = {
     enable = lib.mkEnableOption "Enable virtualisation";
   };
 
-  config =
-    lib.mkIf cfg.enable
-    {
-      environment.systemPackages = [
-        pkgs.qemu
-        pkgs.quickemu
-      ];
+  config = lib.mkIf cfg.enable {
+    environment.systemPackages = [
+      pkgs.qemu
+      pkgs.quickemu
+    ];
 
-      virtualisation.libvirtd.enable = true;
-      programs.virt-manager.enable = true;
-
-      users.extraGroups.libvirtd.members = ["wexder"];
-      users.extraGroups.kvm.members = ["wexder"];
+    virtualisation = {
+      libvirtd.enable = true;
+      spiceUSBRedirection.enable = true;
     };
+    programs.virt-manager.enable = true;
+
+    users.extraGroups.libvirtd.members = [ "wexder" ];
+    users.extraGroups.kvm.members = [ "wexder" ];
+  };
 }

@@ -3,9 +3,11 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.gpus.amd;
-in {
+in
+{
   options.gpus.amd = {
     enable = lib.mkEnableOption "Enable amd gpu";
     rocm = lib.mkEnableOption "Enable amd rocm";
@@ -14,46 +16,45 @@ in {
     lib.mkMerge [
       {
         services.xserver.enable = true;
-        services.xserver.videoDrivers = ["amdgpu"];
+        services.xserver.videoDrivers = [ "amdgpu" ];
         # Enable OpenGL
         hardware.graphics = {
+          package = pkgs.mesa;
+          package32 = pkgs.pkgsi686Linux.mesa;
           enable = true;
           enable32Bit = true;
 
           ## amdvlk: an open-source Vulkan driver from AMD
           extraPackages = [
-            pkgs.amdvlk
+            # pkgs.amdvlk
           ];
           extraPackages32 = [
-            pkgs.driversi686Linux.amdvlk
+            # pkgs.driversi686Linux.amdvlk
           ];
         };
 
-        boot.initrd.kernelModules = ["amdgpu"];
+        boot.initrd.kernelModules = [ "amdgpu" ];
         environment.systemPackages = [
           pkgs.amdgpu_top
           pkgs.clinfo
         ];
       }
 
-      (
-        lib.mkIf cfg.rocm
-        {
-          hardware.graphics = {
-            extraPackages = [
-              pkgs.rocm-opencl-icd
-            ];
-          };
-
-          environment.systemPackages = [
-            pkgs.rocmPackages.rocminfo
+      (lib.mkIf cfg.rocm {
+        hardware.graphics = {
+          extraPackages = [
+            pkgs.rocm-opencl-icd
           ];
+        };
 
-          systemd.tmpfiles.rules = [
-            "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
-          ];
-        }
-      )
+        environment.systemPackages = [
+          pkgs.rocmPackages.rocminfo
+        ];
+
+        systemd.tmpfiles.rules = [
+          "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+        ];
+      })
     ]
   );
 }

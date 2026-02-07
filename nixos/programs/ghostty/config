@@ -8,3 +8,5 @@ font-size = 11
 desktop-notifications = false
 resize-overlay = never
 macos-titlebar-style = hidden
+app-notifications = no-clipboard-copy
+auto-update = off

@@ -1,7 +1,8 @@
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 let
   cfg = config.roles.games;
@@ -17,38 +18,38 @@ in
     };
   };
 
-  config =
-    lib.mkIf cfg.enable
-      (lib.mkMerge [
-        {
-          programs.steam = {
-            enable = true;
-          };
-          programs.steam.gamescopeSession = {
-            enable = true;
-          };
+  config = lib.mkIf cfg.enable (
+    lib.mkMerge [
+      {
+        programs.steam = {
+          enable = true;
+        };
+        programs.steam.gamescopeSession = {
+          enable = true;
+        };
 
-          programs.gamemode.enable = true;
+        programs.gamemode.enable = true;
 
-          environment.sessionVariables = {
-            STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
-          };
+        environment.sessionVariables = {
+          STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
+        };
 
-          environment.systemPackages = [
-            pkgs.protonup
-            pkgs.mangohud
-            pkgs.gamescope
-            pkgs.prismlauncher
-            pkgs.lutris
-            pkgs.moonlight-qt
-          ];
-        }
-        (lib.mkIf cfg.server {
-          services.sunshine = {
-            enable = true;
-            capSysAdmin = true;
-            autoStart = true;
-          };
-        })
-      ]);
+        environment.systemPackages = [
+          pkgs.protonup-ng
+          pkgs.mangohud
+          pkgs.gamescope
+          pkgs.prismlauncher
+          pkgs.lutris
+          pkgs.moonlight-qt
+        ];
+      }
+      (lib.mkIf cfg.server {
+        services.sunshine = {
+          enable = true;
+          capSysAdmin = true;
+          autoStart = true;
+        };
+      })
+    ]
+  );
 }

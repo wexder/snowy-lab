@@ -22,7 +22,7 @@ in
       type = lib.types.bool;
     };
     desktop = lib.mkOption {
-      default = "sway";
+      default = "start-hyprland";
       example = "gnome";
       type = lib.types.str;
     };
@@ -64,7 +64,7 @@ in
 
         environment.sessionVariables.NIXOS_OZONE_WL = "1";
         environment.systemPackages = [
-          pkgs.whatsapp-for-linux
+          pkgs.wasistlos
           pkgs.wayvnc
           pkgs.pavucontrol
           pkgs.blueberry
@@ -188,7 +188,7 @@ in
           enable = true;
           settings = {
             default_session = {
-              command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd ${cfg.desktop}";
+              command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd ${cfg.desktop}";
               user = "greeter";
             };
           };

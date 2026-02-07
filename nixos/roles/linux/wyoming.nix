@@ -54,10 +54,10 @@ in
   config = lib.mkIf cfg.enable ({
     services.wyoming.openwakeword = {
       enable = true;
-      preloadModels = [
-        "hey_jarvis"
-        "ok_nabu"
-      ];
+      # preloadModels = [
+      #   "hey_jarvis"
+      #   "ok_nabu"
+      # ];
     };
     services.wyoming.piper = {
       package = piper;

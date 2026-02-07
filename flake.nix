@@ -21,13 +21,27 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
-    zen-browser.url = "github:youwen5/zen-browser-flake";
+    zen-browser.url = "github:youwen5/zen-browser-flake?ref=a136a82830bc207f4387efbe9b718778db51600c";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
 
     tuxedo-nixos.url = "github:sund3RRR/tuxedo-nixos";
 
     nix-darwin.url = "github:nix-darwin/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
+    hyprland.url = "github:hyprwm/Hyprland?tag=v0.53.1";
+    hy3 = {
+      url = "github:outfoxxed/hy3?tag=hl0.53.1";
+      inputs.hyprland.follows = "hyprland";
+    };
+    quickshell = {
+      # add ?ref=<tag> to track a tag
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+
+      # THIS IS IMPORTANT
+      # Mismatched system dependencies will lead to crashes and other issues.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # will be swapped for my own solution
     deploy-rs.url = "github:serokell/deploy-rs";
@@ -47,6 +61,9 @@
       stable,
       zen-browser,
       tuxedo-nixos,
+      hyprland,
+      hy3,
+      quickshell,
       ...
     }@attrs:
     let
@@ -103,16 +120,20 @@
                   ];
                 };
               };
-            in
-            nixosSystem {
-              inherit (node) system;
               specialArgs = attrs // {
                 inherit catalog;
                 hostName = host;
                 stable = stablePkgs;
                 zen-browser = zen-browser.packages.${node.system};
+                hyprland-flake = hyprland.packages.${node.system};
+                hyprland-plugins = [ hy3.packages.${node.system}.hy3 ];
+                quickshell_pkg = quickshell.packages.${node.system}.default;
                 isLinux = true;
               };
+            in
+            nixosSystem {
+              inherit (node) system;
+              specialArgs = specialArgs;
               modules = [
                 tuxedo-nixos.nixosModules.default
                 agenix.nixosModules.default
@@ -122,7 +143,8 @@
                 home-manager.nixosModules.home-manager
                 {
                   home-manager.useUserPackages = true;
-                  home-manager.users.wexder = import node.home;
+                  home-manager.users.wexder = node.home;
+                  home-manager.extraSpecialArgs = specialArgs;
                 }
                 {
                   environment.systemPackages = [ agenix.packages.${node.system}.default ];

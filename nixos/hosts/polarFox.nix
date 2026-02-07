@@ -57,7 +57,7 @@
     };
     mccDev = {
       enable = true;
-      use_netbird = false;
+      use_netbird = true;
     };
     twingate = {
       enable = false;
