@@ -41,7 +41,13 @@ in
 
         programs.xwayland.enable = true;
         # services.blueman.enable = true;
-        programs.thunar.enable = true;
+        programs.thunar = {
+          enable = true;
+          plugins = [
+            pkgs.thunar-archive-plugin
+            pkgs.thunar-volman
+          ];
+        };
 
         fonts.packages = [
         ]

@@ -4,6 +4,7 @@
   pkgs,
   hyprland-flake,
   hyprland-plugins,
+  pyprland,
   ...
 }:
 let
@@ -29,7 +30,12 @@ in
       pkgs.mako
       pkgs.hyprlock
       pkgs.hypridle
+      pyprland
     ];
+
+    home.file = {
+      ".config/pypr/config.toml".source = ./pyprland/pyprland.toml;
+    };
 
     wayland.windowManager.hyprland = {
       enable = true;
@@ -51,7 +57,12 @@ in
         gaps_out = 10;
       };
       exec-once = [
+        "pypr"
       ];
+      input = {
+        kb_layout = "us,cz";
+        kb_options = "grp:win_space_toggle";
+      };
       bezier = [
         "easeOutQuint,   0.23, 1,    0.32, 1"
       ];
@@ -69,6 +80,7 @@ in
         "$mod SHIFT, RETURN, exec, thunar"
         "$mod SHIFT, D, exec, wofi --show drun"
         "$mod SHIFT, V, exec, cliphist list | wofi -dmenu | cliphist decode | wl-copy"
+        "$mod, PRINT, exec, grim -g \"$(slurp)\" - | swappy -f -"
 
         "$mod SHIFT, X, exit"
 
@@ -94,6 +106,12 @@ in
         "$mod SHIFT, h, hy3:movewindow, l"
         "$mod SHIFT, k, hy3:movewindow, u"
         "$mod SHIFT, j, hy3:movewindow, d"
+
+        # code:20 = '-'
+        "$mod SHIFT, code:20, movetoworkspace, special:scratchpad"
+        "$mod, code:20, togglespecialworkspace, scratchpad"
+
+        "$mod, t, exec, pypr toggle term"
 
         ", Print, exec, grimblast copy area"
 
@@ -122,6 +140,9 @@ in
       decoration = {
         rounding = 4;
       };
+      windowrule = [
+        "match:class .*-float.*, float on"
+      ];
       bindm = [
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"

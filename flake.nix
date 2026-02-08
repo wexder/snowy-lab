@@ -34,6 +34,10 @@
       url = "github:outfoxxed/hy3?tag=hl0.53.1";
       inputs.hyprland.follows = "hyprland";
     };
+    pyprland = {
+      url = "github:hyprland-community/pyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     quickshell = {
       # add ?ref=<tag> to track a tag
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
@@ -64,6 +68,7 @@
       hyprland,
       hy3,
       quickshell,
+      pyprland,
       ...
     }@attrs:
     let
@@ -126,7 +131,10 @@
                 stable = stablePkgs;
                 zen-browser = zen-browser.packages.${node.system};
                 hyprland-flake = hyprland.packages.${node.system};
-                hyprland-plugins = [ hy3.packages.${node.system}.hy3 ];
+                hyprland-plugins = [
+                  hy3.packages.${node.system}.hy3
+                ];
+                pyprland = pyprland.packages.${node.system}.default;
                 quickshell_pkg = quickshell.packages.${node.system}.default;
                 isLinux = true;
               };
