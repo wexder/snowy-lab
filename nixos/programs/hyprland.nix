@@ -37,6 +37,10 @@ in
       ".config/pypr/config.toml".source = ./pyprland/pyprland.toml;
     };
 
+    xdg.portal = {
+      configPackages = [ hyprland-flake.hyprland ];
+    };
+
     wayland.windowManager.hyprland = {
       enable = true;
       package = hyprland-flake.hyprland;
@@ -80,7 +84,8 @@ in
         "$mod SHIFT, RETURN, exec, thunar"
         "$mod SHIFT, D, exec, wofi --show drun"
         "$mod SHIFT, V, exec, cliphist list | wofi -dmenu | cliphist decode | wl-copy"
-        "$mod, PRINT, exec, grim -g \"$(slurp)\" - | swappy -f -"
+        ", PRINT, exec, grim -g \"$(slurp)\" - | swappy -f -"
+        "SHIFT, PRINT, exec, grim -g \"$(slurp)\" - | tesseract stdin stdout -l eng | wl-copy"
 
         "$mod SHIFT, X, exit"
 

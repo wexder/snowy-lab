@@ -174,21 +174,10 @@ in
         # };
         services.dbus.enable = true;
 
-        xdg.portal = {
-          enable = true;
-          wlr.enable = true;
-          wlr.settings = {
-            screencast = {
-              chooser_type = "simple";
-              # works but doesn not allow choosing windows
-              chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
-            };
-          };
-          extraPortals = [
-            pkgs.xdg-desktop-portal-gtk
-          ];
-          configPackages = [ pkgs.sway ];
-        };
+        environment.pathsToLink = [
+          "/share/applications"
+          "/share/xdg-desktop-portal"
+        ];
 
         services.greetd = {
           enable = true;

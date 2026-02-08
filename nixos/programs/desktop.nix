@@ -28,6 +28,7 @@ in
       pkgs.vlc
       pkgs.kooha
       pkgs.tigervnc
+      pkgs.tesseract
 
       pkgs.dbus
       pkgs.kdePackages.kdeconnect-kde
@@ -49,6 +50,14 @@ in
       repo = "snowy-lab-wallpapers";
       rev = "ac4ee28c9f72b322ee047a0a046273ef52c8b04e";
       hash = "sha256-kEuiRqPltWAlrPeTqOfd+hk8FTi1c90YvY6j5fA8cUY=";
+    };
+
+    xdg.portal = {
+      enable = true;
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+      ];
+      configPackages = [ ];
     };
 
     # home.pointerCursor = {

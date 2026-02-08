@@ -31,6 +31,10 @@ in
       pkgs.swayidle
     ];
 
+    xdg.portal = {
+      configPackages = [ pkgs.sway ];
+    };
+
     home.sessionVariables = {
       XDG_CURRENT_DESKTOP = "sway";
     };

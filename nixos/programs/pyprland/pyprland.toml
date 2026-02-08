@@ -4,15 +4,16 @@ plugins = ["scratchpads"]
 [scratchpads]
 
 [scratchpads.notes]
-command = "[float] obsidian"
+command = "obsidian"
 class = "notes-float"
-animation = "fromTop"
+animation = ""
 size = "50% 70%"
 lazy = true
 
 [scratchpads.term]
 command = "ghostty --class=com.mitchellh.ghostty-float"
 class = "ghostty-htop"
-animation = "fromTop"
-size = "50% 70%"
+animation = ""
+position = "5% 25%"
+size = "50% 50%"
 lazy = true
