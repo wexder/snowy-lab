@@ -14,6 +14,7 @@
           {
             criteria = "eDP-1";
             scale = 1.2;
+            mode = "2880x1800@48Hz";
           }
         ];
       }

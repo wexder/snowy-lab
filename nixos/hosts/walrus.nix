@@ -31,6 +31,7 @@ in {
   environment.systemPackages = [
     proxmark3
     pkgs.intel-undervolt
+    pkgs.openfortivpn
   ];
 
   users.users.wexder.password = "test";
@@ -42,14 +43,33 @@ in {
 
   hardware.flipperzero.enable = true;
 
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages;
+
+  networking.wg-quick.interfaces = {
+    connectTest = {
+      address = [
+        "fda6:485c:ba29:2dd8::2"
+      ];
+      listenPort = 51821;
+      peers = [
+        {
+          allowedIPs = [
+            "fda6:485c:ba29:2dd8::/64"
+          ];
+          endpoint = "109.123.221.201:52820";
+          publicKey = "1e24LrILrIZab43+rLqpIPWCyoXyMwLKaWVB0YYyFA4=";
+        }
+      ];
+      privateKey = "WKiQS2CnQvadyHPhXB/JLCIyzzbkMQyXJ21iTR+RMUE=";
+    };
+  };
 
   roles = {
     laptop = {
       enable = true;
     };
     cad = {
-      enable = true;
+      enable = false;
     };
     docker = {
       enable = true;
@@ -58,7 +78,7 @@ in {
       enable = true;
     };
     twingate = {
-      enable = true;
+      enable = false;
     };
     desktop = {
       enable = true;
@@ -86,6 +106,9 @@ in {
       enable = true;
     };
     flatpak = {
+      enable = true;
+    };
+    mullvad = {
       enable = true;
     };
     zerotier = {

@@ -1,9 +1,9 @@
-{ ... }:
-{
+{...}: {
   imports = [
     ./3d.nix
     ./cad.nix
     ./desktop.nix
+    ./mullvad.nix
     ./dev.nix
     ./dns.nix
     ./docker.nix

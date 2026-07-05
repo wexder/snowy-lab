@@ -4,16 +4,16 @@
   hostName,
   lib,
   ...
-}:
-{
+}: {
   system.stateVersion = "24.05";
 
-  imports = [ ./roles ];
+  imports = [./roles];
   nixpkgs.config = {
     allowUnfree = true;
     allowBroken = true;
     permittedInsecurePackages = [
       "electron-25.9.0"
+      "electron-39.8.10"
     ];
   };
 
@@ -27,7 +27,7 @@
     "nix-command"
     "flakes"
   ];
-  nix.settings.trusted-users = [ "wexder" ];
+  nix.settings.trusted-users = ["wexder"];
   programs.nix-ld.enable = true;
 
   # latest kernel
@@ -81,14 +81,14 @@
     isNormalUser = true;
     home = "/home/wexder";
     description = "wexder";
-    extraGroups = [ "wheel" ];
+    extraGroups = ["wheel"];
     hashedPasswordFile = lib.mkDefault "/etc/passwordFile-wexder";
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMkKyMS0O7nzToTh/3LCrwJB++zc29R8U6UlzfzT0xV9"
     ];
   };
 
-  environment.shells = with pkgs; [ zsh ];
+  environment.shells = with pkgs; [zsh];
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
   systemd.oomd.enable = true;
@@ -117,26 +117,7 @@
 
   # Mandatory
   i18n.defaultLocale = "en_US.UTF-8";
-
-  # Optionally (BEWARE: requires a different format with the added /UTF-8)
   i18n.supportedLocales = [
     "all"
   ];
-
-  # WebDAV
-  #   services.davfs2.enable = true;
-  #   systemd.mounts = [
-  #   {
-  #     enable = true;
-  #     description = "Webdav mount point";
-  #     after = [ "network-online.target" ];
-  #     wants = [ "network-online.target" ];
-  #
-  #     what = "https://$fqdn/remote.php/dav/files/$myuser";
-  #     where = "/mnt/nextcloud";
-  #     options = uid=1000,gid=1000,file_mode=0664,dir_mode=2775
-  #     type = "davfs";
-  #     mountConfig.TimeoutSec = 15;
-  #   }
-  # ];
 }

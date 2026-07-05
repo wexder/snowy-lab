@@ -12,7 +12,6 @@ in {
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [
-      pkgs.bambu-studio
     ];
   };
 }

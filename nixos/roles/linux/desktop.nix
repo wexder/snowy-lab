@@ -3,6 +3,7 @@
   pkgs,
   stable,
   zen-browser,
+  helium-browser,
   lib,
   ...
 }:
@@ -64,10 +65,11 @@ in
 
         environment.sessionVariables.NIXOS_OZONE_WL = "1";
         environment.systemPackages = [
-          pkgs.whatsapp-for-linux
+          pkgs.karere
           pkgs.wayvnc
           pkgs.pavucontrol
-          pkgs.blueberry
+          # pkgs.blueberry
+          pkgs.blueman
           pkgs.grim
           pkgs.swappy
           pkgs.slurp
@@ -75,6 +77,7 @@ in
           pkgs.wallutils
 
           zen-browser.default
+          helium-browser.default
           stable.chromium
           pkgs.thunderbird
 
@@ -171,13 +174,6 @@ in
         xdg.portal = {
           enable = true;
           wlr.enable = true;
-          wlr.settings = {
-            screencast = {
-              chooser_type = "simple";
-              # works but doesn not allow choosing windows
-              chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
-            };
-          };
           extraPortals = [
             pkgs.xdg-desktop-portal-gtk
           ];
@@ -231,6 +227,11 @@ in
               "obsidian" = {
                 id = "obsidian";
                 path = "/home/wexder/obsidian/";
+                devices = [ "polar-bear" ];
+              };
+              "dbeaver" = {
+                id = "dbeaver";
+                path = "/home/wexder/.local/share/DBeaverData/workspace6";
                 devices = [ "polar-bear" ];
               };
             };

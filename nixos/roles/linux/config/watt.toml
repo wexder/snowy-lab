@@ -1,0 +1,75 @@
+# Settings for when connected to a power source
+[charger]
+# CPU governor to use
+governor = "performance"
+# Turbo boost setting: "always", "auto", or "never"
+turbo = "auto"
+# Enable or disable automatic turbo management (when turbo = "auto")
+enable_auto_turbo = true
+# Energy Performance Preference
+epp = "performance"
+# Energy Performance Bias (0-15 scale or named value)
+epb = "balance_performance"
+# Platform profile (if supported)
+platform_profile = "performance"
+# Min/max frequency in MHz (optional)
+min_freq_mhz = 800
+max_freq_mhz = 3500
+# Optional: Profile-specific battery charge thresholds (overrides global setting)
+# battery_charge_thresholds = [40, 80]  # Start at 40%, stop at 80%
+
+# Settings for when on battery power
+# Custom thresholds for auto turbo management
+[charger.turbo_auto_settings]
+load_threshold_high = 70.0
+load_threshold_low = 30.0
+temp_threshold_high = 75.0
+initial_turbo_state = false
+
+[battery]
+governor = "powersave"
+turbo = "never"
+# More conservative auto turbo settings on battery
+enable_auto_turbo = true
+
+epp = "power"
+epb = "balance_power"
+platform_profile = "low-power"
+min_freq_mhz = 800
+max_freq_mhz = 2500
+# Optional: Profile-specific battery charge thresholds (overrides global setting)
+# battery_charge_thresholds = [60, 80]  # Start at 60%, stop at 80% (more conservative)
+
+# Global battery charging thresholds (applied to both profiles unless overridden)
+# Start charging at 40%, stop at 80% - extends battery lifespan
+# NOTE: Profile-specific thresholds (in [charger] or [battery] sections)
+# take precedence over this global setting
+battery_charge_thresholds = [10, 100]
+
+[battery.turbo_auto_settings]
+load_threshold_high = 80.0
+load_threshold_low = 40.0
+temp_threshold_high = 70.0
+initial_turbo_state = false
+
+# Daemon configuration
+[daemon]
+# Base polling interval in seconds
+poll_interval_sec = 5
+# Enable adaptive polling that changes with system state
+adaptive_interval = true
+# Minimum polling interval for adaptive polling (seconds)
+min_poll_interval_sec = 1
+# Maximum polling interval for adaptive polling (seconds)
+max_poll_interval_sec = 30
+# Double the polling interval when on battery to save power
+throttle_on_battery = true
+# Logging level: Error, Warning, Info, Debug
+log_level = "Info"
+# Optional stats file path
+stats_file_path = "/var/run/watt-stats"
+
+# Optional: List of power supplies to ignore
+[power_supply_ignore_list]
+# mouse_battery = "hid-12:34:56:78:90:ab-battery"
+# Add other devices to ignore here

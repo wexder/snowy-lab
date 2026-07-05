@@ -29,8 +29,8 @@ in {
     environment.etc = {
       "systemd/resolved.conf.d/vpn.conf".text = ''
         [Resolve]
-        DNS=192.168.240.193 192.168.240.178
-        Domains=~office.local-k8s.tech. ~office.vpn.
+        DNS=192.168.240.193 192.168.240.177
+        Domains=~office.local-k8s.tech. ~office.vpn. ~k8s.local-k8s.tech.
       '';
     };
 
@@ -47,6 +47,8 @@ in {
               "192.168.251.0/24"
               "192.168.250.0/24"
               "192.168.240.0/24"
+              "192.168.68.0/24"
+              "192.168.69.0/24"
             ];
             endpoint = "46.254.69.178:51820";
             publicKey = "0Iko9oTbMfQRte2nAICUlB7wdvngFCWlTJkHs2ovl1U=";

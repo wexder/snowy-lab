@@ -1,6 +1,6 @@
 let
   wexder = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMkKyMS0O7nzToTh/3LCrwJB++zc29R8U6UlzfzT0xV9";
-  users = [ wexder ];
+  users = [wexder];
 
   polar-fox = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGBTlyCifL26ThYrCF+gx0VP+Fe5eKzc+E3F0NoOf9sD";
   polar-bear = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN1hs/xojXSytK8yRneFlcWqfAG527E09Q+NUXZdhDWb";
@@ -14,8 +14,7 @@ let
     snowball
     walrus
   ];
-in
-{
+in {
   "transmission_wg_pk.age".publicKeys = users ++ machines;
   "transmission_wg_pub.age".publicKeys = users ++ machines;
 
