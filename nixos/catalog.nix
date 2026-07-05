@@ -1,5 +1,6 @@
 # Catalog defines the systems & services on my network.
-{system}: {
+{ system }:
+{
   nodes = {
     snowy-deck = {
       config = ./hosts/snowyDeck.nix;
@@ -12,6 +13,13 @@
       config = ./hosts/snowball.nix;
       hw = ./hw/snowball.nix;
       home = ./home/snowball.nix;
+      system = system.x86_64-linux;
+    };
+
+    iceberg = {
+      config = ./hosts/iceberg.nix;
+      hw = ./hw/iceberg.nix;
+      home = ./home/iceberg.nix;
       system = system.x86_64-linux;
     };
 

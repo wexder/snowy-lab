@@ -1,6 +1,6 @@
 {
   config,
-  pkgs,
+  stable,
   lib,
   ...
 }:
@@ -21,12 +21,11 @@ in
     };
 
     environment.systemPackages = [
-      pkgs.nvtopPackages.full
-      pkgs.cudaPackages.cudatoolkit
-      pkgs.cudaPackages.cudnn
-      pkgs.cudaPackages.cutensor
-      pkgs.linuxPackages.nvidia_x11
-      pkgs.autoAddDriverRunpath
+      stable.nvtopPackages.full
+      stable.cudaPackages.cudatoolkit
+      stable.cudaPackages.cudnn
+      stable.linuxPackages.nvidia_x11
+      stable.autoAddDriverRunpath
     ];
     boot.initrd.kernelModules = [ "nvidia" ];
 

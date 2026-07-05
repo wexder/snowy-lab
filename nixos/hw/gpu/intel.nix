@@ -3,16 +3,18 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.gpus.intel;
-in {
+in
+{
   options.gpus.intel = {
     enable = lib.mkEnableOption "Enable amd intel";
   };
 
   config = lib.mkIf cfg.enable {
     services.xserver.enable = true;
-    services.xserver.videoDrivers = ["intel"];
+    services.xserver.videoDrivers = [ "intel" ];
     # Enable OpenGL
     hardware.graphics = {
       enable = true;
