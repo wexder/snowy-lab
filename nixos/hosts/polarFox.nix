@@ -33,6 +33,10 @@
     pkgs.python3 # testing
   ];
 
+  # networking.extraHosts = ''
+  #   167.99.19.178 keycloak.mcorecode.com
+  # '';
+
   roles = {
     "3d" = {
       enable = false;
@@ -69,6 +73,21 @@
       enable = true;
     };
     wine = {
+      enable = true;
+    };
+    soap = {
+      enable = false;
+    };
+    media-lib = {
+      enable = true;
+    };
+    logitech = {
+      enable = false;
+    };
+    razer = {
+      enable = true;
+    };
+    vr = {
       enable = true;
     };
     officeWg = {

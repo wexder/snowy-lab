@@ -2,7 +2,9 @@
   config,
   lib,
   pkgs,
+  stable,
   quickshell,
+  panoply,
   ...
 }:
 let
@@ -24,7 +26,7 @@ in
       pkgs.kdePackages.kdeconnect-kde
       pkgs.dbeaver-bin
       pkgs.caprine-bin
-      pkgs.bitwarden-desktop
+      stable.bitwarden-desktop
       pkgs.vlc
       pkgs.kooha
       pkgs.tigervnc
@@ -36,15 +38,18 @@ in
       pkgs.wl-clipboard
       pkgs.wdisplays
 
+      panoply
       quickshell
 
       # maybe ?
       # pkgs.waypipe
     ];
 
-    # services.blueman-applet.enable = true;
+    services.blueman-applet.enable = true;
 
     services.cliphist.enable = true;
+    services.wl-clip-persist.enable = true;
+
     home.file.".config/wallpapers".source = pkgs.fetchFromGitHub {
       owner = "wexder";
       repo = "snowy-lab-wallpapers";
@@ -88,10 +93,13 @@ in
       gtk3 = {
         extraConfig.gtk-application-prefer-dark-theme = true;
       };
+      gtk4.theme = null;
     };
     qt = {
       enable = true;
-      platformTheme = "gtk";
+      platformTheme = {
+        name = "gtk3";
+      };
       style = {
         name = "gtk2";
         package = pkgs.kdePackages.breeze-gtk;
@@ -109,6 +117,14 @@ in
       "org/gnome/desktop/interface" = {
         gtk-theme = "Breeze-Dark";
         color-scheme = "prefer-dark";
+      };
+      # Route blueman through the notification daemon rather than its own GTK
+      # fallback dialog. This was off because mako expired pairing
+      # confirmations after 5s and did not render their actions; quickshell
+      # draws the action buttons and keeps actionable notifications up until
+      # they are answered (behaviour.persistActionable).
+      "org/blueman/general" = {
+        notification-daemon = true;
       };
     };
 

@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  stable,
   ...
 }:
 let
@@ -19,13 +20,12 @@ in
 
   config = lib.mkIf (cfg.kind == "sway") {
     home.file.".config/sway/kill.sh".text = builtins.readFile ./sway/kill.sh;
-    # home.file.".config/lan-mouse/config.toml".text = (builtins.readFile ./lan-mouse/config.toml);
 
     home.packages = [
       pkgs.kanshi
       pkgs.mako
 
-      pkgs.wallutils
+      stable.wallutils
 
       pkgs.swaylock
       pkgs.swayidle

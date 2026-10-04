@@ -20,5 +20,11 @@
       enable = true;
       kind = "hyprland";
     };
+
+    # The shell is a home-manager module, so it is configured here rather than
+    # in nixos/hosts/polarFox.nix with the system-level roles.
+    quickshell = {
+      enable = true;
+    };
   };
 }

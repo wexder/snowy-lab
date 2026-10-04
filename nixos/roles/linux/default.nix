@@ -12,9 +12,14 @@
     ./jupyter.nix
     ./laptop.nix
     ./llm.nix
+    ./logitech.nix
     ./mcc.nix
+    ./media-lib.nix
     ./officeWg.nix
     ./prometheus.nix
+    ./razer.nix
+    ./soap.nix
+    ./vr.nix
     ./twingate.nix
     ./videoEditing.nix
     ./virtualization.nix

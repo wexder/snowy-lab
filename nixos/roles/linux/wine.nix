@@ -3,9 +3,11 @@
   stable,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.roles.wine;
-in {
+in
+{
   options.roles.wine = {
     enable = lib.mkEnableOption "Wine";
   };
@@ -13,14 +15,14 @@ in {
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [
       stable.icoutils
-      # pkgs.wine-wayland
+      stable.wine-wayland
       stable.winetricks
-      stable.wineWowPackages.waylandFull
-      stable.wineWowPackages.fonts
+      stable.wineWow64Packages.waylandFull
+      stable.wineWow64Packages.fonts
       stable.playonlinux
-      # pkgs.vkd3d
-      # pkgs.vkdt-wayland
-      # pkgs.dxvk
+      stable.vkd3d
+      stable.vkdt
+      stable.dxvk
       stable.q4wine # testing
       # stable.bottles # testing
     ];

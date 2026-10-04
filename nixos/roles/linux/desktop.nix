@@ -70,15 +70,15 @@ in
 
         environment.sessionVariables.NIXOS_OZONE_WL = "1";
         environment.systemPackages = [
-          pkgs.wasistlos
+          pkgs.karere
           pkgs.wayvnc
           pkgs.pavucontrol
-          pkgs.blueberry
+          pkgs.blueman
           pkgs.grim
           pkgs.swappy
           pkgs.slurp
           pkgs.onlyoffice-desktopeditors
-          pkgs.wallutils
+          stable.wallutils
 
           zen-browser.default
           stable.chromium
@@ -122,7 +122,8 @@ in
         services.pcscd.enable = true; # testing
 
         services.avahi = {
-          nssmdns = true;
+          nssmdns4 = true;
+          nssmdns6 = true;
           enable = true;
           ipv4 = true;
           ipv6 = false;
@@ -150,6 +151,18 @@ in
           pulse.enable = true;
           wireplumber.enable = true;
           # jack.enable = true;
+
+          # BlueZ 5.87 refuses Acquire (NotAuthorized) on the aptX transport
+          # when a phone/tablet streams to us, so drop the vendor codecs and
+          # force AAC/SBC.
+          wireplumber.configPackages = [
+            (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/51-bluez-codecs.conf" ''
+              monitor.bluez.properties = {
+                bluez5.codecs = [ sbc sbc_xq aac ]
+                bluez5.enable-sbc-xq = true
+              }
+            '')
+          ];
         };
         # testing network party audio
         # environment.etc = {
@@ -226,6 +239,11 @@ in
               "obsidian" = {
                 id = "obsidian";
                 path = "/home/wexder/obsidian/";
+                devices = [ "polar-bear" ];
+              };
+              "dbeaver" = {
+                id = "dbeaver";
+                path = "/home/wexder/.local/share/DBeaverData/workspace6";
                 devices = [ "polar-bear" ];
               };
             };

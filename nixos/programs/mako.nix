@@ -5,7 +5,9 @@
   ...
 }: {
   services.mako = {
-    enable = true;
+    # Only one process can own org.freedesktop.Notifications, and the quickshell
+    # shell serves notifications itself.
+    enable = !config.roles.quickshell.enable;
     settings = {
       sort = "-time";
       layer = "overlay";

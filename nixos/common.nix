@@ -14,6 +14,7 @@
     allowBroken = true;
     permittedInsecurePackages = [
       "electron-25.9.0"
+      "electron-39.8.10"
     ];
   };
 
@@ -22,7 +23,7 @@
       automatic = true;
       options = "--delete-older-than 7d";
     };
-    optimise.automatic = true;
+    optimise.automatic = false;
     settings = {
       experimental-features = [
         "nix-command"
@@ -35,6 +36,10 @@
     };
   };
   programs.nix-ld.enable = true;
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
 
   # latest kernel
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;

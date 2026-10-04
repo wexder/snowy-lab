@@ -3,9 +3,11 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.roles."3d";
-in {
+in
+{
   options.roles."3d" = {
     enable = lib.mkEnableOption "Enable 3D software";
   };

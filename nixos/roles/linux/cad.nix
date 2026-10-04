@@ -1,31 +1,25 @@
 {
   config,
   stable,
-  pkgs,
   lib,
   ...
 }:
 let
   cfg = config.roles.cad;
-  py-slvr = pkgs.python3Packages.buildPythonPackage rec {
-    pname = "slvs_py";
-    version = "0.21.2";
-    pyproject = true;
-
-    src = pkgs.fetchFromGitHub {
-      owner = "realthunder";
-      repo = "slvs_py";
-      rev = "master";
-      hash = "sha256-aG9iWz0Ef+t9jHwdtwjev+cd/iNUgMLnSznVJ4+dFdM=";
-    };
-
-    nativeBuildInputs = [
-      pkgs.python3Packages.setuptools
-      pkgs.python3Packages.skbuild
+  python = stable.python3.withPackages (
+    ps: with ps; [
+      pydantic
+      requests
+      atopile-easyeda2kicad
+    ]
+  );
+  kicad = stable.kicad-testing.override {
+    addons = [
+      stable.kicadAddons.kikit
+      stable.kicadAddons.kikit-library
     ];
 
-    propagatedBuildInputs = [
-    ];
+    python3 = python;
   };
 in
 {
@@ -35,14 +29,14 @@ in
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [
-      # pkgs.freecad-wayland
-      pkgs.kicad
-      pkgs.egl-wayland
-      pkgs.openscad
-      pkgs.opencascade-occt
-      # (pkgs.python3.withPackages (python-pkgs: [
-      #   # py-slvr
-      # ]))
+      # stable.freecad-wayland
+      stable.jre21_minimal
+      kicad
+      stable.easyeda2kicad
+      stable.freerouting
+      stable.egl-wayland
+      stable.openscad
+      stable.opencascade-occt
     ];
   };
 }

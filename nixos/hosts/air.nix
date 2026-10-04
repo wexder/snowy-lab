@@ -3,7 +3,8 @@
   pkgs,
   attrs,
   ...
-}: {
+}:
+{
   imports = [
     ../roles
   ];
@@ -17,6 +18,7 @@
     allowBroken = true;
     permittedInsecurePackages = [
       "electron-25.9.0"
+      "electron-39.8.10"
     ];
   };
 
@@ -70,8 +72,8 @@
     enable = true;
     onActivation.cleanup = "uninstall";
 
-    taps = [];
-    brews = [];
+    taps = [ ];
+    brews = [ ];
     casks = [
       "ghostty"
       "zen"

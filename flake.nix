@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    stable.url = "github:NixOS/nixpkgs/24.05";
+    stable.url = "github:NixOS/nixpkgs/26.05";
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
@@ -21,7 +21,7 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
-    zen-browser.url = "github:youwen5/zen-browser-flake?ref=a136a82830bc207f4387efbe9b718778db51600c";
+    zen-browser.url = "github:youwen5/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
 
     tuxedo-nixos.url = "github:sund3RRR/tuxedo-nixos";
@@ -29,9 +29,11 @@
     nix-darwin.url = "github:nix-darwin/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    hyprland.url = "github:hyprwm/Hyprland?tag=v0.53.1";
+    hyprland = {
+      url = "github:hyprwm/Hyprland/v0.56.1";
+    };
     hy3 = {
-      url = "github:outfoxxed/hy3?tag=hl0.53.1";
+      url = "github:wexder/hy3/5cda87b41921de18b2c2f8b7eb431200213b4906";
       inputs.hyprland.follows = "hyprland";
     };
     pyprland = {
@@ -46,9 +48,16 @@
       # Mismatched system dependencies will lead to crashes and other issues.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    panoply = {
+      url = "github:Code-Growers/panoply";
+    };
 
     # will be swapped for my own solution
     deploy-rs.url = "github:serokell/deploy-rs";
+
+    padctl.url = "github:BANANASJIM/padctl";
+
+    nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
   };
 
   outputs =
@@ -69,6 +78,9 @@
       hy3,
       quickshell,
       pyprland,
+      panoply,
+      padctl,
+      nixpkgs-xr,
       ...
     }@attrs:
     let
@@ -122,7 +134,9 @@
                   allowBroken = true;
                   permittedInsecurePackages = [
                     "electron-25.9.0"
+                    "electron-39.8.10"
                   ];
+                  allowUnfreePredicate = _: true;
                 };
               };
               specialArgs = attrs // {
@@ -131,11 +145,15 @@
                 stable = stablePkgs;
                 zen-browser = zen-browser.packages.${node.system};
                 hyprland-flake = hyprland.packages.${node.system};
+                panoply = panoply.packages.${node.system}.default;
                 hyprland-plugins = [
                   hy3.packages.${node.system}.hy3
                 ];
                 pyprland = pyprland.packages.${node.system}.default;
+                padctl = padctl.packages.${node.system}.default;
+                padctlSrc = padctl;
                 quickshell_pkg = quickshell.packages.${node.system}.default;
+                xr_pkgs = nixpkgs-xr.packages.${node.system};
                 isLinux = true;
               };
             in
@@ -149,9 +167,11 @@
                 node.config
                 node.hw
                 home-manager.nixosModules.home-manager
+                nixpkgs-xr.nixosModules.nixpkgs-xr
                 {
                   home-manager.useUserPackages = true;
                   home-manager.users.wexder = node.home;
+                  home-manager.useGlobalPkgs = true;
                   home-manager.extraSpecialArgs = specialArgs;
                 }
                 {
