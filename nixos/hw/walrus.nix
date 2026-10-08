@@ -5,7 +5,8 @@
   modulesPath,
   nixos-hardware,
   ...
-}: {
+}:
+{
   boot.loader.systemd-boot.enable = true;
 
   imports = [
@@ -49,13 +50,13 @@
     "iwlmvm"
     "tuxedo_keyboard"
   ];
-  boot.binfmt.emulatedSystems = ["aarch64-linux"];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   networking.networkmanager.wifi.backend = "iwd";
   boot.extraModulePackages = with config.boot.kernelPackages; [
     tuxedo-drivers
     acpi_call
   ];
-  hardware.firmware = [];
+  hardware.firmware = [ ];
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   services.fstrim.enable = lib.mkDefault true;

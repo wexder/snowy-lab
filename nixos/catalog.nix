@@ -1,5 +1,5 @@
 # Catalog defines the systems & services on my network.
-{system}: {
+{ system }: {
   nodes = {
     snowy-deck = {
       config = ./hosts/snowyDeck.nix;
@@ -42,7 +42,14 @@
       home = ./home/walrus.nix;
       system = system.x86_64-linux;
     };
-    #
+
+    puffin = {
+      config = ./hosts/puffin.nix;
+      hw = ./hw/puffin.nix;
+      home = ./home/puffin.nix;
+      system = system.x86_64-linux;
+    };
+
     # test-server = {
     #   config = ./hosts/test-server.nix;
     #   hw = ./hw/test-server.nix;
