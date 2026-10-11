@@ -58,6 +58,13 @@
     padctl.url = "github:BANANASJIM/padctl";
 
     nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
+
+    # intel-lpmd package and NixOS module from the open NixOS/nixpkgs#506626.
+    # Drop this, and its uses in nixos/roles/linux/laptop.nix, once it merges.
+    nixpkgs-lpmd = {
+      url = "github:merrkry/nixpkgs/5564e2ccd42a79ea77988c2b2f3b17bac28e206d";
+      flake = false;
+    };
   };
 
   outputs =

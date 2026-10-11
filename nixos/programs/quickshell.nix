@@ -117,6 +117,10 @@ in
         persistActionable = true;
         maxPopups = 4;
         osdTimeout = 1500;
+        # On unplugging, cap the internal panel's refresh rate (Hz) and lower
+        # the backlight to this fraction. 0 leaves either alone.
+        batteryRefreshRate = 60;
+        batteryBrightness = 0.5;
         terminal = "ghostty";
         audioMixer = "pavucontrol";
         networkEditor = "nm-connection-editor";

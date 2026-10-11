@@ -119,6 +119,7 @@
       walrusWgPk = {
         file = ./secrets/walrus_cg_wg_pk.age;
       };
+      puffinWgPk.file = ./secrets/puffin_cg_wg_pk.age;
     };
 
     identityPaths = [

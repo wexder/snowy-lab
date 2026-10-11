@@ -12,8 +12,46 @@ hl.monitor({
   output = "",
   mode = "highres",
   position = "auto",
-  scale = 1.33,
+  scale = 1.5,
 })
+
+-- Variable refresh outside fullscreen costs smoothness and can flicker on an
+-- OLED, so it is only worth having on battery, where it measurably cuts the
+-- draw of anything that animates.
+local vrr_on_wall = 3
+local vrr_on_battery = 1
+
+-- Caps the internal panel's refresh rate at `limit` Hz, keeping its current
+-- resolution, position and scale; nil lifts the cap.
+local function limit_refresh_rate(limit)
+  for _, m in ipairs(hl.get_monitors()) do
+    if m.name:match("^eDP") then
+      local best
+      for _, mode in ipairs(m.available_modes) do
+        local fits = mode.width == m.width and mode.height == m.height
+        if fits and (not limit or mode.refresh_rate <= limit + 0.5) and (not best or mode.refresh_rate > best) then
+          best = mode.refresh_rate
+        end
+      end
+      if best then
+        hl.monitor({
+          output = m.name,
+          mode = string.format("%dx%d@%.2f", m.width, m.height, best),
+          position = string.format("%dx%d", m.x, m.y),
+          scale = m.scale,
+        })
+      end
+    end
+  end
+end
+
+-- Global because the shell calls it over IPC when the power source changes
+-- (quickshell/services/Hypr.qml). `limit` is the refresh rate cap to apply on
+-- battery, or nil for none.
+function set_on_battery(on_battery, limit)
+  hl.config({ misc = { vrr = on_battery and vrr_on_battery or vrr_on_wall } })
+  limit_refresh_rate(on_battery and limit or nil)
+end
 
 -- Environment variables
 hl.env("XCURSOR_SIZE", "32")
@@ -38,6 +76,9 @@ hl.config({
     input = {
         kb_layout = "us,cz",
         kb_options = "grp:win_space_toggle",
+        touchpad = {
+            clickfinger_behavior = true,
+        },
     },
 
     decoration = {
@@ -50,7 +91,10 @@ hl.config({
     },
 
     misc = {
-        vrr = 3,
+        vrr = vrr_on_wall,
+        disable_hyprland_logo = true,
+        disable_splash_rendering = true,
+        background_color = "#000000",
     },
 
     xwayland = {
@@ -111,6 +155,10 @@ hl.window_rule({
   match = { class = ".*-float.*" },
   float = true,
 })
+hl.window_rule({
+  match = { class = "com.gabm.satty" },
+  float = true,
+})
 
 -- Locked binds (media keys)
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
@@ -136,12 +184,13 @@ hl.bind(mod .. " + SHIFT + RETURN", hl.dsp.exec_cmd("thunar"))
 hl.bind(mod .. " + SHIFT + D", hl.dsp.exec_cmd("qs-ipc call panels toggle launcher"))
 hl.bind(mod .. " + SHIFT + V", hl.dsp.exec_cmd("qs-ipc call panels toggle clipboard"))
 hl.bind(mod .. " + N", hl.dsp.exec_cmd("qs-ipc call panels toggle notificationCenter"))
+-- Random wallpaper from ~/.config/wallpapers, through hyprpaper.
+hl.bind("ALT + SHIFT + N", hl.dsp.exec_cmd([[hyprctl hyprpaper wallpaper ",$(find -L ~/.config/wallpapers -type f | shuf -n 1)"]]))
 hl.bind(mod .. " + I", hl.dsp.exec_cmd("qs-ipc call panels toggle controlCenter"))
-hl.bind("PRINT", hl.dsp.exec_cmd('grim -g "$(slurp)" - | swappy -f -'))
-hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd('grim -g "$(slurp)" - | tesseract stdin stdout -l eng | wl-copy'))
 
 -- System binds
 hl.bind(mod .. " + SHIFT + X", hl.dsp.exit())
+hl.bind(mod .. " + CTRL + l", hl.dsp.exec_cmd("pidof hyprlock || hyprlock"))
 hl.bind(mod .. " + Q", hl.dsp.exec_cmd("/home/wexder/.config/hypr/murder.sh"))
 hl.bind(mod .. " + P", hl.dsp.exec_cmd("panoply"))
 
@@ -161,8 +210,8 @@ hl.bind(mod .. " + k", hy3.move_focus("u"))
 hl.bind(mod .. " + j", hy3.move_focus("d"))
 
 -- Group tab switching
-hl.bind(mod .. " + CTRL + h", hl.dsp.group.prev())
-hl.bind(mod .. " + CTRL + l", hl.dsp.group.next())
+-- hl.bind(mod .. " + CTRL + h", hl.dsp.group.prev())
+-- SUPER+CTRL+l locks the screen, as it did under sway, so group.next has no bind.
 
 -- Window movement (hy3)
 hl.bind(mod .. " + SHIFT + l", hy3.move_window("r"))
@@ -178,7 +227,9 @@ hl.bind(mod .. " + code:20", hl.dsp.workspace.toggle_special("scratchpad"))
 hl.bind(mod .. " + t", hl.dsp.exec_cmd("pypr toggle term"))
 
 -- Screenshot
-hl.bind("Print", hl.dsp.exec_cmd("grimblast copy area"))
+hl.bind("PRINT", hl.dsp.exec_cmd('GRIMBLAST_EDITOR="satty --filename" grimblast edit area'))
+-- hl.bind("PRINT", hl.dsp.exec_cmd('grim -g "$(slurp)" - | swappy -f -'))
+hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd('GRIMBLAST_EDITOR="satty --filename" grimblast edit screen'))
 
 -- Workspaces
 for i = 1, 10 do

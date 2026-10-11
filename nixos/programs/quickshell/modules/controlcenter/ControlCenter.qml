@@ -318,5 +318,40 @@ OverlayPanel {
                 }
             }
         }
+
+        // ── Charge limit ──
+        StyledRect {
+            id: chargeLimitButton
+
+            readonly property bool active: Services.Battery.chargeLimit
+
+            Layout.fillWidth: true
+            visible: Services.Battery.chargeLimitSupported
+            implicitHeight: 34
+            radius: Theme.radius.small
+            color: active ? Theme.palette.accent : Theme.palette.surface
+
+            RowLayout {
+                anchors.centerIn: parent
+                spacing: Theme.spacing.small
+
+                Icon {
+                    text: "󰂏"
+                    sizeMultiplier: 0.8
+                    color: chargeLimitButton.active ? Theme.palette.onAccent : Theme.palette.subtext
+                }
+
+                StyledText {
+                    text: chargeLimitButton.active ? "Charge limit on" : "Charge limit off"
+                    font.pointSize: Theme.font.tiny
+                    color: chargeLimitButton.active ? Theme.palette.onAccent : Theme.palette.subtext
+                }
+            }
+
+            StateLayer {
+                radius: Theme.radius.small
+                onClicked: Services.Battery.setChargeLimit(!chargeLimitButton.active)
+            }
+        }
     }
 }

@@ -4,7 +4,8 @@
   stable,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.roles.work;
   slack = pkgs.slack.overrideAttrs (oldAttrs: {
     fixupPhase = ''
@@ -13,11 +14,12 @@
       rm $out/bin/slack
       makeWrapper $out/lib/slack/slack $out/bin/slack \
         --prefix XDG_DATA_DIRS : $GSETTINGS_SCHEMAS_PATH \
-        --suffix PATH : ${lib.makeBinPath [pkgs.xdg-utils]} \
+        --suffix PATH : ${lib.makeBinPath [ pkgs.xdg-utils ]} \
         --add-flags "--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations,WebRTCPipeWireCapturer"
     '';
   });
-in {
+in
+{
   options.roles.work = {
     enable = lib.mkOption {
       default = false;
@@ -31,8 +33,7 @@ in {
         environment.systemPackages = [
           slack
           stable.clockify
-          # TODO needs more testing
-          # pkgs.teams-for-linux
+          pkgs.teams-for-linux
         ];
       }
     ]

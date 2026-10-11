@@ -12,9 +12,14 @@ BarBlock {
 
     tooltipText: {
         const state = Services.Battery.charging ? "Charging" : Services.Battery.full ? "Full" : "Discharging";
+        const parts = [state];
         if (Services.Battery.timeRemaining > 0)
-            return `${state} — ${Services.Time.relative(Services.Battery.timeRemaining)} ${Services.Battery.charging ? "until full" : "remaining"}`;
-        return state;
+            parts.push(`${Services.Time.relative(Services.Battery.timeRemaining)} ${Services.Battery.charging ? "until full" : "remaining"}`);
+        if (Services.Battery.rate > 0.1)
+            parts.push(`${Services.Battery.rate.toFixed(1)} W`);
+        if (Services.Battery.fullRuntime > 0)
+            parts.push(`${Services.Time.relative(Services.Battery.fullRuntime)} on a full charge`);
+        return parts.join(" · ");
     }
 
     readonly property color statusColor: {

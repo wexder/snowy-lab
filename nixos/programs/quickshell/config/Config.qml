@@ -117,6 +117,9 @@ Singleton {
         // How many notification popups may be on screen at once.
         readonly property int maxPopups: _.maxPopups ?? 4
         readonly property int osdTimeout: _.osdTimeout ?? 1500
+        // Applied when the machine goes onto battery; 0 leaves either alone.
+        readonly property int batteryRefreshRate: _.batteryRefreshRate ?? 60
+        readonly property real batteryBrightness: _.batteryBrightness ?? 0.5
         readonly property string terminal: _.terminal ?? "ghostty"
         readonly property string audioMixer: _.audioMixer ?? "pavucontrol"
         readonly property string networkEditor: _.networkEditor ?? "nm-connection-editor"

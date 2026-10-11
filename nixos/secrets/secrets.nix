@@ -5,6 +5,7 @@ let
   polar-fox = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGBTlyCifL26ThYrCF+gx0VP+Fe5eKzc+E3F0NoOf9sD";
   polar-bear = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN1hs/xojXSytK8yRneFlcWqfAG527E09Q+NUXZdhDWb";
   snowball = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHIPy1ZXI7+v9dTY20GEo+ZzeL7KedSwIr5zRyUhUIHs";
+  puffin = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFiDBVtl7ouaLuhmp2Th9/6hGZSsXdMg5QBW9NfzI8KL";
 
   walrus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFhGi29oh/fgvTW9PsKbqgt/+S+J9Jvwac3HszgvVdYn";
 
@@ -13,6 +14,7 @@ let
     polar-bear
     snowball
     walrus
+    puffin
   ];
 in
 {
@@ -29,4 +31,5 @@ in
   "snowball_cg_wg_pk.age".publicKeys = users ++ machines;
   "walrus_cg_wg_pk.age".publicKeys = users ++ machines;
   "air_cg_wg_pk.age".publicKeys = users ++ machines;
+  "puffin_cg_wg_pk.age".publicKeys = users ++ machines;
 }

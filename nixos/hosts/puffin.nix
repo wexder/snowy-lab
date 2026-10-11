@@ -40,6 +40,7 @@
   roles = {
     laptop = {
       enable = true;
+      intelLpmd = true;
     };
     dev = {
       enable = true;
@@ -54,13 +55,16 @@
     };
     officeWg = {
       enable = true;
-      address = "192.168.250.8/32";
-      privateKeyFile = config.age.secrets.walrusWgPk.path;
+      address = "192.168.250.12/32";
+      privateKeyFile = config.age.secrets.puffinWgPk.path;
     };
     virtualisation = {
       enable = true;
     };
     work = {
+      enable = true;
+    };
+    media-lib = {
       enable = true;
     };
   };

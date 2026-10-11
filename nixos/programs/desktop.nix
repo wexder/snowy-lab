@@ -19,6 +19,11 @@ in
         "hyprland"
       ];
     };
+    wallpaper = lib.mkOption {
+      description = "File in ~/.config/wallpapers to show as the desktop background.";
+      type = lib.types.str;
+      default = "mountains-on-mars.png";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -50,12 +55,12 @@ in
     services.cliphist.enable = true;
     services.wl-clip-persist.enable = true;
 
-    home.file.".config/wallpapers".source = pkgs.fetchFromGitHub {
-      owner = "wexder";
-      repo = "snowy-lab-wallpapers";
-      rev = "ac4ee28c9f72b322ee047a0a046273ef52c8b04e";
-      hash = "sha256-kEuiRqPltWAlrPeTqOfd+hk8FTi1c90YvY6j5fA8cUY=";
-    };
+    # home.file.".config/wallpapers".source = pkgs.fetchFromGitHub {
+    #   owner = "wexder";
+    #   repo = "snowy-lab-wallpapers";
+    #   rev = "ac4ee28c9f72b322ee047a0a046273ef52c8b04e";
+    #   hash = "sha256-kEuiRqPltWAlrPeTqOfd+hk8FTi1c90YvY6j5fA8cUY=";
+    # };
 
     xdg.portal = {
       enable = true;
@@ -93,7 +98,12 @@ in
       gtk3 = {
         extraConfig.gtk-application-prefer-dark-theme = true;
       };
-      gtk4.theme = null;
+      gtk4 = {
+        theme = null;
+        # libadwaita apps follow the portal's colour scheme, but plain GTK4
+        # apps only go dark with this set.
+        extraConfig.gtk-application-prefer-dark-theme = true;
+      };
     };
     qt = {
       enable = true;

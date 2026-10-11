@@ -3,11 +3,13 @@
   pkgs,
   stable,
   zen-browser,
+  hyprland,
   lib,
   ...
 }:
 let
   cfg = config.roles.desktop;
+  hyprlandPkgs = hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   options.roles.desktop = {
@@ -38,8 +40,18 @@ in
       {
         security.rtkit.enable = true;
         security.pam.services.swaylock = { };
+        security.pam.services.hyprlock = { };
 
         programs.xwayland.enable = true;
+
+        # Hyprland comes from its own flake, built against that flake's nixpkgs.
+        # The system graphics drivers have to come from the same nixpkgs: a mesa
+        # built against a newer glibc cannot be loaded into Hyprland, which then
+        # dies at startup with "Cannot open backend: no allocator available".
+        hardware.graphics = lib.mkIf (cfg.desktop == "start-hyprland") {
+          package = hyprlandPkgs.mesa;
+          package32 = hyprlandPkgs.pkgsi686Linux.mesa;
+        };
         # services.blueman.enable = true;
         programs.thunar = {
           enable = true;

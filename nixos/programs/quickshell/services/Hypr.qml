@@ -67,6 +67,18 @@ Singleton {
         Hyprland.dispatch(Hyprland.usingLua ? lua : classic);
     }
 
+    // Tells the compositor which power source it is on, so it can trade
+    // smoothness for runtime: `refreshLimit` caps the internal panel's refresh
+    // rate on battery (0 for no cap). The work is done by set_on_battery() in
+    // hyprland.lua, which can see the panel's modes — HyprlandMonitor reports
+    // no geometry under the Lua config. That also makes this Lua-only, and it
+    // goes through `hyprctl eval` because `dispatch` accepts nothing but
+    // dispatcher objects. Not gated on Hyprland.usingLua: that is still false
+    // when UPower first reports the power source.
+    function setOnBattery(onBattery: bool, refreshLimit: int): void {
+        Quickshell.execDetached(["hyprctl", "eval", `set_on_battery(${onBattery}, ${refreshLimit > 0 ? refreshLimit : "nil"})`]);
+    }
+
     function switchTo(id: int): void {
         root.dispatch(`workspace ${id}`, `hl.dsp.focus({ workspace = ${id} })`);
     }
