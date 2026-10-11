@@ -19,6 +19,7 @@
     desktop = {
       enable = true;
       kind = "hyprland";
+      scale = 1.33;
     };
 
     # The shell is a home-manager module, so it is configured here rather than

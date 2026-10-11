@@ -24,6 +24,16 @@ in
       type = lib.types.str;
       default = "mountains-on-mars.png";
     };
+    opacity = lib.mkOption {
+      description = "How opaque application backgrounds are: the terminal, GTK windows and the document viewer.";
+      type = lib.types.float;
+      default = 0.85;
+    };
+    scale = lib.mkOption {
+      description = "Default scale for monitors that have no rule of their own.";
+      type = lib.types.number;
+      default = 1.5;
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -86,9 +96,9 @@ in
       };
       iconTheme = {
         name = "Papirus-Dark";
-        package = pkgs.catppuccin-papirus-folders.override {
-          flavor = "mocha";
-          accent = "lavender";
+        # Carmine is the Papirus folder colour closest to the shell's primary.
+        package = pkgs.papirus-icon-theme.override {
+          color = "carmine";
         };
       };
       cursorTheme = {
@@ -97,6 +107,11 @@ in
       };
       gtk3 = {
         extraConfig.gtk-application-prefer-dark-theme = true;
+        # The file manager's sidebar. This file is generated, so bookmarks
+        # added from the file manager are lost on the next switch.
+        bookmarks = [
+          "file://${config.home.homeDirectory}/obsidian/vault"
+        ];
       };
       gtk4 = {
         theme = null;
@@ -105,6 +120,9 @@ in
         extraConfig.gtk-application-prefer-dark-theme = true;
       };
     };
+    # Replaces the hand-written bookmarks file that predates this.
+    xdg.configFile."gtk-3.0/bookmarks".force = true;
+
     qt = {
       enable = true;
       platformTheme = {
@@ -127,6 +145,13 @@ in
       "org/gnome/desktop/interface" = {
         gtk-theme = "Breeze-Dark";
         color-scheme = "prefer-dark";
+      };
+      # The GTK file chooser, which is what the portal shows for uploads and
+      # saves. Always show the path as a text entry rather than only after
+      # ctrl+l, and list folders first as Thunar does.
+      "org/gtk/settings/file-chooser" = {
+        location-mode = "filename-entry";
+        sort-directories-first = true;
       };
       # Route blueman through the notification daemon rather than its own GTK
       # fallback dialog. This was off because mako expired pairing

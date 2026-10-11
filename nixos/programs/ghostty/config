@@ -10,3 +10,6 @@ resize-overlay = never
 macos-titlebar-style = hidden
 app-notifications = no-clipboard-copy
 auto-update = off
+# Colours generated from the desktop palette (nixos/programs/theme.nix).
+# Optional, so hosts without it keep the values above.
+config-file = ?theme

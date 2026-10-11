@@ -19,8 +19,10 @@ in
         services.xserver.videoDrivers = [ "amdgpu" ];
         # Enable OpenGL
         hardware.graphics = {
-          package = pkgs.mesa;
-          package32 = pkgs.pkgsi686Linux.mesa;
+          # Only defaults: on a Hyprland desktop the role swaps in the mesa
+          # that Hyprland itself was built against (roles/linux/desktop.nix).
+          package = lib.mkDefault pkgs.mesa;
+          package32 = lib.mkDefault pkgs.pkgsi686Linux.mesa;
           enable = true;
           enable32Bit = true;
 

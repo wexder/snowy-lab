@@ -55,18 +55,18 @@ Singleton {
     component Colors: QtObject {
         readonly property var _: root.data.colors ?? ({})
 
-        // Neutrals — warm charcoal, faintly red-tinted so the accent reads as
-        // part of the palette rather than pasted on top of a cool grey.
-        readonly property color base: _.base ?? "#191316"
-        readonly property color mantle: _.mantle ?? "#130E11"
-        readonly property color surface: _.surface ?? "#241C20"
-        readonly property color surfaceAlt: _.surfaceAlt ?? "#33272C"
-        readonly property color overlay: _.overlay ?? "#4C3B42"
+        // Neutrals — pure black, with faintly red-tinted raised surfaces so
+        // the accent reads as part of the palette.
+        readonly property color base: _.base ?? "#000000"
+        readonly property color mantle: _.mantle ?? "#000000"
+        readonly property color surface: _.surface ?? "#140C0F"
+        readonly property color surfaceAlt: _.surfaceAlt ?? "#24161B"
+        readonly property color overlay: _.overlay ?? "#402B33"
 
         // Foreground
-        readonly property color text: _.text ?? "#F3E9EB"
-        readonly property color subtext: _.subtext ?? "#DCCBCF"
-        readonly property color muted: _.muted ?? "#9C858C"
+        readonly property color text: _.text ?? "#F9F9F9"
+        readonly property color subtext: _.subtext ?? "#D9CED1"
+        readonly property color muted: _.muted ?? "#94838A"
 
         // Brand
         readonly property color primary: _.primary ?? "#C2354A"

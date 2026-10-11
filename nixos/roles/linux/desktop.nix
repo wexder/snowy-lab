@@ -57,9 +57,14 @@ in
           enable = true;
           plugins = [
             pkgs.thunar-archive-plugin
+            pkgs.thunar-media-tags-plugin
             pkgs.thunar-volman
           ];
         };
+        # Thunar keeps its preferences in xfconf, and gets its thumbnails from
+        # tumbler.
+        programs.xfconf.enable = true;
+        services.tumbler.enable = true;
 
         fonts.packages = [
         ]
@@ -85,6 +90,10 @@ in
           pkgs.karere
           pkgs.wayvnc
           pkgs.pavucontrol
+          # What thunar-archive-plugin hands "extract here" and "compress" to.
+          pkgs.file-roller
+          # Video thumbnails for tumbler.
+          pkgs.ffmpegthumbnailer
           pkgs.blueman
           pkgs.grim
           pkgs.swappy

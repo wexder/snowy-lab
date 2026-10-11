@@ -20,7 +20,8 @@ let
   # former, so an alpha is just two more hex digits on the end.
   fade = colour: alpha: "${colour}${alpha}";
 
-  # Prepended to the lua config, which reads these as `theme.*`. Kept as a
+  # Prepended to the lua config, which reads these as `theme.*`, along with the
+  # per-host `default_scale`. Kept as a
   # generated prelude rather than literals in hyprland.lua so the palette has
   # exactly one definition.
   themePrelude = ''
@@ -43,6 +44,9 @@ let
       tab_alt_monitor = "${fade palette.muted "aa"}",
       tab_text        = "${palette.text}",
     }
+
+    -- Generated from roles.desktop.scale.
+    local default_scale = ${toString cfg.scale}
   '';
 
   # hyprlock wants "rgb(RRGGBB)" where the palette has "#RRGGBB".
@@ -72,6 +76,9 @@ in
     ./waybar.nix
     ./kanshi.nix
     ./quickshell.nix
+    ./theme.nix
+    ./thunar.nix
+    ./zathura.nix
   ];
 
   config = lib.mkIf (cfg.kind == "hyprland") {

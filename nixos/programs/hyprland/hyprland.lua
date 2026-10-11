@@ -3,6 +3,8 @@
 --
 -- `theme` is not defined here: nixos/programs/hyprland.nix prepends it, built
 -- from roles.quickshell.colors so the compositor and the shell share a palette.
+-- `default_scale` comes from the same prelude, set per host by
+-- roles.desktop.scale.
 
 local mod = "SUPER"
 local hy3 = hl.plugin.hy3
@@ -12,7 +14,7 @@ hl.monitor({
   output = "",
   mode = "highres",
   position = "auto",
-  scale = 1.5,
+  scale = default_scale,
 })
 
 -- Variable refresh outside fullscreen costs smoothness and can flicker on an
@@ -158,6 +160,16 @@ hl.window_rule({
 hl.window_rule({
   match = { class = "com.gabm.satty" },
   float = true,
+})
+-- Thunar's progress, rename and properties windows are ordinary toplevels,
+-- which would otherwise be tiled.
+hl.window_rule({
+  match = {
+    class = "^[Tt]hunar$",
+    title = "^(File Operation Progress|Rename .*|Create New .*|Confirm to replace files|.* - Properties|Bulk Rename.*)$",
+  },
+  float = true,
+  center = true,
 })
 
 -- Locked binds (media keys)

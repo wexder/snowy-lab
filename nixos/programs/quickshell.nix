@@ -47,17 +47,19 @@ in
       description = "Colour tokens handed to the shell. Defaults to a red theme.";
       type = lib.types.attrsOf lib.types.str;
       default = {
-        # Neutrals — warm charcoal, faintly red-tinted.
-        base = "#191316";
-        mantle = "#130E11";
-        surface = "#241C20";
-        surfaceAlt = "#33272C";
-        overlay = "#4C3B42";
+        # Neutrals — pure black, like the terminal and the lock screen. The
+        # raised surfaces are faintly red-tinted so the accent reads as part
+        # of the palette.
+        base = "#000000";
+        mantle = "#000000";
+        surface = "#140C0F";
+        surfaceAlt = "#24161B";
+        overlay = "#402B33";
 
         # Foreground
-        text = "#F3E9EB";
-        subtext = "#DCCBCF";
-        muted = "#9C858C";
+        text = "#F9F9F9";
+        subtext = "#D9CED1";
+        muted = "#94838A";
 
         # Brand. onPrimary is whatever is legible on top of primary — with a
         # dark red that has to be near-white, so it is its own token rather
