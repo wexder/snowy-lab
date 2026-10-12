@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   programs.zsh = {
     enable = true;
     dotDir = config.xdg.configHome;
@@ -23,7 +24,6 @@
       ta = "tmux attach -t";
       ts = "tmux new -s";
       # nix
-      ns = "nix-shell shell.nix";
       nd = "nix develop";
       nixos-full-upgrade = "sudo rm /etc/nixos/flake.lock && nix-collect-garbage && sudo nixos-rebuild switch";
       # kubectl
@@ -34,6 +34,18 @@
       lzd = "lazydocker";
       twg = "sudo twingate stop && sudo twingate start && sudo twingate auth Nuclino";
     };
+    initContent = ''
+      ns() {
+        local pkg="$1"
+        shift
+        nix shell github:NixOS/nixpkgs#$pkg $@
+      }
+      nr() {
+        local pkg="$1"
+        shift
+        nix run github:NixOS/nixpkgs#$pkg -- $@
+      }
+    '';
 
     oh-my-zsh = {
       enable = true;

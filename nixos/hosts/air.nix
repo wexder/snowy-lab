@@ -30,7 +30,6 @@
     pkgs.tmux
     pkgs.tmux-sessionizer
     pkgs.jq
-    pkgs.neovim-unwrapped
     pkgs.wget
     pkgs.curl
     pkgs.lazydocker

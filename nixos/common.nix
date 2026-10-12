@@ -56,7 +56,7 @@
     pkgs.tmux-sessionizer
     pkgs.htop
     pkgs.jq
-    pkgs.neovim-unwrapped
+    pkgs.neovim
     pkgs.tree-sitter
     pkgs.wget
     pkgs.curl
